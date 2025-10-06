@@ -1,0 +1,244 @@
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+  @if (isLoading()) {
+    <!-- Loading State -->
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-primary"></div>
+    </div>
+  } @else if (coach()) {
+    <!-- Coach Details Content -->
+    <div class="space-y-12">
+      <!-- Back Button -->
+      <button 
+        (click)="goBack()" 
+        class="flex items-center text-subtle-light dark:text-subtle-dark hover:text-text-light dark:hover:text-text-dark mb-6 transition-colors">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        {{ 'coach-details.back-to-search' | translate }}
+      </button>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Left Column: Images and Details -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Image Gallery -->
+          <div>
+            <div class="aspect-video mb-4 rounded-lg overflow-hidden shadow-sm">
+              <img 
+                [src]="selectedImage()" 
+                [alt]="coach()!.name"
+                class="w-full h-full object-cover">
+            </div>
+            
+            <!-- Thumbnail Gallery -->
+            <div class="flex space-x-2 overflow-x-auto pb-2">
+              @for (image of coach()!.images; track $index) {
+                <button 
+                  (click)="selectImage($index)"
+                  [class]="'flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all ' + 
+                          (selectedImageIndex() === $index ? 'border-primary' : 'border-surface-dark/20 hover:border-surface-dark/40')">
+                  <img [src]="image" [alt]="'Imagen ' + ($index + 1)" class="w-full h-full object-cover">
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- Coach Information -->
+          <div class="bg-surface-light dark:bg-surface-dark/50 rounded-lg shadow-sm p-6">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h1 class="font-display text-3xl font-bold text-text-light dark:text-text-dark mb-2">{{ coach()!.name }}</h1>
+                <div class="flex items-center text-subtle-light dark:text-subtle-dark mb-2">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  {{ coach()!.location }}
+                </div>
+                <div class="flex items-center">
+                  <div class="flex items-center text-accent-light dark:text-accent-dark mr-2">
+                    @for (star of [1,2,3,4,5]; track star) {
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    }
+                  </div>
+                  <span class="text-subtle-light dark:text-subtle-dark">{{ coach()!.rating }} ({{ coach()!.reviews }} {{ 'coach-details.reviews' | translate }})</span>
+                </div>
+              </div>
+              <button 
+                (click)="shareProfile()"
+                class="p-2 text-subtle-light dark:text-subtle-dark hover:text-text-light dark:hover:text-text-dark transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                </svg>
+              </button>
+            </div>
+
+            <p class="text-text-light dark:text-text-dark leading-relaxed mb-6">
+              {{ coach()!.description }}
+            </p>
+
+            <!-- Coach Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div class="text-center p-4 bg-background-light dark:bg-background-dark rounded-lg">
+                <div class="text-2xl font-bold text-primary">{{ coach()!.experience }}</div>
+                <div class="text-sm text-subtle-light dark:text-subtle-dark">{{ 'coach-details.years-experience' | translate }}</div>
+              </div>
+              <div class="text-center p-4 bg-background-light dark:bg-background-dark rounded-lg">
+                <div class="text-2xl font-bold text-primary">{{ getLevelText(coach()!.level) }}</div>
+                <div class="text-sm text-subtle-light dark:text-subtle-dark">{{ 'coach-details.level' | translate }}</div>
+              </div>
+              <div class="text-center p-4 bg-background-light dark:bg-background-dark rounded-lg">
+                <div class="text-2xl font-bold text-primary">{{ coach()!.sports.join(', ') }}</div>
+                <div class="text-sm text-subtle-light dark:text-subtle-dark">{{ 'coach-details.sports' | translate }}</div>
+              </div>
+              <div class="text-center p-4 bg-background-light dark:bg-background-dark rounded-lg">
+                <div class="text-2xl font-bold text-primary">S/ {{ coach()!.pricePerHour }}</div>
+                <div class="text-sm text-subtle-light dark:text-subtle-dark">{{ 'coach-details.per-hour' | translate }}</div>
+              </div>
+            </div>
+
+            <!-- Specialties -->
+            <div class="mb-6">
+              <h3 class="font-display text-lg font-semibold text-text-light dark:text-text-dark mb-4">{{ 'coach-details.specialties' | translate }}</h3>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                @for (specialty of coach()!.specialties; track specialty) {
+                  <div class="flex items-center">
+                    <svg class="w-5 h-5 text-accent-light dark:text-accent-dark mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="text-text-light dark:text-text-dark">{{ specialty }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="mb-6">
+              <h3 class="font-display text-lg font-semibold text-text-light dark:text-text-dark mb-4">{{ 'coach-details.certifications' | translate }}</h3>
+              <div class="space-y-2">
+                @for (cert of coach()!.certifications; track cert) {
+                  <div class="flex items-center">
+                    <svg class="w-5 h-5 text-info-light dark:text-info-dark mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                    <span class="text-text-light dark:text-text-dark">{{ cert }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Languages -->
+            <div>
+              <h3 class="font-display text-lg font-semibold text-text-light dark:text-text-dark mb-4">{{ 'coach-details.languages' | translate }}</h3>
+              <div class="flex flex-wrap gap-2">
+                @for (language of coach()!.languages; track language) {
+                  <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium">
+                    {{ language }}
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="bg-surface-light dark:bg-surface-dark/50 rounded-lg shadow-sm p-6">
+            <h3 class="font-display text-lg font-semibold text-text-light dark:text-text-dark mb-4">{{ 'coach-details.contact' | translate }}</h3>
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-subtle-light dark:text-subtle-dark mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <a href="tel:{{ coach()!.contact.phone }}" class="text-primary hover:text-brand-light dark:hover:text-brand-dark">
+                  {{ coach()!.contact.phone }}
+                </a>
+              </div>
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-subtle-light dark:text-subtle-dark mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a href="mailto:{{ coach()!.contact.email }}" class="text-primary hover:text-brand-light dark:hover:text-brand-dark">
+                  {{ coach()!.contact.email }}
+                </a>
+              </div>
+              @if (coach()!.contact.website) {
+                <div class="flex items-center">
+                  <svg class="w-5 h-5 text-subtle-light dark:text-subtle-dark mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c1.657 0 3-4.03 3-9s-1.343-9 3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  </svg>
+                  <a [href]="'https://' + coach()!.contact.website" target="_blank" class="text-primary hover:text-brand-light dark:hover:text-brand-dark">
+                    {{ coach()!.contact.website }}
+                  </a>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Booking -->
+        <div class="lg:col-span-1">
+          <div class="bg-surface-light dark:bg-surface-dark/50 rounded-lg shadow-sm p-6 sticky top-8">
+            <h3 class="font-display text-xl font-semibold text-text-light dark:text-text-dark mb-6">{{ 'coach-details.book-session' | translate }}</h3>
+            
+            <!-- Date Selector -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-subtle-light dark:text-subtle-dark mb-2">
+                {{ 'coach-details.select-date' | translate }}
+              </label>
+              <input 
+                type="date" 
+                [value]="selectedDate()"
+                (change)="selectedDate.set($any($event.target).value)"
+                class="w-full px-3 py-2 bg-background-light dark:bg-background-dark border border-surface-dark/20 dark:border-surface-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-text-light dark:text-text-dark">
+            </div>
+
+            <!-- Available Time Slots -->
+            <div class="mb-6">
+              <h4 class="text-sm font-medium text-subtle-light dark:text-subtle-dark mb-3">
+                {{ 'coach-details.available-times' | translate }}
+              </h4>
+              <div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">
+                @for (slot of availableSlots(); track slot.time) {
+                  <button 
+                    (click)="bookSession(slot)"
+                    class="p-3 text-sm bg-background-light dark:bg-background-dark border border-surface-dark/20 dark:border-surface-dark rounded-lg hover:border-primary hover:bg-primary/10 transition-all">
+                    <div class="font-medium text-text-light dark:text-text-dark">{{ slot.time }}</div>
+                    <div class="text-primary">S/ {{ slot.price }}</div>
+                  </button>
+                }
+              </div>
+              @if (availableSlots().length === 0) {
+                <p class="text-subtle-light dark:text-subtle-dark text-sm text-center py-4">
+                  {{ 'coach-details.no-slots-available' | translate }}
+                </p>
+              }
+            </div>
+
+            <!-- Booking Summary -->
+            <div class="border-t border-surface-dark/20 dark:border-surface-dark pt-4">
+              <div class="flex justify-between items-center text-sm text-subtle-light dark:text-subtle-dark mb-2">
+                <span>{{ 'coach-details.price-from' | translate }}</span>
+                <span>S/ {{ coach()!.pricePerHour }}</span>
+              </div>
+              <div class="text-xs text-subtle-light dark:text-subtle-dark mb-4">
+                {{ 'coach-details.final-price-note' | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <!-- Error State -->
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-4">{{ 'coach-details.not-found' | translate }}</h2>
+        <button 
+          (click)="goBack()"
+          class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+          {{ 'coach-details.back-to-search' | translate }}
+        </button>
+      </div>
+    </div>
+  }
+</div>

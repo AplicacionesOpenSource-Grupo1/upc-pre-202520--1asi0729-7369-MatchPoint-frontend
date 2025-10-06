@@ -1,1 +1,124 @@
-<p>dashboard works!</p>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+  <div class="space-y-12">
+    <!-- Welcome Section -->
+    <h2 class="font-display text-3xl md:text-4xl font-bold">
+      {{ welcomeMessage() }}
+    </h2>
+
+    <!-- Upcoming Bookings Section -->
+    <div class="space-y-6">
+      <h3 class="font-display text-2xl font-bold border-b border-surface-dark/20 dark:border-surface-dark pb-3">
+        {{ 'dashboard.upcoming-bookings' | translate }}
+      </h3>
+      
+      @if (nextBooking(); as booking) {
+        <div class="bg-surface-light dark:bg-surface-dark/50 rounded-lg overflow-hidden shadow-sm">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="md:col-span-1">
+              <div class="w-full h-48 md:h-full bg-cover bg-center bg-gray-200" 
+                   style="background-image: url('https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80')">
+              </div>
+            </div>
+            <div class="p-6 md:col-span-2 flex flex-col justify-center">
+              <h4 class="font-display text-xl font-bold text-info-light dark:text-info-dark">
+                {{ 'dashboard.booking-confirmed' | translate }}
+              </h4>
+              <p class="mt-2 text-subtle-light dark:text-subtle-dark">
+                {{ 'dashboard.court-booking' | translate }} #{{ booking.id }}
+              </p>
+              <p class="mt-1 text-subtle-light dark:text-subtle-dark">
+                {{ booking.date }}, {{ booking.time }} ({{ booking.duration }}min)
+              </p>
+            </div>
+          </div>
+        </div>
+      } @else {
+        <div class="bg-surface-light dark:bg-surface-dark/50 rounded-lg p-6 text-center">
+          <p class="text-subtle-light dark:text-subtle-dark">
+            {{ 'dashboard.no-bookings' | translate }}
+          </p>
+        </div>
+      }
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="space-y-6">
+      <h3 class="font-display text-2xl font-bold border-b border-surface-dark/20 dark:border-surface-dark pb-3">
+        {{ 'dashboard.quick-actions' | translate }}
+      </h3>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button 
+          class="flex-1 bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary/90 transition-colors text-center text-base"
+          (click)="onFindCourt()">
+          {{ 'dashboard.find-court' | translate }}
+        </button>
+        <button 
+          class="flex-1 bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary/90 transition-colors text-center text-base"
+          (click)="onFindCoach()">
+          {{ 'dashboard.find-coach' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Dashboard Stats Section -->
+    <div class="space-y-6">
+      <h3 class="font-display text-2xl font-bold border-b border-surface-dark/20 dark:border-surface-dark pb-3">
+        {{ 'dashboard.dashboard' | translate }}
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-surface-light dark:bg-surface-dark/50 p-6 rounded-lg shadow-sm text-center">
+          <p class="text-sm font-medium text-subtle-light dark:text-subtle-dark">
+            {{ 'dashboard.total-bookings' | translate }}
+          </p>
+          <p class="font-display text-4xl font-bold mt-2 text-accent-light dark:text-accent-dark">
+            {{ dashboardStats()?.totalBookings || 0 }}
+          </p>
+        </div>
+        <div class="bg-surface-light dark:bg-surface-dark/50 p-6 rounded-lg shadow-sm text-center">
+          <p class="text-sm font-medium text-subtle-light dark:text-subtle-dark">
+            {{ 'dashboard.hours-played' | translate }}
+          </p>
+          <p class="font-display text-4xl font-bold mt-2 text-accent-light dark:text-accent-dark">
+            {{ dashboardStats()?.hoursPlayed || 0 }}
+          </p>
+        </div>
+        <div class="bg-surface-light dark:bg-surface-dark/50 p-6 rounded-lg shadow-sm text-center">
+          <p class="text-sm font-medium text-subtle-light dark:text-subtle-dark">
+            {{ 'dashboard.favorite-sport' | translate }}
+          </p>
+          <p class="font-display text-4xl font-bold mt-2 text-accent-light dark:text-accent-dark">
+            {{ dashboardStats()?.favoriteSport || 'N/A' }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity Section -->
+    <div class="space-y-6">
+      <h3 class="font-display text-2xl font-bold border-b border-surface-dark/20 dark:border-surface-dark pb-3">
+        {{ 'dashboard.recent-activity' | translate }}
+      </h3>
+      <ul class="space-y-4">
+        @for (activity of recentActivities(); track activity.id) {
+          <li class="flex items-center gap-4 bg-surface-light dark:bg-surface-dark/50 p-4 rounded-lg shadow-sm">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 text-primary">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path [attr.d]="getActivityIcon(activity.type)" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold">{{ activity.title | translate }}</p>
+              <p class="text-sm text-subtle-light dark:text-subtle-dark">{{ activity.description | translate }}</p>
+            </div>
+          </li>
+        } @empty {
+          <li class="bg-surface-light dark:bg-surface-dark/50 p-4 rounded-lg text-center">
+            <p class="text-subtle-light dark:text-subtle-dark">
+              {{ 'dashboard.no-activities' | translate }}
+            </p>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

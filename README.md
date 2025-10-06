@@ -1,59 +1,368 @@
-# Playmatch
+# PlayMatch - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
+> **Autor:** Juan Carlos Angulo  
+> **Fecha:** Octubre 2025  
+> **Versión:** 1.0.0
 
-## Development server
+## Descripción
 
-To start a local development server, run:
+PlayMatch es una aplicación web moderna desarrollada en Angular 20 para la gestión y reserva de canchas deportivas y coaches. La aplicación permite a los usuarios buscar, filtrar y reservar canchas de tenis y pádel, así como contratar servicios de entrenadores especializados.
 
-```bash
-ng serve
+## Características Principales
+
+- **Búsqueda avanzada de canchas** con filtros por deporte, ubicación, precio y rating
+- **Búsqueda de coaches** especializados en diferentes deportes
+- **Sistema de reservas** con gestión de horarios y precios
+- **Panel de usuario** con historial de reservas y estadísticas
+- **Configuración de perfil** con actualización en tiempo real
+- **Interfaz responsive** optimizada para móviles y desktop
+- **Soporte multiidioma** (Español/Inglés)
+- **Tema oscuro/claro** automático
+
+## Tecnologías Utilizadas
+
+### Frontend
+- **Angular 20** - Framework principal
+- **TypeScript** - Lenguaje de programación
+- **Tailwind CSS** - Framework de estilos
+- **Angular Signals** - Gestión de estado reactiva
+- **RxJS** - Programación reactiva
+- **NGX-Translate** - Internacionalización
+
+### Backend (Desarrollo)
+- **JSON Server** - API REST mock para desarrollo
+- **Concurrently** - Ejecución paralela de servicios
+
+### Herramientas de Desarrollo
+- **Angular CLI** - Tooling de desarrollo
+- **ESLint** - Linting de código
+- **Prettier** - Formateo de código
+
+## Estructura del Proyecto
+
+```
+src/
+├── app/                          # Configuración principal de la aplicación
+│   ├── app.config.ts            # Configuración de providers
+│   ├── app.routes.ts            # Definición de rutas
+│   └── app.ts                   # Componente raíz
+├── shared/                       # Módulos compartidos
+│   ├── domain/                  # Modelos de dominio
+│   │   └── models/              # Interfaces TypeScript
+│   │       ├── user.model.ts    # Usuario y estadísticas
+│   │       ├── court.model.ts   # Canchas y disponibilidad
+│   │       ├── coach.model.ts   # Coaches y especialidades
+│   │       └── booking.model.ts # Reservas y estado
+│   ├── infrastructure/          # Servicios e infraestructura
+│   │   └── services/            # Servicios HTTP
+│   │       ├── user.service.ts     # API de usuarios
+│   │       ├── court.service.ts    # API de canchas
+│   │       ├── coach.service.ts    # API de coaches
+│   │       └── booking.service.ts  # API de reservas
+│   └── presentation/            # Componentes de UI
+│       ├── components/          # Componentes reutilizables
+│       │   ├── header/          # Cabecera de navegación
+│       │   ├── footer/          # Pie de página
+│       │   ├── layout/          # Layout principal
+│       │   └── language/        # Selector de idioma
+│       └── views/               # Páginas principales
+│           ├── dashboard/       # Panel principal
+│           ├── court-search/    # Búsqueda de canchas
+│           ├── court-details/   # Detalles de cancha
+│           ├── coach-search/    # Búsqueda de coaches
+│           ├── coach-details/   # Detalles de coach
+│           └── settings/        # Configuración de usuario
+├── assets/                      # Recursos estáticos
+│   └── i18n/                   # Archivos de traducción
+│       ├── en.json             # Traducciones en inglés
+│       └── es.json             # Traducciones en español
+└── styles.css                  # Estilos globales
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🔧 Instalación y Configuración
 
-## Code scaffolding
+### Prerrequisitos
+- **Node.js** 18+ 
+- **npm** 8+
+- **Angular CLI** 20+
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Instalación
 
+1. **Clonar el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd playmatch-frontend
+   ```
+
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
+
+3. **Configurar el entorno**
+   ```bash
+   # El proyecto incluye una API mock con JSON Server
+   # No requiere configuración adicional para desarrollo
+   ```
+
+### Ejecución
+
+#### Desarrollo
 ```bash
-ng generate component component-name
+# Iniciar API mock y aplicación Angular simultáneamente
+npm run dev
+
+# O ejecutar por separado:
+npm run api    # JSON Server en puerto 3001
+npm start      # Angular en puerto 4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+#### Producción
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
-
-To build the project run:
-
+#### Testing
 ```bash
-ng build
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## API y Servicios
 
-## Running unit tests
+### Endpoints Principales
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+La aplicación consume una API REST que proporciona los siguientes endpoints:
 
-```bash
-ng test
+| Endpoint | Método | Descripción |
+|----------|--------|-------------|
+| `/users` | GET | Obtener lista de usuarios |
+| `/users/:id` | GET | Obtener usuario específico |
+| `/users/:id` | PUT | Actualizar datos de usuario |
+| `/courts` | GET | Obtener lista de canchas |
+| `/courts/:id` | GET | Obtener cancha específica |
+| `/coaches` | GET | Obtener lista de coaches |
+| `/coaches/:id` | GET | Obtener coach específico |
+| `/bookings` | GET | Obtener lista de reservas |
+| `/bookings` | POST | Crear nueva reserva |
+| `/bookings/:id` | PUT | Actualizar reserva |
+
+### Servicios Angular
+
+#### UserService
+Gestiona las operaciones relacionadas con usuarios:
+```typescript
+// Obtener usuario actual
+getCurrentUser(): Observable<User>
+
+// Actualizar datos de usuario
+updateUser(userId: string, userData: Partial<User>): Observable<User>
+
+// Obtener estadísticas del usuario
+getUserStats(userId: string): Observable<UserStats>
 ```
 
-## Running end-to-end tests
+#### CourtService
+Maneja la búsqueda y gestión de canchas:
+```typescript
+// Obtener todas las canchas
+getAllCourts(): Observable<Court[]>
 
-For end-to-end (e2e) testing, run:
+// Obtener cancha por ID
+getCourtById(id: string): Observable<Court>
 
-```bash
-ng e2e
+// Buscar canchas con filtros
+searchCourts(filters?: SearchFilters): Observable<Court[]>
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+#### CoachService
+Gestiona los entrenadores disponibles:
+```typescript
+// Obtener todos los coaches
+getAllCoaches(): Observable<Coach[]>
 
-## Additional Resources
+// Obtener coach por ID
+getCoachById(id: string): Observable<Coach>
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+// Buscar coaches con filtros
+searchCoaches(filters?: CoachFilters): Observable<Coach[]>
+```
+
+#### BookingService
+Maneja las reservas de los usuarios:
+```typescript
+// Obtener todas las reservas
+getAllBookings(): Observable<Booking[]>
+
+// Crear nueva reserva
+createBooking(booking: Omit<Booking, 'id'>): Observable<Booking>
+
+// Actualizar reserva existente
+updateBooking(id: string, booking: Partial<Booking>): Observable<Booking>
+```
+
+## Componentes Principales
+
+### Dashboard
+Panel principal que muestra:
+- Resumen de reservas próximas
+- Estadísticas del usuario
+- Acciones rápidas
+- Actividad reciente
+
+### Court Search
+Búsqueda avanzada de canchas con:
+- Filtros por deporte, ubicación, precio y rating
+- Ordenamiento por relevancia, precio y valoración
+- Vista de tarjetas con información detallada
+- Navegación a detalles de cancha
+
+### Coach Search
+Búsqueda de entrenadores con:
+- Filtros por deporte, nivel y ubicación
+- Información de especialidades y certificaciones
+- Disponibilidad y precios
+- Navegación a perfil detallado
+
+### Settings
+Configuración de usuario que permite:
+- Actualización de datos personales
+- Gestión de preferencias
+- Historial de reservas
+- Configuración de notificaciones
+
+## Gestión de Estado
+
+El proyecto utiliza **Angular Signals** para la gestión de estado reactiva:
+
+### Signals Principales
+- `signal()` - Estado básico
+- `computed()` - Estado derivado
+- `effect()` - Efectos secundarios
+
+### Ejemplo de Implementación
+```typescript
+export class CourtSearch {
+  // Estado base
+  courts = signal<Court[]>([]);
+  filters = signal<SearchFilters>({
+    sport: '',
+    location: '',
+    priceRange: 200,
+    minRating: 0
+  });
+
+  // Estado computado
+  filteredCourts = computed(() => {
+    const courts = this.courts();
+    const currentFilters = this.filters();
+    
+    return courts.filter(court => 
+      this.matchesFilters(court, currentFilters)
+    );
+  });
+}
+```
+
+## Internacionalización
+
+### Configuración
+El proyecto soporta múltiples idiomas usando NGX-Translate:
+
+```typescript
+// app.config.ts
+TranslateModule.forRoot({
+  fallbackLang: 'en'
+})
+```
+
+### Uso en Componentes
+```html
+<!-- En templates -->
+{{ 'court-search.title' | translate }}
+
+<!-- Con parámetros -->
+{{ 'court-search.results' | translate: {count: courtCount} }}
+```
+
+### Archivos de Traducción
+- `src/assets/i18n/en.json` - Inglés
+- `src/assets/i18n/es.json` - Español
+
+## Mejores Prácticas Implementadas
+
+### Angular
+- **Standalone Components** - Sin uso de NgModules
+- **OnPush Change Detection** - Optimización de rendimiento
+- **Signals** - Gestión de estado moderna
+- **Lazy Loading** - Carga diferida de módulos
+- **Reactive Forms** - Formularios reactivos
+
+### TypeScript
+- **Strict Mode** - Tipado estricto
+- **Interfaces** - Definición clara de contratos
+- **Type Guards** - Validación de tipos en runtime
+
+### Estilos
+- **Tailwind CSS** - Utility-first CSS
+- **CSS Custom Properties** - Variables CSS nativas
+- **Responsive Design** - Adaptable a todos los dispositivos
+
+## 🧪 Testing
+
+### Configuración
+```bash
+# Ejecutar tests unitarios
+npm test
+
+# Tests con coverage
+npm run test:coverage
+
+# Tests en modo watch
+npm run test:watch
+```
+
+### Estructura de Tests
+- Tests unitarios para servicios
+- Tests de componentes con Angular Testing Library
+- Mocks para servicios HTTP
+
+## Responsive Design
+
+La aplicación está optimizada para:
+- **Mobile** (320px - 768px)
+- **Tablet** (768px - 1024px)
+- **Desktop** (1024px+)
+
+### Breakpoints Tailwind
+```css
+sm: 640px   /* Mobile landscape */
+md: 768px   /* Tablet */
+lg: 1024px  /* Desktop */
+xl: 1280px  /* Large desktop */
+```
+
+## Despliegue
+
+### Build de Producción
+```bash
+npm run build
+```
+
+### Optimizaciones Incluidas
+- **Tree Shaking** - Eliminación de código no utilizado
+- **Minificación** - Compresión de archivos
+- **Lazy Loading** - Carga diferida
+- **Service Worker** - Cache estratégico
+
+## Scripts Disponibles
+
+| Script | Descripción |
+|--------|-------------|
+| `npm start` | Inicia el servidor de desarrollo |
+| `npm run api` | Inicia solo el JSON Server |
+| `npm run dev` | Inicia API y Angular simultáneamente |
+| `npm run build` | Build de producción |
+| `npm test` | Ejecuta tests unitarios |
+| `npm run lint` | Ejecuta linting |
+
+

@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../../../infrastructure/services/user.service';
@@ -7,50 +7,26 @@ import { BookingService } from '../../../infrastructure/services/booking.service
 import { User, UserStats, Activity } from '../../../domain/models/user.model';
 import { Booking } from '../../../domain/models/booking.model';
 
-/**
- * Interfaz para el perfil de usuario simplificado
- * @interface UserProfile
- */
 export interface UserProfile {
-  /** Nombre del usuario */
   name: string;
-  /** URL del avatar del usuario */
   avatar: string;
 }
 
-/**
- * Componente principal del dashboard de la aplicación
- * 
- * Muestra:
- * - Resumen de reservas próximas
- * - Estadísticas del usuario (total de reservas, horas jugadas, etc.)
- * - Actividad reciente
- * - Acciones rápidas para buscar canchas y coaches
- * 
- * @author Juan Carlos Angulo
- * @version 1.0.0
- * @since 2025-10-06
- */
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, TranslatePipe],
+  imports: [CommonModule, DatePipe, TranslatePipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Dashboard {
-  /** Servicio de navegación de Angular */
   private readonly router = inject(Router);
-  /** Servicio para operaciones relacionadas con usuarios */
   private readonly userService = inject(UserService);
-  /** Servicio para operaciones relacionadas con reservas */
   private readonly bookingService = inject(BookingService);
 
-  /** Signal para los datos completos del usuario */
+  // Signals for reactive state management
   user = signal<User | null>(null);
-  /** Signal para el perfil simplificado del usuario */
   userProfile = signal<UserProfile | null>(null);
-  /** Signal para las próximas reservas del usuario */
   upcomingBookings = signal<Booking[]>([]);
   dashboardStats = signal<UserStats | null>(null);
   recentActivities = signal<Activity[]>([]);

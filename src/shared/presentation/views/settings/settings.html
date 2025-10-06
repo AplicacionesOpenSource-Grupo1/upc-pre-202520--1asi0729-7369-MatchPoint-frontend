@@ -1,0 +1,227 @@
+<!-- Account Settings Component -->
+<div class="flex flex-col min-h-screen">
+  <main class="flex-grow container mx-auto px-6 py-8">
+    <div class="bg-surface-light dark:bg-surface-dark p-6 md:p-8 rounded-lg shadow-lg">
+      <h1 class="font-display text-3xl font-bold text-text-light dark:text-text-dark mb-6">Account Settings</h1>
+      
+      <!-- Success Message -->
+      @if (saveSuccess()) {
+        <div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            Settings saved successfully!
+          </div>
+        </div>
+      }
+
+      <!-- Error Message -->
+      @if (saveError()) {
+        <div class="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+            </svg>
+            {{ saveError() }}
+          </div>
+        </div>
+      }
+      
+      <!-- Navigation Tabs -->
+      <div class="border-b border-border-light dark:border-border-dark mb-6">
+        <nav class="-mb-px flex space-x-6">
+          <a 
+            class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"
+            [class]="activeTab() === 'personal' 
+              ? 'text-important border-important' 
+              : 'text-text-secondary-light dark:text-text-secondary-dark border-transparent hover:text-text-light dark:hover:text-text-dark hover:border-border-light dark:hover:border-border-dark'"
+            (click)="setActiveTab('personal')"
+            href="#"
+            [attr.aria-current]="activeTab() === 'personal' ? 'page' : null">
+            Personal Data
+          </a>
+          <a 
+            class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"
+            [class]="activeTab() === 'history' 
+              ? 'text-important border-important' 
+              : 'text-text-secondary-light dark:text-text-secondary-dark border-transparent hover:text-text-light dark:hover:text-text-dark hover:border-border-light dark:hover:border-border-dark'"
+            (click)="setActiveTab('history')"
+            href="#"
+            [attr.aria-current]="activeTab() === 'history' ? 'page' : null">
+            Booking History
+          </a>
+          <a 
+            class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"
+            [class]="activeTab() === 'plan' 
+              ? 'text-important border-important' 
+              : 'text-text-secondary-light dark:text-text-secondary-dark border-transparent hover:text-text-light dark:hover:text-text-dark hover:border-border-light dark:hover:border-border-dark'"
+            (click)="setActiveTab('plan')"
+            href="#"
+            [attr.aria-current]="activeTab() === 'plan' ? 'page' : null">
+            My Plan
+          </a>
+          <a 
+            class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"
+            [class]="activeTab() === 'notifications' 
+              ? 'text-important border-important' 
+              : 'text-text-secondary-light dark:text-text-secondary-dark border-transparent hover:text-text-light dark:hover:text-text-dark hover:border-border-light dark:hover:border-border-dark'"
+            (click)="setActiveTab('notifications')"
+            href="#"
+            [attr.aria-current]="activeTab() === 'notifications' ? 'page' : null">
+            Notifications
+          </a>
+        </nav>
+      </div>
+
+      <!-- Personal Data Tab -->
+      @if (activeTab() === 'personal') {
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Personal Information Section -->
+          <div class="space-y-6">
+            <h2 class="font-display text-xl font-bold text-text-light dark:text-text-dark">Personal Information</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="name">Name</label>
+                <input 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light" 
+                  id="name"
+                  type="text"
+                  [value]="userSettings().name"
+                  (input)="updateUserSettings('name', $any($event.target).value)"
+                  placeholder="John Doe"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="email">Email</label>
+                <input 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light" 
+                  id="email"
+                  type="email"
+                  [value]="userSettings().email"
+                  (input)="updateUserSettings('email', $any($event.target).value)"
+                  placeholder="john.doe@example.com"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="phone">Phone Number</label>
+                <input 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light" 
+                  id="phone"
+                  type="tel"
+                  [value]="userSettings().phone"
+                  (input)="updateUserSettings('phone', $any($event.target).value)"
+                  placeholder="+1 (555) 123-4567"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="dob">Date of Birth</label>
+                <input 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-text-secondary-light dark:text-text-secondary-dark" 
+                  id="dob"
+                  type="date"
+                  [value]="userSettings().dateOfBirth"
+                  (input)="updateUserSettings('dateOfBirth', $any($event.target).value)"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="gender">Gender</label>
+                <select 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light" 
+                  id="gender"
+                  [value]="userSettings().gender"
+                  (change)="updateUserSettings('gender', $any($event.target).value)">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <div class="space-y-6">
+            <h2 class="font-display text-xl font-bold text-text-light dark:text-text-dark">Address</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="sm:col-span-2">
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="street-address">Street Address</label>
+                <input 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light" 
+                  id="street-address"
+                  type="text"
+                  [value]="userSettings().address?.street || ''"
+                  (input)="updateAddress('street', $any($event.target).value)"
+                  placeholder="123 Tennis Court"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="city">City</label>
+                <input 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light" 
+                  id="city"
+                  type="text"
+                  [value]="userSettings().address?.city || ''"
+                  (input)="updateAddress('city', $any($event.target).value)"
+                  placeholder="Courtville"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="state">State</label>
+                <input 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light" 
+                  id="state"
+                  type="text"
+                  [value]="userSettings().address?.state || ''"
+                  (input)="updateAddress('state', $any($event.target).value)"
+                  placeholder="State"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1" for="zip">Zip Code</label>
+                <input 
+                  class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light" 
+                  id="zip"
+                  type="text"
+                  [value]="userSettings().address?.zipCode || ''"
+                  (input)="updateAddress('zipCode', $any($event.target).value)"
+                  placeholder="12345"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="mt-8 flex justify-end">
+          <button 
+            class="bg-accent-orange hover:bg-opacity-90 text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg"
+            [disabled]="isSaving()"
+            (click)="saveSettings()">
+            @if (isSaving()) {
+              Saving...
+            } @else {
+              Save Changes
+            }
+          </button>
+        </div>
+      }
+
+      <!-- Booking History Tab -->
+      @if (activeTab() === 'history') {
+        <div class="text-center py-12">
+          <h2 class="font-display text-xl font-bold text-text-light dark:text-text-dark mb-4">Booking History</h2>
+          <p class="text-text-secondary-light dark:text-text-secondary-dark">Your booking history will be displayed here.</p>
+        </div>
+      }
+
+      <!-- My Plan Tab -->
+      @if (activeTab() === 'plan') {
+        <div class="text-center py-12">
+          <h2 class="font-display text-xl font-bold text-text-light dark:text-text-dark mb-4">My Plan</h2>
+          <p class="text-text-secondary-light dark:text-text-secondary-dark">Your subscription plan details will be displayed here.</p>
+        </div>
+      }
+
+      <!-- Notifications Tab -->
+      @if (activeTab() === 'notifications') {
+        <div class="text-center py-12">
+          <h2 class="font-display text-xl font-bold text-text-light dark:text-text-dark mb-4">Notifications</h2>
+          <p class="text-text-secondary-light dark:text-text-secondary-dark">Your notification preferences will be displayed here.</p>
+        </div>
+      }
+    </div>
+  </main>
+</div>

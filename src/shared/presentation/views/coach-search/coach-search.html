@@ -1,0 +1,171 @@
+<div class="flex min-h-screen w-full flex-col font-display">
+  <main class="flex flex-1">
+    <!-- Sidebar with filters -->
+    <aside class="hidden w-80 flex-col border-r border-border-light bg-surface-light p-6 dark:border-border-dark dark:bg-surface-dark lg:flex">
+      <h2 class="mb-6 text-xl font-bold">{{ 'coach-search.filters' | translate }}</h2>
+      <div class="space-y-6">
+        <!-- Sport Filter -->
+        <div>
+          <label class="mb-2 block text-sm font-medium text-subtle-light dark:text-subtle-dark" for="sport">
+            {{ 'coach-search.sport' | translate }}
+          </label>
+          <select 
+            class="form-select w-full rounded border-border-light bg-background-light text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" 
+            id="sport"
+            [(ngModel)]="selectedSport">
+            <option value="all">{{ 'coach-search.all-sports' | translate }}</option>
+            <option value="Tennis">{{ 'sport.tennis' | translate }}</option>
+            <option value="Padel">{{ 'sport.padel' | translate }}</option>
+            <option value="Pickleball">{{ 'sport.pickleball' | translate }}</option>
+          </select>
+        </div>
+
+        <!-- Location Filter -->
+        <div>
+          <label class="mb-2 block text-sm font-medium text-subtle-light dark:text-subtle-dark" for="location">
+            {{ 'coach-search.location' | translate }}
+          </label>
+          <select 
+            class="form-select w-full rounded border-border-light bg-background-light text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" 
+            id="location"
+            [(ngModel)]="selectedLocation">
+            <option value="all">{{ 'coach-search.any-location' | translate }}</option>
+            <option value="New York, NY">New York, NY</option>
+            <option value="Los Angeles, CA">Los Angeles, CA</option>
+            <option value="London, UK">London, UK</option>
+          </select>
+        </div>
+
+        <!-- Level Filter -->
+        <div>
+          <label class="mb-2 block text-sm font-medium text-subtle-light dark:text-subtle-dark" for="level">
+            {{ 'coach-search.level' | translate }}
+          </label>
+          <select 
+            class="form-select w-full rounded border-border-light bg-background-light text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" 
+            id="level"
+            [(ngModel)]="selectedLevel">
+            <option value="all">{{ 'coach-search.all-levels' | translate }}</option>
+            <option value="Beginner">{{ 'coach-search.beginner' | translate }}</option>
+            <option value="Intermediate">{{ 'coach-search.intermediate' | translate }}</option>
+            <option value="Advanced">{{ 'coach-search.advanced' | translate }}</option>
+          </select>
+        </div>
+
+        <!-- Rating Filter -->
+        <div>
+          <p class="mb-2 text-sm font-medium text-subtle-light dark:text-subtle-dark">
+            {{ 'coach-search.rating' | translate }}
+          </p>
+          <div class="relative pt-1">
+            <input 
+              class="w-full h-2 bg-background-light dark:bg-background-dark rounded-lg appearance-none cursor-pointer accent-primary" 
+              type="range" 
+              min="1" 
+              max="5" 
+              [value]="ratingFilter()"
+              (input)="updateRating($event)"/>
+            <div class="flex w-full justify-between text-xs text-subtle-light dark:text-subtle-dark">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="flex-1 p-4 sm:p-6 lg:p-8">
+      <!-- Search bar -->
+      <div class="mb-6 flex flex-col items-center gap-4 md:flex-row">
+        <div class="relative w-full flex-1">
+          <span class="material-symbols-outlined pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-subtle-light dark:text-subtle-dark">search</span>
+          <input 
+            class="w-full rounded border-border-light bg-surface-light py-3 pl-12 pr-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-surface-dark dark:text-text-dark dark:placeholder-subtle-dark" 
+            type="search"
+            [placeholder]="'coach-search.search-placeholder' | translate"
+            [(ngModel)]="searchQuery"/>
+        </div>
+        <button 
+          class="w-full rounded-full bg-primary px-8 py-3 font-bold text-white md:w-auto"
+          (click)="onSearch()">
+          {{ 'coach-search.search' | translate }}
+        </button>
+      </div>
+
+      <!-- Results header and sorting -->
+      <div class="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <h2 class="text-2xl font-bold">
+          {{ 'coach-search.coaches-count' | translate: {count: filteredCoaches().length} }}
+        </h2>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-sm text-subtle-light dark:text-subtle-dark">
+            {{ 'coach-search.sort-by' | translate }}
+          </span>
+          <button 
+            class="rounded-full px-4 py-1.5 text-sm font-medium"
+            [class]="sortBy() === 'rating' ? 'bg-primary/10 text-primary dark:bg-primary/20' : 'bg-transparent text-subtle-light hover:bg-primary/10 hover:text-primary dark:text-subtle-dark dark:hover:bg-primary/20'"
+            (click)="setSortBy('rating')">
+            {{ 'coach-search.sort-rating' | translate }}
+          </button>
+          <button 
+            class="rounded-full px-4 py-1.5 text-sm font-medium"
+            [class]="sortBy() === 'price' ? 'bg-primary/10 text-primary dark:bg-primary/20' : 'bg-transparent text-subtle-light hover:bg-primary/10 hover:text-primary dark:text-subtle-dark dark:hover:bg-primary/20'"
+            (click)="setSortBy('price')">
+            {{ 'coach-search.sort-price' | translate }}
+          </button>
+          <button 
+            class="rounded-full px-4 py-1.5 text-sm font-medium"
+            [class]="sortBy() === 'availability' ? 'bg-primary/10 text-primary dark:bg-primary/20' : 'bg-transparent text-subtle-light hover:bg-primary/10 hover:text-primary dark:text-subtle-dark dark:hover:bg-primary/20'"
+            (click)="setSortBy('availability')">
+            {{ 'coach-search.sort-availability' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Coaches grid -->
+      @if (isLoading()) {
+        <div class="col-span-full rounded-lg border border-border-light bg-surface-light p-8 text-center dark:border-border-dark dark:bg-surface-dark">
+          <p class="text-subtle-light dark:text-subtle-dark">
+            {{ 'coach-search.loading' | translate }}
+          </p>
+        </div>
+      } @else {
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          @for (coach of filteredCoaches(); track coach.id) {
+            <div 
+              class="rounded-lg border border-border-light bg-surface-light p-4 shadow-sm transition-shadow hover:shadow-md dark:border-border-dark dark:bg-surface-dark dark:hover:shadow-primary/10 cursor-pointer"
+              (click)="onCoachClick(coach)">
+              <div class="mb-4 aspect-square w-full rounded bg-cover bg-center" 
+                   [style.background-image]="'url(' + coach.images[0] + ')'">
+              </div>
+              <div>
+                <h3 class="font-bold">{{ coach.name }}</h3>
+                <p class="text-sm text-subtle-light dark:text-subtle-dark">
+                  {{ coach.sports.join(', ') }} {{ 'coach-search.coach' | translate }}
+                </p>
+                <div class="mt-2 flex items-center justify-between">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-yellow-500">star</span>
+                    <span class="text-sm font-bold">{{ coach.rating }}</span>
+                    <span class="text-xs text-subtle-light dark:text-subtle-dark">({{ coach.reviews }})</span>
+                  </div>
+                  <p class="text-sm font-bold text-primary">${{ coach.pricePerHour }}/hr</p>
+                </div>
+              </div>
+            </div>
+          } @empty {
+            <div class="col-span-full rounded-lg border border-border-light bg-surface-light p-8 text-center dark:border-border-dark dark:bg-surface-dark">
+              <p class="text-subtle-light dark:text-subtle-dark">
+                {{ 'coach-search.no-coaches-found' | translate }}
+              </p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </main>
+</div>
