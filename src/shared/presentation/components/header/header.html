@@ -9,15 +9,33 @@
         <h1 class="text-2xl font-display font-bold text-brand-light dark:text-brand-dark">PlayMatch</h1>
       </div>
       <nav class="hidden md:flex items-center gap-6">
-        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" routerLink="/" routerLinkActive="text-primary">{{ 'nav.home' | translate }}</a>
-        <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" routerLink="/search-courts" routerLinkActive="text-primary">{{ 'nav.search-courts' | translate }}</a>
-        <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" routerLink="/search-coaches" routerLinkActive="text-primary">{{ 'nav.search-coaches' | translate }}</a>
-        <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">{{ 'nav.my-bookings' | translate }}</a>
+        @if (isAuthenticated) {
+          <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" routerLink="/dashboard" routerLinkActive="text-primary">{{ 'nav.home' | translate }}</a>
+          <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" routerLink="/search-courts" routerLinkActive="text-primary">{{ 'nav.search-courts' | translate }}</a>
+          <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" routerLink="/search-coaches" routerLinkActive="text-primary">{{ 'nav.search-coaches' | translate }}</a>
+          <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">{{ 'nav.my-bookings' | translate }}</a>
+        }
       </nav>
       <div class="flex items-center gap-4">
         <app-language></app-language>
-        <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" routerLink="/settings" routerLinkActive="text-primary">{{ 'nav.settings' | translate }}</a>
-        <div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKUsllfarh1Vz5TMSY9tQXvaO4PjgZQST2UfndXEB4asm1lrMgH1AOBj8iel5YRr8sjK-udLwcYVv87B65GOQBuCO06VCZgauA33eetg72EetdFnv3sJj_X3FrK4V-wNkU6_MjPGh-WdWq5ZaVRzZ9OOkovDPzgEskotSpWMv8d6HkCUKvQCp7KZIk0GBZX9K0MMPYQFc2gTn7PliIMn81mDqhCRQQMfz_CFQMg4EwC8uHLLs2VpSujlf3WDFRcia_s--Q6s1fm8cc");'></div>
+        @if (isAuthenticated) {
+          <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" routerLink="/settings" routerLinkActive="text-primary">{{ 'nav.settings' | translate }}</a>
+          <div class="relative group">
+            <div class="h-10 w-10 rounded-full bg-cover bg-center cursor-pointer" [style.background-image]="'url(' + (currentUser?.avatar || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKUsllfarh1Vz5TMSY9tQXvaO4PjgZQST2UfndXEB4asm1lrMgH1AOBj8iel5YRr8sjK-udLwcYVv87B65GOQBuCO06VCZgauA33eetg72EetdFnv3sJj_X3FrK4V-wNkU6_MjPGh-WdWq5ZaVRzZ9OkovDPzgEskotSpWMv8d6HkCUKvQCp7KZIk0GBZX9K0MMPYQFc2gTn7PliIMn81mDqhCRQQMfz_CFQMg4EwC8uHLLs2VpSujlf3WDFRcia_s--Q6s1fm8cc') + ')'"></div>
+            <div class="absolute right-0 mt-2 w-48 bg-surface-light dark:bg-surface-dark rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div class="px-4 py-2 text-sm text-text-light dark:text-text-dark border-b border-border-light dark:border-border-dark">
+                <p class="font-medium">{{ currentUser?.name }}</p>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">{{ currentUser?.email }}</p>
+              </div>
+              <button (click)="logout()" class="block w-full text-left px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+                {{ 'auth.logout' | translate }}
+              </button>
+            </div>
+          </div>
+        } @else {
+          <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" routerLink="/login" routerLinkActive="text-primary">{{ 'auth.login' | translate }}</a>
+          <a class="text-sm font-medium bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg transition-colors" routerLink="/register">{{ 'auth.register' | translate }}</a>
+        }
       </div>
     </div>
   </div>
