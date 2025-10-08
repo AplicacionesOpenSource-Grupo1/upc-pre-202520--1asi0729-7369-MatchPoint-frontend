@@ -1,111 +1,9 @@
 {
-<<<<<<< Updated upstream
-=======
-  "dashboard": {
-    "upcoming-bookings": "Upcoming Bookings",
-    "no-bookings": "No upcoming bookings",
-    "quick-actions": "Quick Actions",
-    "find-court": "Find a Court",
-    "find-coach": "Find a Coach",
-    "dashboard": "Dashboard",
-    "total-bookings": "Total Bookings",
-    "hours-played": "Hours Played",
-    "favorite-sport": "Favorite Sport",
-    "recent-activity": "Recent Activity",
-    "no-activities": "No recent activities"
-  },
-  "court-search": {
-    "filters": "Filters",
-    "sport": "Sport",
-    "location": "Location",
-    "location-placeholder": "Enter a city or zip code",
-    "price-range": "Price Range",
-    "min-rating": "Minimum Rating",
-    "apply-filters": "Apply Filters",
-    "search-placeholder": "Search for courts by name...",
-    "available-courts": "Available Courts",
-    "sort-by": "Sort by:",
-    "sort-relevance": "Relevance",
-    "sort-price": "Price",
-    "sort-rating": "Rating",
-    "no-results": "No courts found",
-    "try-different-filters": "Try adjusting your search criteria or filters"
-  },
-  "coach-search": {
-    "filters": "Filters",
-    "sport": "Sport",
-    "all-sports": "All Sports",
-    "location": "Location",
-    "any-location": "Any Location",
-    "level": "Level",
-    "all-levels": "All Levels",
-    "beginner": "Beginner",
-    "intermediate": "Intermediate", 
-    "advanced": "Advanced",
-    "rating": "Rating",
-    "search-placeholder": "Search coaches by name or specialty",
-    "search": "Search",
-    "coaches-count": "Coaches ({{count}})",
-    "sort-by": "Sort by:",
-    "sort-rating": "Rating",
-    "sort-price": "Price",
-    "sort-availability": "Availability",
-    "coach": "Coach",
-    "no-coaches-found": "No coaches found matching your criteria"
-  },
-  "court-details": {
-    "back-to-search": "Back to Search",
-    "reviews": "reviews",
-    "sport": "Sport",
-    "surface": "Surface",
-    "capacity": "Players",
-    "from-price": "From",
-    "amenities": "Amenities",
-    "contact": "Contact Information",
-    "book-now": "Book Now",
-    "select-date": "Select Date",
-    "available-times": "Available Times",
-    "no-slots-available": "No time slots available for this date",
-    "price-from": "Price from",
-    "final-price-note": "*Final price may vary based on selected time slot",
-    "not-found": "Court not found",
-    "booking-confirmed": "Booking confirmed for {{time}} on {{date}}",
-    "booking-error": "Error processing booking. Please try again."
-  },
-  "coach-details": {
-    "back-to-search": "Back to Search",
-    "reviews": "reviews",
-    "years-experience": "Years Experience",
-    "level": "Level",
-    "sports": "Sports",
-    "per-hour": "per hour",
-    "specialties": "Specialties",
-    "certifications": "Certifications",
-    "languages": "Languages",
-    "contact": "Contact Information",
-    "book-session": "Book Session",
-    "select-date": "Select Date",
-    "available-times": "Available Times",
-    "no-slots-available": "No time slots available for this date",
-    "price-from": "Price from",
-    "final-price-note": "*Final price may vary based on selected time slot",
-    "not-found": "Coach not found",
-    "booking-confirmed": "Session booked for {{time}} on {{date}}",
-    "booking-error": "Error processing booking. Please try again."
-  },
-  "sport": {
-    "tennis": "Tennis",
-    "padel": "Padel", 
-    "basketball": "Basketball",
-    "pickleball": "Pickleball"
-  },
->>>>>>> Stashed changes
   "nav": {
     "home": "Home",
     "search-courts": "Search Courts",
     "search-coaches": "Search Coaches",
     "my-bookings": "My Bookings",
-<<<<<<< Updated upstream
     "settings": "Settings",
     "login": "Login",
     "register": "Register",
@@ -158,20 +56,3 @@
     }
   }
 }
-=======
-    "profile": "Profile",
-    "settings": "Settings"
-  },
-  "footer": {
-    "description": "Connect with sports enthusiasts, find courts, book coaches, and enjoy your favorite sports.",
-    "quick-links": "Quick Links",
-    "support": "Support",
-    "pricing": "Pricing",
-    "help-center": "Help Center",
-    "contact": "Contact",
-    "privacy-policy": "Privacy Policy",
-    "terms-of-service": "Terms of Service",
-    "rights-reserved": "All rights reserved."
-  }
-}
->>>>>>> Stashed changes

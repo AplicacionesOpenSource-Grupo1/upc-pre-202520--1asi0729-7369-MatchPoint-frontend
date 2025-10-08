@@ -14,7 +14,7 @@ export interface UserProfile {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, DatePipe, TranslatePipe],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
   changeDetection: ChangeDetectionStrategy.OnPush
