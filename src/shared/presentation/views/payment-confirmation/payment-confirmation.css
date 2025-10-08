@@ -1,0 +1,22 @@
+.titulo {
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+  padding: 100px;
+}
+
+.button {
+  font-weight: bold;
+  text-align: center;
+  width: 25%;
+  padding: 10px;
+}
+
+.centered {
+  margin: auto;
+  text-align: center;
+  width: 75%;
+  padding: 100px;
+  color: black;
+}
