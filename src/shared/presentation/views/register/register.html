@@ -1,0 +1,306 @@
+<div class="min-h-screen bg-background-light dark:bg-background-dark flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+  <div class="max-w-md w-full space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <div class="flex justify-center mb-6">
+        <svg class="h-12 w-12 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.59L6.41 13l1.41-1.41L11 14.17l4.59-4.58L17 11l-6 6.59z" opacity="0.3"></path>
+          <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm-1 13.59L6.41 13l1.41-1.41L11 14.17l4.59-4.58L17 11l-6 6.59z"></path>
+        </svg>
+      </div>
+      <h2 class="text-3xl font-bold text-text-light dark:text-text-dark">
+        {{ 'auth.register.title' | translate }}
+      </h2>
+      <p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+        {{ 'auth.register.subtitle' | translate }}
+      </p>
+    </div>
+
+    <!-- Success Message -->
+    @if (successMessage()) {
+      <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md p-4">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm text-green-800 dark:text-green-200">
+              {{ successMessage() | translate }}
+            </p>
+          </div>
+          <div class="ml-auto pl-3">
+            <button type="button" (click)="clearSuccess()" class="text-green-400 hover:text-green-600">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Error Message -->
+    @if (authError()) {
+      <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md p-4">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm text-red-800 dark:text-red-200">
+              {{ 'auth.register.error.email-exists' | translate }}
+            </p>
+          </div>
+          <div class="ml-auto pl-3">
+            <button type="button" (click)="clearError()" class="text-red-400 hover:text-red-600">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Register Form -->
+    <form class="mt-8 space-y-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="space-y-4">
+        <!-- Name Field -->
+        <div>
+          <label for="name" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+            {{ 'auth.register.name' | translate }}
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            formControlName="name"
+            autocomplete="name"
+            class="appearance-none relative block w-full px-3 py-3 border border-border-light dark:border-border-dark placeholder-text-secondary-light dark:placeholder-text-secondary-dark text-text-light dark:text-text-dark bg-surface-light dark:bg-surface-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-colors"
+            [class.border-red-500]="hasFieldError('name')"
+            [placeholder]="'auth.register.name' | translate"
+          />
+          @if (hasFieldError('name')) {
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+              {{ getFieldError('name') | translate }}
+            </p>
+          }
+        </div>
+
+        <!-- Email Field -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+            {{ 'auth.register.email' | translate }}
+          </label>
+          <div class="relative">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              formControlName="email"
+              autocomplete="email"
+              class="appearance-none relative block w-full px-3 py-3 border border-border-light dark:border-border-dark placeholder-text-secondary-light dark:placeholder-text-secondary-dark text-text-light dark:text-text-dark bg-surface-light dark:bg-surface-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-colors"
+              [class.border-red-500]="hasFieldError('email')"
+              [placeholder]="'auth.register.email' | translate"
+            />
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+              <svg class="h-5 w-5 text-text-secondary-light dark:text-text-secondary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+              </svg>
+            </div>
+          </div>
+          @if (hasFieldError('email')) {
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+              {{ getFieldError('email') | translate }}
+            </p>
+          }
+        </div>
+
+        <!-- Password Field -->
+        <div>
+          <label for="password" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+            {{ 'auth.register.password' | translate }}
+          </label>
+          <div class="relative">
+            <input
+              id="password"
+              name="password"
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="password"
+              autocomplete="new-password"
+              class="appearance-none relative block w-full px-3 py-3 pr-10 border border-border-light dark:border-border-dark placeholder-text-secondary-light dark:placeholder-text-secondary-dark text-text-light dark:text-text-dark bg-surface-light dark:bg-surface-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-colors"
+              [class.border-red-500]="hasFieldError('password')"
+              [placeholder]="'auth.register.password' | translate"
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-text-secondary-light dark:text-text-secondary-dark hover:text-text-light dark:hover:text-text-dark transition-colors"
+            >
+              @if (showPassword()) {
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                </svg>
+              } @else {
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              }
+            </button>
+          </div>
+          @if (hasFieldError('password')) {
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+              {{ getFieldError('password') | translate }}
+            </p>
+          }
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div>
+          <label for="confirmPassword" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+            {{ 'auth.register.confirm-password' | translate }}
+          </label>
+          <div class="relative">
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              [type]="showConfirmPassword() ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              autocomplete="new-password"
+              class="appearance-none relative block w-full px-3 py-3 pr-10 border border-border-light dark:border-border-dark placeholder-text-secondary-light dark:placeholder-text-secondary-dark text-text-light dark:text-text-dark bg-surface-light dark:bg-surface-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-colors"
+              [class.border-red-500]="hasFieldError('confirmPassword') || hasPasswordMismatchError()"
+              [placeholder]="'auth.register.confirm-password' | translate"
+            />
+            <button
+              type="button"
+              (click)="toggleConfirmPasswordVisibility()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-text-secondary-light dark:text-text-secondary-dark hover:text-text-light dark:hover:text-text-dark transition-colors"
+            >
+              @if (showConfirmPassword()) {
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                </svg>
+              } @else {
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              }
+            </button>
+          </div>
+          @if (hasFieldError('confirmPassword')) {
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+              {{ getFieldError('confirmPassword') | translate }}
+            </p>
+          }
+          @if (hasPasswordMismatchError()) {
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+              {{ 'auth.register.error.passwords-not-match' | translate }}
+            </p>
+          }
+        </div>
+
+        <!-- Phone Field -->
+        <div>
+          <label for="phone" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+            {{ 'auth.register.phone' | translate }}
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            formControlName="phone"
+            autocomplete="tel"
+            class="appearance-none relative block w-full px-3 py-3 border border-border-light dark:border-border-dark placeholder-text-secondary-light dark:placeholder-text-secondary-dark text-text-light dark:text-text-dark bg-surface-light dark:bg-surface-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-colors"
+            [class.border-red-500]="hasFieldError('phone')"
+            [placeholder]="'auth.register.phone' | translate"
+          />
+          @if (hasFieldError('phone')) {
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+              {{ getFieldError('phone') | translate }}
+            </p>
+          }
+        </div>
+
+        <!-- Favorite Sport Field -->
+        <div>
+          <label for="favoriteSpot" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+            {{ 'auth.register.favorite-sport' | translate }}
+          </label>
+          <select
+            id="favoriteSpot"
+            name="favoriteSpot"
+            formControlName="favoriteSpot"
+            class="appearance-none relative block w-full px-3 py-3 border border-border-light dark:border-border-dark text-text-light dark:text-text-dark bg-surface-light dark:bg-surface-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-colors"
+            [class.border-red-500]="hasFieldError('favoriteSpot')"
+          >
+            @for (sport of sportsOptions; track sport.value) {
+              <option [value]="sport.value">{{ sport.label | translate }}</option>
+            }
+          </select>
+          @if (hasFieldError('favoriteSpot')) {
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+              {{ getFieldError('favoriteSpot') | translate }}
+            </p>
+          }
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <input
+              id="acceptTerms"
+              name="acceptTerms"
+              type="checkbox"
+              formControlName="acceptTerms"
+              class="h-4 w-4 text-primary focus:ring-primary border-border-light dark:border-border-dark rounded bg-surface-light dark:bg-surface-dark"
+              [class.border-red-500]="hasFieldError('acceptTerms')"
+            />
+          </div>
+          <div class="ml-3 text-sm">
+            <label for="acceptTerms" class="text-text-light dark:text-text-dark">
+              {{ 'auth.register.terms' | translate }}
+            </label>
+            @if (hasFieldError('acceptTerms')) {
+              <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+                {{ getFieldError('acceptTerms') | translate }}
+              </p>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button
+          type="submit"
+          [disabled]="isLoading()"
+          class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          @if (isLoading()) {
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          }
+          {{ 'auth.register.submit' | translate }}
+        </button>
+      </div>
+
+      <!-- Login Link -->
+      <div class="text-center">
+        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+          {{ 'auth.register.have-account' | translate }}
+          <a routerLink="/login" class="font-medium text-primary hover:text-primary-light transition-colors ml-1">
+            {{ 'auth.register.login-here' | translate }}
+          </a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

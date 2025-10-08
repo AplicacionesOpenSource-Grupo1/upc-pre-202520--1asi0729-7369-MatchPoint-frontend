@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "search-courts": "Buscar Canchas",
+    "search-coaches": "Buscar Entrenadores",
+    "my-bookings": "Mis Reservas",
+    "settings": "Configuración",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "subtitle": "Accede a tu cuenta de PlayMatch",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "remember": "Recordarme",
+      "forgot-password": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar Sesión",
+      "no-account": "¿No tienes cuenta?",
+      "create-account": "Crear cuenta",
+      "error": {
+        "invalid-credentials": "Credenciales inválidas",
+        "email-required": "El correo electrónico es requerido",
+        "password-required": "La contraseña es requerida",
+        "email-invalid": "El formato del correo electrónico no es válido"
+      }
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Únete a la comunidad PlayMatch",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirm-password": "Confirmar contraseña",
+      "phone": "Teléfono",
+      "favorite-sport": "Deporte favorito",
+      "tennis": "Tenis",
+      "padel": "Pádel",
+      "terms": "Acepto los términos y condiciones",
+      "submit": "Crear Cuenta",
+      "have-account": "¿Ya tienes cuenta?",
+      "login-here": "Inicia sesión aquí",
+      "error": {
+        "name-required": "El nombre es requerido",
+        "email-required": "El correo electrónico es requerido",
+        "password-required": "La contraseña es requerida",
+        "confirm-password-required": "Confirmar contraseña es requerido",
+        "passwords-not-match": "Las contraseñas no coinciden",
+        "email-invalid": "El formato del correo electrónico no es válido",
+        "email-exists": "Este correo electrónico ya está registrado",
+        "terms-required": "Debes aceptar los términos y condiciones"
+      },
+      "success": "Cuenta creada exitosamente"
+    }
+  }
+}
