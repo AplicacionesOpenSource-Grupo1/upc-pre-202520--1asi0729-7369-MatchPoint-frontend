@@ -1,9 +1,111 @@
 {
+<<<<<<< Updated upstream
+=======
+  "dashboard": {
+    "upcoming-bookings": "Próximas Reservas",
+    "no-bookings": "No hay próximas reservas",
+    "quick-actions": "Acciones Rápidas",
+    "find-court": "Buscar Cancha",
+    "find-coach": "Buscar Entrenador",
+    "dashboard": "Panel de Control",
+    "total-bookings": "Total de Reservas",
+    "hours-played": "Horas Jugadas",
+    "favorite-sport": "Deporte Favorito",
+    "recent-activity": "Actividad Reciente",
+    "no-activities": "No hay actividades recientes"
+  },
+  "court-search": {
+    "filters": "Filtros",
+    "sport": "Deporte",
+    "location": "Ubicación",
+    "location-placeholder": "Ingresa una ciudad o código postal",
+    "price-range": "Rango de Precio",
+    "min-rating": "Calificación Mínima",
+    "apply-filters": "Aplicar Filtros",
+    "search-placeholder": "Buscar canchas por nombre...",
+    "available-courts": "Canchas Disponibles",
+    "sort-by": "Ordenar por:",
+    "sort-relevance": "Relevancia",
+    "sort-price": "Precio",
+    "sort-rating": "Calificación",
+    "no-results": "No se encontraron canchas",
+    "try-different-filters": "Intenta ajustar tus criterios de búsqueda o filtros"
+  },
+  "coach-search": {
+    "filters": "Filtros",
+    "sport": "Deporte",
+    "all-sports": "Todos los Deportes",
+    "location": "Ubicación",
+    "any-location": "Cualquier Ubicación",
+    "level": "Nivel",
+    "all-levels": "Todos los Niveles",
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzado",
+    "rating": "Calificación",
+    "search-placeholder": "Buscar entrenadores por nombre o especialidad",
+    "search": "Buscar",
+    "coaches-count": "Entrenadores ({{count}})",
+    "sort-by": "Ordenar por:",
+    "sort-rating": "Calificación",
+    "sort-price": "Precio",
+    "sort-availability": "Disponibilidad",
+    "coach": "Entrenador",
+    "no-coaches-found": "No se encontraron entrenadores que coincidan con tus criterios"
+  },
+  "court-details": {
+    "back-to-search": "Volver a Búsqueda",
+    "reviews": "reseñas",
+    "sport": "Deporte",
+    "surface": "Superficie",
+    "capacity": "Jugadores",
+    "from-price": "Desde",
+    "amenities": "Comodidades",
+    "contact": "Información de Contacto",
+    "book-now": "Reservar Ahora",
+    "select-date": "Seleccionar Fecha",
+    "available-times": "Horarios Disponibles",
+    "no-slots-available": "No hay horarios disponibles para esta fecha",
+    "price-from": "Precio desde",
+    "final-price-note": "*El precio final puede variar según el horario seleccionado",
+    "not-found": "Cancha no encontrada",
+    "booking-confirmed": "Reserva confirmada para las {{time}} el {{date}}",
+    "booking-error": "Error al procesar la reserva. Inténtalo de nuevo."
+  },
+  "coach-details": {
+    "back-to-search": "Volver a Búsqueda",
+    "reviews": "reseñas",
+    "years-experience": "Años de Experiencia",
+    "level": "Nivel",
+    "sports": "Deportes",
+    "per-hour": "por hora",
+    "specialties": "Especialidades",
+    "certifications": "Certificaciones",
+    "languages": "Idiomas",
+    "contact": "Información de Contacto",
+    "book-session": "Reservar Sesión",
+    "select-date": "Seleccionar Fecha",
+    "available-times": "Horarios Disponibles",
+    "no-slots-available": "No hay horarios disponibles para esta fecha",
+    "price-from": "Precio desde",
+    "final-price-note": "*El precio final puede variar según el horario seleccionado",
+    "not-found": "Entrenador no encontrado",
+    "booking-confirmed": "Sesión reservada para las {{time}} el {{date}}",
+    "booking-error": "Error al procesar la reserva. Inténtalo de nuevo."
+  },
+  "sport": {
+    "tennis": "Tenis",
+    "padel": "Pádel",
+    "basketball": "Baloncesto",
+    "pickleball": "Pickleball"
+  },
+>>>>>>> Stashed changes
   "nav": {
     "home": "Inicio",
     "search-courts": "Buscar Canchas",
     "search-coaches": "Buscar Entrenadores",
     "my-bookings": "Mis Reservas",
+<<<<<<< Updated upstream
     "settings": "Configuración",
     "login": "Iniciar Sesión",
     "register": "Registrarse",
@@ -56,3 +158,20 @@
     }
   }
 }
+=======
+    "profile": "Perfil",
+    "settings": "Ajustes"
+  },
+  "footer": {
+    "description": "Conecta con entusiastas del deporte, encuentra canchas, reserva entrenadores y disfruta de tus deportes favoritos.",
+    "quick-links": "Enlaces Rápidos",
+    "support": "Soporte",
+    "pricing": "Precios",
+    "help-center": "Centro de Ayuda",
+    "contact": "Contacto",
+    "privacy-policy": "Política de Privacidad",
+    "terms-of-service": "Términos de Servicio",
+    "rights-reserved": "Todos los derechos reservados."
+  }
+}
+>>>>>>> Stashed changes
