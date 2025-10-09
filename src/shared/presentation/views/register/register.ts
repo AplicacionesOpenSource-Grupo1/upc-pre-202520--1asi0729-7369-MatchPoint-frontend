@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService, RegisterRequest } from '../../../infrastructure/services/auth.service';
 
+
 @Component({
   selector: 'app-register',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, TranslatePipe],
