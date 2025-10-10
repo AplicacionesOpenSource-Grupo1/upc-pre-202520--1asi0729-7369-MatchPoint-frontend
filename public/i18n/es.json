@@ -163,5 +163,14 @@
       },
       "success": "Cuenta creada exitosamente"
     }
+  },
+  "payments": {
+    "input": "Ingrese su información de tarjeta",
+    "card": "Ingrese su numero de tarjeta",
+    "date": "Fecha de expiración",
+    "payment": "Realizar el pago",
+    "succeed": "Se realizo exitosamente su pago",
+    "home": "Regresar al inicio",
+    "pay": "Pagar"
   }
 }
