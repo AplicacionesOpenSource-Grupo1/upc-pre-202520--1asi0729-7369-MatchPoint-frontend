@@ -1,13 +1,13 @@
 import {Component, inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatCard} from '@angular/material/card';
-import {MatButton} from '@angular/material/button';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-payment-confirmation',
   imports: [
     MatCard,
-    MatButton
+    TranslatePipe
   ],
   templateUrl: 'payment-confirmation.html',
   styleUrl: 'payment-confirmation.css'
