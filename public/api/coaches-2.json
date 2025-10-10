@@ -1,0 +1,61 @@
+{
+  "id": "2",
+  "name": "Sofía Martínez",
+  "location": "Miraflores, Lima",
+  "pricePerHour": 100,
+  "rating": 4.8,
+  "reviews": 95,
+  "description": "Entrenadora certificada con experiencia en competiciones nacionales e internacionales. Enfocada en mejorar el rendimiento y la confianza de sus alumnos.",
+  "specialties": [
+    "Técnica",
+    "Juego en pareja",
+    "Estrategia"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "date": "2025-10-18",
+      "time": "10:00",
+      "available": true,
+      "price": 100
+    },
+    {
+      "date": "2025-10-19",
+      "time": "14:00",
+      "available": true,
+      "price": 100
+    },
+    {
+      "date": "2025-10-20",
+      "time": "16:00",
+      "available": false,
+      "price": 100
+    },
+    {
+      "date": "2025-10-21",
+      "time": "09:00",
+      "available": true,
+      "price": 100
+    }
+  ],
+  "sports": [
+    "padel"
+  ],
+  "experience": 8,
+  "certifications": [
+    "FIP Level 2",
+    "Pádel España Coach"
+  ],
+  "languages": [
+    "Español",
+    "Inglés"
+  ],
+  "contact": {
+    "phone": "+51 923 456 789",
+    "email": "sofia@padel.pe"
+  },
+  "level": "advanced"
+}

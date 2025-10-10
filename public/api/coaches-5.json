@@ -1,0 +1,63 @@
+{
+  "id": "5",
+  "name": "Andrés López",
+  "location": "La Molina, Lima",
+  "pricePerHour": 140,
+  "rating": 4.9,
+  "reviews": 150,
+  "description": "Andrés es un entrenador con vasta experiencia en el tenis profesional, dedicado a llevar a sus alumnos al siguiente nivel.",
+  "specialties": [
+    "Técnica",
+    "Estrategia",
+    "Condición física"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1542204637-e67bc7d41e28?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=400&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "date": "2025-10-18",
+      "time": "10:00",
+      "available": true,
+      "price": 140
+    },
+    {
+      "date": "2025-10-19",
+      "time": "14:00",
+      "available": true,
+      "price": 140
+    },
+    {
+      "date": "2025-10-20",
+      "time": "16:00",
+      "available": false,
+      "price": 140
+    },
+    {
+      "date": "2025-10-21",
+      "time": "09:00",
+      "available": true,
+      "price": 140
+    }
+  ],
+  "sports": [
+    "tennis"
+  ],
+  "experience": 15,
+  "certifications": [
+    "ITF Level 4",
+    "PTR Professional",
+    "Mental Game Coach"
+  ],
+  "languages": [
+    "Español",
+    "Inglés",
+    "Francés"
+  ],
+  "contact": {
+    "phone": "+51 956 789 012",
+    "email": "andres@tenis.pe"
+  },
+  "level": "professional"
+}

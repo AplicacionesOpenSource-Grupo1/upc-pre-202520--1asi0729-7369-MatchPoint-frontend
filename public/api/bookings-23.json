@@ -1,0 +1,11 @@
+{
+  "id": "23",
+  "userId": "4",
+  "courtId": "5",
+  "coachId": null,
+  "date": "2025-12-05",
+  "time": "20:00",
+  "duration": 60,
+  "status": "confirmed",
+  "price": 100
+}

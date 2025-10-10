@@ -1,0 +1,40 @@
+{
+  "id": "12",
+  "name": "Barranco Tenis & Café",
+  "location": "Barranco, Lima",
+  "price": 70,
+  "rating": 4.3,
+  "reviews": 88,
+  "description": "Espacio casual para jugar y socializar.",
+  "amenities": [
+    "Cafetería",
+    "Vestuarios"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1534367620808-0b6bcc6234e0?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "time": "09:00",
+      "available": true,
+      "price": 60
+    },
+    {
+      "time": "14:00",
+      "available": false,
+      "price": 70
+    },
+    {
+      "time": "19:00",
+      "available": true,
+      "price": 90
+    }
+  ],
+  "sport": "tennis",
+  "surface": "Polvo de ladrillo",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 944 100 108",
+    "email": "barranco@tenis.pe"
+  }
+}

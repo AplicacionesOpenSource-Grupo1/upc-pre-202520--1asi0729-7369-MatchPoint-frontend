@@ -1,0 +1,9 @@
+{
+  "id": "5",
+  "name": "Diego Torres",
+  "email": "diego.torres@example.com",
+  "password": "123456",
+  "phone": "+51 987 000 114",
+  "favoriteSpot": "tennis",
+  "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=400&auto=format&fit=crop"
+}

@@ -1,0 +1,493 @@
+[
+  {
+    "id": "1",
+    "name": "Miguel Ángel Torres",
+    "location": "San Isidro, Lima",
+    "pricePerHour": 120,
+    "rating": 4.9,
+    "reviews": 120,
+    "description": "Exjugador profesional con amplia experiencia en entrenamiento de jugadores de todos los niveles. Apasionado por el desarrollo integral del atleta.",
+    "specialties": [
+      "Técnica",
+      "Estrategia",
+      "Condición física"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=400&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "date": "2025-10-18",
+        "time": "10:00",
+        "available": true,
+        "price": 120
+      },
+      {
+        "date": "2025-10-19",
+        "time": "14:00",
+        "available": true,
+        "price": 120
+      },
+      {
+        "date": "2025-10-20",
+        "time": "16:00",
+        "available": false,
+        "price": 120
+      },
+      {
+        "date": "2025-10-21",
+        "time": "09:00",
+        "available": true,
+        "price": 120
+      }
+    ],
+    "sports": [
+      "tennis"
+    ],
+    "experience": 10,
+    "certifications": [
+      "ITF Level 3",
+      "RPT Professional"
+    ],
+    "languages": [
+      "Español",
+      "Inglés"
+    ],
+    "contact": {
+      "phone": "+51 912 345 678",
+      "email": "miguel@tenis.pe"
+    },
+    "level": "professional"
+  },
+  {
+    "id": "2",
+    "name": "Sofía Martínez",
+    "location": "Miraflores, Lima",
+    "pricePerHour": 100,
+    "rating": 4.8,
+    "reviews": 95,
+    "description": "Entrenadora certificada con experiencia en competiciones nacionales e internacionales. Enfocada en mejorar el rendimiento y la confianza de sus alumnos.",
+    "specialties": [
+      "Técnica",
+      "Juego en pareja",
+      "Estrategia"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "date": "2025-10-18",
+        "time": "10:00",
+        "available": true,
+        "price": 100
+      },
+      {
+        "date": "2025-10-19",
+        "time": "14:00",
+        "available": true,
+        "price": 100
+      },
+      {
+        "date": "2025-10-20",
+        "time": "16:00",
+        "available": false,
+        "price": 100
+      },
+      {
+        "date": "2025-10-21",
+        "time": "09:00",
+        "available": true,
+        "price": 100
+      }
+    ],
+    "sports": [
+      "padel"
+    ],
+    "experience": 8,
+    "certifications": [
+      "FIP Level 2",
+      "Pádel España Coach"
+    ],
+    "languages": [
+      "Español",
+      "Inglés"
+    ],
+    "contact": {
+      "phone": "+51 923 456 789",
+      "email": "sofia@padel.pe"
+    },
+    "level": "advanced"
+  },
+  {
+    "id": "3",
+    "name": "Carlos Ramírez",
+    "location": "San Borja, Lima",
+    "pricePerHour": 130,
+    "rating": 4.7,
+    "reviews": 110,
+    "description": "Con más de una década entrenando a jugadores de todos los niveles, Carlos se especializa en desarrollar habilidades técnicas y mentales para la competencia.",
+    "specialties": [
+      "Técnica",
+      "Estrategia",
+      "Psicología deportiva"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?q=80&w=400&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "date": "2025-10-18",
+        "time": "10:00",
+        "available": true,
+        "price": 130
+      },
+      {
+        "date": "2025-10-19",
+        "time": "14:00",
+        "available": true,
+        "price": 130
+      },
+      {
+        "date": "2025-10-20",
+        "time": "16:00",
+        "available": false,
+        "price": 130
+      },
+      {
+        "date": "2025-10-21",
+        "time": "09:00",
+        "available": true,
+        "price": 130
+      }
+    ],
+    "sports": [
+      "tennis"
+    ],
+    "experience": 12,
+    "certifications": [
+      "ITF Level 4",
+      "USPTA Professional"
+    ],
+    "languages": [
+      "Español",
+      "Inglés",
+      "Portugués"
+    ],
+    "contact": {
+      "phone": "+51 934 567 890",
+      "email": "carlos@tenis.pe"
+    },
+    "level": "professional"
+  },
+  {
+    "id": "4",
+    "name": "Laura Gómez",
+    "location": "Surco, Lima",
+    "pricePerHour": 90,
+    "rating": 4.6,
+    "reviews": 80,
+    "description": "Laura es una entrenadora apasionada por el pádel, con experiencia en mejorar las habilidades técnicas y físicas de sus alumnos.",
+    "specialties": [
+      "Técnica",
+      "Condición física",
+      "Estrategia"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=400&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "date": "2025-10-18",
+        "time": "10:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "date": "2025-10-19",
+        "time": "14:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "date": "2025-10-20",
+        "time": "16:00",
+        "available": false,
+        "price": 90
+      },
+      {
+        "date": "2025-10-21",
+        "time": "09:00",
+        "available": true,
+        "price": 90
+      }
+    ],
+    "sports": [
+      "padel"
+    ],
+    "experience": 6,
+    "certifications": [
+      "FIP Level 1",
+      "Monitor de Pádel"
+    ],
+    "languages": [
+      "Español"
+    ],
+    "contact": {
+      "phone": "+51 945 678 901",
+      "email": "laura@padel.pe"
+    },
+    "level": "intermediate"
+  },
+  {
+    "id": "5",
+    "name": "Andrés López",
+    "location": "La Molina, Lima",
+    "pricePerHour": 140,
+    "rating": 4.9,
+    "reviews": 150,
+    "description": "Andrés es un entrenador con vasta experiencia en el tenis profesional, dedicado a llevar a sus alumnos al siguiente nivel.",
+    "specialties": [
+      "Técnica",
+      "Estrategia",
+      "Condición física"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1542204637-e67bc7d41e28?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=400&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "date": "2025-10-18",
+        "time": "10:00",
+        "available": true,
+        "price": 140
+      },
+      {
+        "date": "2025-10-19",
+        "time": "14:00",
+        "available": true,
+        "price": 140
+      },
+      {
+        "date": "2025-10-20",
+        "time": "16:00",
+        "available": false,
+        "price": 140
+      },
+      {
+        "date": "2025-10-21",
+        "time": "09:00",
+        "available": true,
+        "price": 140
+      }
+    ],
+    "sports": [
+      "tennis"
+    ],
+    "experience": 15,
+    "certifications": [
+      "ITF Level 4",
+      "PTR Professional",
+      "Mental Game Coach"
+    ],
+    "languages": [
+      "Español",
+      "Inglés",
+      "Francés"
+    ],
+    "contact": {
+      "phone": "+51 956 789 012",
+      "email": "andres@tenis.pe"
+    },
+    "level": "professional"
+  },
+  {
+    "id": "6",
+    "name": "Isabella Vargas",
+    "location": "Barranco, Lima",
+    "pricePerHour": 110,
+    "rating": 4.7,
+    "reviews": 85,
+    "description": "Especialista en tenis juvenil y de alto rendimiento. Con experiencia en formar campeones nacionales.",
+    "specialties": [
+      "Técnica juvenil",
+      "Alto rendimiento",
+      "Competición"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "date": "2025-10-18",
+        "time": "10:00",
+        "available": true,
+        "price": 110
+      },
+      {
+        "date": "2025-10-19",
+        "time": "14:00",
+        "available": true,
+        "price": 110
+      },
+      {
+        "date": "2025-10-20",
+        "time": "16:00",
+        "available": false,
+        "price": 110
+      },
+      {
+        "date": "2025-10-21",
+        "time": "09:00",
+        "available": true,
+        "price": 110
+      }
+    ],
+    "sports": [
+      "tennis"
+    ],
+    "experience": 9,
+    "certifications": [
+      "ITF Level 3",
+      "Entrenador Nacional"
+    ],
+    "languages": [
+      "Español",
+      "Inglés"
+    ],
+    "contact": {
+      "phone": "+51 967 890 123",
+      "email": "isabella@tenis.pe"
+    },
+    "level": "advanced"
+  },
+  {
+    "id": "7",
+    "name": "Diego Mendoza",
+    "location": "Los Olivos, Lima",
+    "pricePerHour": 95,
+    "rating": 4.5,
+    "reviews": 72,
+    "description": "Entrenador de pádel con enfoque en principiantes e intermedios. Especialista en enseñanza didáctica y divertida.",
+    "specialties": [
+      "Iniciación",
+      "Técnica básica",
+      "Juego recreativo"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1542204637-e67bc7d41e28?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?q=80&w=400&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "date": "2025-10-18",
+        "time": "10:00",
+        "available": true,
+        "price": 95
+      },
+      {
+        "date": "2025-10-19",
+        "time": "14:00",
+        "available": true,
+        "price": 95
+      },
+      {
+        "date": "2025-10-20",
+        "time": "16:00",
+        "available": false,
+        "price": 95
+      },
+      {
+        "date": "2025-10-21",
+        "time": "09:00",
+        "available": true,
+        "price": 95
+      }
+    ],
+    "sports": [
+      "padel"
+    ],
+    "experience": 5,
+    "certifications": [
+      "Monitor de Pádel",
+      "FIP Level 1"
+    ],
+    "languages": [
+      "Español"
+    ],
+    "contact": {
+      "phone": "+51 978 901 234",
+      "email": "diego@padel.pe"
+    },
+    "level": "intermediate"
+  },
+  {
+    "id": "8",
+    "name": "Valentina Cruz",
+    "location": "San Miguel, Lima",
+    "pricePerHour": 125,
+    "rating": 4.8,
+    "reviews": 98,
+    "description": "Ex-tenista profesional especializada en técnica avanzada y preparación física específica para tenis.",
+    "specialties": [
+      "Técnica avanzada",
+      "Preparación física",
+      "Estrategia de competición"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "date": "2025-10-18",
+        "time": "10:00",
+        "available": true,
+        "price": 125
+      },
+      {
+        "date": "2025-10-19",
+        "time": "14:00",
+        "available": true,
+        "price": 125
+      },
+      {
+        "date": "2025-10-20",
+        "time": "16:00",
+        "available": false,
+        "price": 125
+      },
+      {
+        "date": "2025-10-21",
+        "time": "09:00",
+        "available": true,
+        "price": 125
+      }
+    ],
+    "sports": [
+      "tennis"
+    ],
+    "experience": 11,
+    "certifications": [
+      "ITF Level 4",
+      "Preparador Físico",
+      "RPT Professional"
+    ],
+    "languages": [
+      "Español",
+      "Inglés",
+      "Italiano"
+    ],
+    "contact": {
+      "phone": "+51 989 012 345",
+      "email": "valentina@tenis.pe"
+    },
+    "level": "professional"
+  }
+]

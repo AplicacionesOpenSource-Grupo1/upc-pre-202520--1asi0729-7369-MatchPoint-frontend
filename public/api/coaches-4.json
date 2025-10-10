@@ -1,0 +1,60 @@
+{
+  "id": "4",
+  "name": "Laura Gómez",
+  "location": "Surco, Lima",
+  "pricePerHour": 90,
+  "rating": 4.6,
+  "reviews": 80,
+  "description": "Laura es una entrenadora apasionada por el pádel, con experiencia en mejorar las habilidades técnicas y físicas de sus alumnos.",
+  "specialties": [
+    "Técnica",
+    "Condición física",
+    "Estrategia"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=400&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "date": "2025-10-18",
+      "time": "10:00",
+      "available": true,
+      "price": 90
+    },
+    {
+      "date": "2025-10-19",
+      "time": "14:00",
+      "available": true,
+      "price": 90
+    },
+    {
+      "date": "2025-10-20",
+      "time": "16:00",
+      "available": false,
+      "price": 90
+    },
+    {
+      "date": "2025-10-21",
+      "time": "09:00",
+      "available": true,
+      "price": 90
+    }
+  ],
+  "sports": [
+    "padel"
+  ],
+  "experience": 6,
+  "certifications": [
+    "FIP Level 1",
+    "Monitor de Pádel"
+  ],
+  "languages": [
+    "Español"
+  ],
+  "contact": {
+    "phone": "+51 945 678 901",
+    "email": "laura@padel.pe"
+  },
+  "level": "intermediate"
+}

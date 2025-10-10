@@ -1,0 +1,61 @@
+{
+  "id": "1",
+  "name": "Miguel Ángel Torres",
+  "location": "San Isidro, Lima",
+  "pricePerHour": 120,
+  "rating": 4.9,
+  "reviews": 120,
+  "description": "Exjugador profesional con amplia experiencia en entrenamiento de jugadores de todos los niveles. Apasionado por el desarrollo integral del atleta.",
+  "specialties": [
+    "Técnica",
+    "Estrategia",
+    "Condición física"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=400&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "date": "2025-10-18",
+      "time": "10:00",
+      "available": true,
+      "price": 120
+    },
+    {
+      "date": "2025-10-19",
+      "time": "14:00",
+      "available": true,
+      "price": 120
+    },
+    {
+      "date": "2025-10-20",
+      "time": "16:00",
+      "available": false,
+      "price": 120
+    },
+    {
+      "date": "2025-10-21",
+      "time": "09:00",
+      "available": true,
+      "price": 120
+    }
+  ],
+  "sports": [
+    "tennis"
+  ],
+  "experience": 10,
+  "certifications": [
+    "ITF Level 3",
+    "RPT Professional"
+  ],
+  "languages": [
+    "Español",
+    "Inglés"
+  ],
+  "contact": {
+    "phone": "+51 912 345 678",
+    "email": "miguel@tenis.pe"
+  },
+  "level": "professional"
+}

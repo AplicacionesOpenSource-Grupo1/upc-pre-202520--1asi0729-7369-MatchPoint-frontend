@@ -11,8 +11,36 @@
     ],
     "rewrites": [
       {
-        "source": "/api/**",
-        "function": "api"
+        "source": "/api/users",
+        "destination": "/api/users.json"
+      },
+      {
+        "source": "/api/users/*",
+        "destination": "/api/users-:splat.json"
+      },
+      {
+        "source": "/api/courts",
+        "destination": "/api/courts.json"
+      },
+      {
+        "source": "/api/courts/*",
+        "destination": "/api/courts-:splat.json"
+      },
+      {
+        "source": "/api/coaches",
+        "destination": "/api/coaches.json"
+      },
+      {
+        "source": "/api/coaches/*",
+        "destination": "/api/coaches-:splat.json"
+      },
+      {
+        "source": "/api/bookings",
+        "destination": "/api/bookings.json"
+      },
+      {
+        "source": "/api/bookings/*",
+        "destination": "/api/bookings-:splat.json"
       },
       {
         "source": "**",
@@ -31,25 +59,7 @@
       }
     ]
   },
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log"
-      ],
-      "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run build"
-      ]
-    }
-  ],
   "emulators": {
-    "functions": {
-      "port": 5001
-    },
     "hosting": {
       "port": 5000
     },

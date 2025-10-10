@@ -1,0 +1,803 @@
+[
+  {
+    "id": "1",
+    "name": "Centro Deportivo Elite",
+    "location": "San Isidro, Lima",
+    "price": 80,
+    "rating": 4.8,
+    "reviews": 245,
+    "description": "Cancha de tenis profesional con superficie de polvo de ladrillo. Ubicada en el corazón de San Isidro, cuenta con todas las comodidades necesarias para una experiencia deportiva excepcional.",
+    "amenities": [
+      "Vestuarios con duchas",
+      "Estacionamiento gratuito",
+      "Cafetería",
+      "Alquiler de equipos",
+      "Iluminación nocturna",
+      "Aire acondicionado"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1593073862407-a3ce22748763?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "availability": [
+      {
+        "time": "08:00",
+        "available": true,
+        "price": 60
+      },
+      {
+        "time": "09:00",
+        "available": false,
+        "price": 60
+      },
+      {
+        "time": "10:00",
+        "available": true,
+        "price": 70
+      },
+      {
+        "time": "11:00",
+        "available": true,
+        "price": 70
+      },
+      {
+        "time": "12:00",
+        "available": false,
+        "price": 80
+      },
+      {
+        "time": "13:00",
+        "available": true,
+        "price": 80
+      },
+      {
+        "time": "14:00",
+        "available": true,
+        "price": 80
+      },
+      {
+        "time": "15:00",
+        "available": false,
+        "price": 80
+      },
+      {
+        "time": "16:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "time": "17:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "time": "18:00",
+        "available": true,
+        "price": 100
+      },
+      {
+        "time": "19:00",
+        "available": false,
+        "price": 100
+      },
+      {
+        "time": "20:00",
+        "available": true,
+        "price": 80
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Polvo de ladrillo",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 987 654 321",
+      "email": "info@centroelite.com",
+      "website": "www.centroelite.com"
+    }
+  },
+  {
+    "id": "2",
+    "name": "Club Deportivo Los Olivos",
+    "location": "Los Olivos, Lima",
+    "price": 60,
+    "rating": 4.5,
+    "reviews": 189,
+    "description": "Cancha de tenis con césped sintético de alta calidad. Perfecta para jugadores de todos los niveles con excelentes instalaciones y ambiente familiar.",
+    "amenities": [
+      "Vestuarios",
+      "Estacionamiento",
+      "Cafetería",
+      "Iluminación nocturna"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "availability": [
+      {
+        "time": "08:00",
+        "available": true,
+        "price": 50
+      },
+      {
+        "time": "09:00",
+        "available": true,
+        "price": 50
+      },
+      {
+        "time": "10:00",
+        "available": false,
+        "price": 60
+      },
+      {
+        "time": "11:00",
+        "available": true,
+        "price": 60
+      },
+      {
+        "time": "12:00",
+        "available": true,
+        "price": 70
+      },
+      {
+        "time": "13:00",
+        "available": false,
+        "price": 70
+      },
+      {
+        "time": "14:00",
+        "available": true,
+        "price": 70
+      },
+      {
+        "time": "15:00",
+        "available": true,
+        "price": 70
+      },
+      {
+        "time": "16:00",
+        "available": false,
+        "price": 80
+      },
+      {
+        "time": "17:00",
+        "available": true,
+        "price": 80
+      },
+      {
+        "time": "18:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "time": "19:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "time": "20:00",
+        "available": false,
+        "price": 70
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Césped sintético",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 976 543 210",
+      "email": "info@losolivos.com"
+    }
+  },
+  {
+    "id": "3",
+    "name": "Arena Pádel Miraflores",
+    "location": "Miraflores, Lima",
+    "price": 100,
+    "rating": 4.9,
+    "reviews": 312,
+    "description": "Cancha de pádel premium con cristales profesionales y césped artificial de última generación. Ubicada en el corazón de Miraflores.",
+    "amenities": [
+      "Vestuarios premium",
+      "Estacionamiento valet",
+      "Restaurant",
+      "Alquiler de equipos",
+      "Iluminación LED",
+      "Aire acondicionado",
+      "Pro shop"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "availability": [
+      {
+        "time": "08:00",
+        "available": true,
+        "price": 80
+      },
+      {
+        "time": "09:00",
+        "available": true,
+        "price": 80
+      },
+      {
+        "time": "10:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "time": "11:00",
+        "available": false,
+        "price": 90
+      },
+      {
+        "time": "12:00",
+        "available": true,
+        "price": 100
+      },
+      {
+        "time": "13:00",
+        "available": true,
+        "price": 100
+      },
+      {
+        "time": "14:00",
+        "available": false,
+        "price": 100
+      },
+      {
+        "time": "15:00",
+        "available": true,
+        "price": 100
+      },
+      {
+        "time": "16:00",
+        "available": true,
+        "price": 110
+      },
+      {
+        "time": "17:00",
+        "available": false,
+        "price": 110
+      },
+      {
+        "time": "18:00",
+        "available": true,
+        "price": 120
+      },
+      {
+        "time": "19:00",
+        "available": true,
+        "price": 120
+      },
+      {
+        "time": "20:00",
+        "available": true,
+        "price": 100
+      }
+    ],
+    "sport": "padel",
+    "surface": "Césped artificial",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 965 432 109",
+      "email": "reservas@arenapadel.com",
+      "website": "www.arenapadel.com"
+    }
+  },
+  {
+    "id": "4",
+    "name": "Tenis Park Surco",
+    "location": "Santiago de Surco, Lima",
+    "price": 70,
+    "rating": 4.6,
+    "reviews": 210,
+    "description": "Complejo de tenis con superficies rápidas y ambiente familiar.",
+    "amenities": [
+      "Vestuarios",
+      "Cafetería",
+      "Iluminación nocturna"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "08:00",
+        "available": true,
+        "price": 60
+      },
+      {
+        "time": "10:00",
+        "available": true,
+        "price": 70
+      },
+      {
+        "time": "12:00",
+        "available": false,
+        "price": 70
+      },
+      {
+        "time": "16:00",
+        "available": true,
+        "price": 80
+      },
+      {
+        "time": "18:00",
+        "available": true,
+        "price": 90
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Dura",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 100",
+      "email": "contacto@tenisparksurco.pe"
+    }
+  },
+  {
+    "id": "5",
+    "name": "Pádel Coast Barranco",
+    "location": "Barranco, Lima",
+    "price": 95,
+    "rating": 4.7,
+    "reviews": 165,
+    "description": "Club de pádel moderno con cristales panorámicos.",
+    "amenities": [
+      "Pro shop",
+      "Alquiler de palas",
+      "Iluminación LED"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1603297638328-7f3f9d3b0a8a?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "09:00",
+        "available": true,
+        "price": 85
+      },
+      {
+        "time": "11:00",
+        "available": false,
+        "price": 90
+      },
+      {
+        "time": "17:00",
+        "available": true,
+        "price": 110
+      },
+      {
+        "time": "19:00",
+        "available": true,
+        "price": 115
+      }
+    ],
+    "sport": "padel",
+    "surface": "Césped artificial",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 101",
+      "email": "reservas@padelcoast.pe"
+    }
+  },
+  {
+    "id": "6",
+    "name": "Club Tenis San Borja",
+    "location": "San Borja, Lima",
+    "price": 75,
+    "rating": 4.5,
+    "reviews": 142,
+    "description": "Canchas de tenis techadas con buena ventilación.",
+    "amenities": [
+      "Vestuarios",
+      "Estacionamiento",
+      "Snack bar"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1521417534959-78163a4f0645?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "08:00",
+        "available": false,
+        "price": 65
+      },
+      {
+        "time": "10:00",
+        "available": true,
+        "price": 75
+      },
+      {
+        "time": "18:00",
+        "available": true,
+        "price": 95
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Dura",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 102",
+      "email": "info@ctsanborja.pe"
+    }
+  },
+  {
+    "id": "7",
+    "name": "Miraflores Tennis Club",
+    "location": "Miraflores, Lima",
+    "price": 85,
+    "rating": 4.8,
+    "reviews": 320,
+    "description": "Club histórico con canchas de polvo de ladrillo.",
+    "amenities": [
+      "Cafetería",
+      "Pro shop",
+      "Iluminación nocturna"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "07:00",
+        "available": true,
+        "price": 70
+      },
+      {
+        "time": "12:00",
+        "available": true,
+        "price": 85
+      },
+      {
+        "time": "19:00",
+        "available": false,
+        "price": 110
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Polvo de ladrillo",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 103",
+      "email": "contacto@miraflorestennis.pe"
+    }
+  },
+  {
+    "id": "8",
+    "name": "Surco Pádel Arena",
+    "location": "Santiago de Surco, Lima",
+    "price": 100,
+    "rating": 4.6,
+    "reviews": 190,
+    "description": "Complejo de pádel con 6 canchas full glass.",
+    "amenities": [
+      "Alquiler de equipos",
+      "Pro shop",
+      "Estacionamiento"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1579948000918-46b3e58d3614?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "09:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "time": "13:00",
+        "available": true,
+        "price": 95
+      },
+      {
+        "time": "18:00",
+        "available": true,
+        "price": 120
+      }
+    ],
+    "sport": "padel",
+    "surface": "Césped artificial",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 104",
+      "email": "reservas@surcopadel.pe"
+    }
+  },
+  {
+    "id": "9",
+    "name": "Tenis Alameda San Miguel",
+    "location": "San Miguel, Lima",
+    "price": 65,
+    "rating": 4.4,
+    "reviews": 115,
+    "description": "Canchas rápidas con buena iluminación.",
+    "amenities": [
+      "Vestuarios",
+      "Iluminación nocturna"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1542145030-6e1e86d0188e?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "08:00",
+        "available": true,
+        "price": 55
+      },
+      {
+        "time": "17:00",
+        "available": true,
+        "price": 85
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Dura",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 105",
+      "email": "alameda@tenis.pe"
+    }
+  },
+  {
+    "id": "10",
+    "name": "Pádel Plaza La Molina",
+    "location": "La Molina, Lima",
+    "price": 110,
+    "rating": 4.9,
+    "reviews": 260,
+    "description": "Centro de pádel de alto rendimiento con coaching in situ.",
+    "amenities": [
+      "Cafetería",
+      "Iluminación LED",
+      "Pro shop"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1594737625785-c6683fc596f6?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "10:00",
+        "available": true,
+        "price": 100
+      },
+      {
+        "time": "16:00",
+        "available": false,
+        "price": 120
+      },
+      {
+        "time": "20:00",
+        "available": true,
+        "price": 130
+      }
+    ],
+    "sport": "padel",
+    "surface": "Césped artificial",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 106",
+      "email": "plaza@padel.pe"
+    }
+  },
+  {
+    "id": "11",
+    "name": "San Isidro Tennis Hub",
+    "location": "San Isidro, Lima",
+    "price": 90,
+    "rating": 4.7,
+    "reviews": 205,
+    "description": "Centro con canchas mixtas y servicio de encordado.",
+    "amenities": [
+      "Taller de encordado",
+      "Cafetería"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1520975960322-5ce62fdb7000?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "07:00",
+        "available": true,
+        "price": 75
+      },
+      {
+        "time": "18:00",
+        "available": true,
+        "price": 110
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Dura",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 107",
+      "email": "hub@tenis.pe"
+    }
+  },
+  {
+    "id": "12",
+    "name": "Barranco Tenis & Café",
+    "location": "Barranco, Lima",
+    "price": 70,
+    "rating": 4.3,
+    "reviews": 88,
+    "description": "Espacio casual para jugar y socializar.",
+    "amenities": [
+      "Cafetería",
+      "Vestuarios"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1534367620808-0b6bcc6234e0?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "09:00",
+        "available": true,
+        "price": 60
+      },
+      {
+        "time": "14:00",
+        "available": false,
+        "price": 70
+      },
+      {
+        "time": "19:00",
+        "available": true,
+        "price": 90
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Polvo de ladrillo",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 108",
+      "email": "barranco@tenis.pe"
+    }
+  },
+  {
+    "id": "13",
+    "name": "La Molina Pádel Center",
+    "location": "La Molina, Lima",
+    "price": 100,
+    "rating": 4.8,
+    "reviews": 150,
+    "description": "Centro de pádel con canchas de alta calidad.",
+    "amenities": [
+      "Cafetería",
+      "Iluminación LED",
+      "Pro shop"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1594737625785-c6683fc596f6?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "availability": [
+      {
+        "time": "10:00",
+        "available": true,
+        "price": 90
+      },
+      {
+        "time": "16:00",
+        "available": false,
+        "price": 110
+      },
+      {
+        "time": "20:00",
+        "available": true,
+        "price": 120
+      }
+    ],
+    "sport": "padel",
+    "surface": "Césped artificial",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 109",
+      "email": "molina@padel.pe"
+    }
+  },
+  {
+    "id": "14",
+    "name": "Jesús María Tennis Courts",
+    "location": "Jesús María, Lima",
+    "price": 75,
+    "rating": 4.4,
+    "reviews": 132,
+    "description": "Canchas de tenis con superficie dura y buenas instalaciones.",
+    "amenities": [
+      "Vestuarios",
+      "Estacionamiento",
+      "Cafetería"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "availability": [
+      {
+        "time": "08:00",
+        "available": true,
+        "price": 65
+      },
+      {
+        "time": "11:00",
+        "available": true,
+        "price": 75
+      },
+      {
+        "time": "14:00",
+        "available": false,
+        "price": 75
+      },
+      {
+        "time": "17:00",
+        "available": true,
+        "price": 85
+      },
+      {
+        "time": "19:00",
+        "available": true,
+        "price": 90
+      }
+    ],
+    "sport": "tennis",
+    "surface": "Dura",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 110",
+      "email": "info@jmtennis.pe"
+    }
+  },
+  {
+    "id": "15",
+    "name": "Pueblo Libre Pádel Club",
+    "location": "Pueblo Libre, Lima",
+    "price": 90,
+    "rating": 4.6,
+    "reviews": 98,
+    "description": "Club de pádel familiar con ambiente acogedor.",
+    "amenities": [
+      "Vestuarios",
+      "Cafetería",
+      "Iluminación nocturna"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "availability": [
+      {
+        "time": "09:00",
+        "available": true,
+        "price": 80
+      },
+      {
+        "time": "12:00",
+        "available": true,
+        "price": 85
+      },
+      {
+        "time": "15:00",
+        "available": false,
+        "price": 90
+      },
+      {
+        "time": "18:00",
+        "available": true,
+        "price": 100
+      },
+      {
+        "time": "20:00",
+        "available": true,
+        "price": 95
+      }
+    ],
+    "sport": "padel",
+    "surface": "Césped artificial",
+    "capacity": 4,
+    "contact": {
+      "phone": "+51 944 100 111",
+      "email": "info@plpadel.pe"
+    }
+  }
+]

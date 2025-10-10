@@ -1,0 +1,63 @@
+{
+  "id": "8",
+  "name": "Valentina Cruz",
+  "location": "San Miguel, Lima",
+  "pricePerHour": 125,
+  "rating": 4.8,
+  "reviews": 98,
+  "description": "Ex-tenista profesional especializada en técnica avanzada y preparación física específica para tenis.",
+  "specialties": [
+    "Técnica avanzada",
+    "Preparación física",
+    "Estrategia de competición"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "date": "2025-10-18",
+      "time": "10:00",
+      "available": true,
+      "price": 125
+    },
+    {
+      "date": "2025-10-19",
+      "time": "14:00",
+      "available": true,
+      "price": 125
+    },
+    {
+      "date": "2025-10-20",
+      "time": "16:00",
+      "available": false,
+      "price": 125
+    },
+    {
+      "date": "2025-10-21",
+      "time": "09:00",
+      "available": true,
+      "price": 125
+    }
+  ],
+  "sports": [
+    "tennis"
+  ],
+  "experience": 11,
+  "certifications": [
+    "ITF Level 4",
+    "Preparador Físico",
+    "RPT Professional"
+  ],
+  "languages": [
+    "Español",
+    "Inglés",
+    "Italiano"
+  ],
+  "contact": {
+    "phone": "+51 989 012 345",
+    "email": "valentina@tenis.pe"
+  },
+  "level": "professional"
+}

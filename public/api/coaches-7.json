@@ -1,0 +1,60 @@
+{
+  "id": "7",
+  "name": "Diego Mendoza",
+  "location": "Los Olivos, Lima",
+  "pricePerHour": 95,
+  "rating": 4.5,
+  "reviews": 72,
+  "description": "Entrenador de pádel con enfoque en principiantes e intermedios. Especialista en enseñanza didáctica y divertida.",
+  "specialties": [
+    "Iniciación",
+    "Técnica básica",
+    "Juego recreativo"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1542204637-e67bc7d41e28?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?q=80&w=400&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "date": "2025-10-18",
+      "time": "10:00",
+      "available": true,
+      "price": 95
+    },
+    {
+      "date": "2025-10-19",
+      "time": "14:00",
+      "available": true,
+      "price": 95
+    },
+    {
+      "date": "2025-10-20",
+      "time": "16:00",
+      "available": false,
+      "price": 95
+    },
+    {
+      "date": "2025-10-21",
+      "time": "09:00",
+      "available": true,
+      "price": 95
+    }
+  ],
+  "sports": [
+    "padel"
+  ],
+  "experience": 5,
+  "certifications": [
+    "Monitor de Pádel",
+    "FIP Level 1"
+  ],
+  "languages": [
+    "Español"
+  ],
+  "contact": {
+    "phone": "+51 978 901 234",
+    "email": "diego@padel.pe"
+  },
+  "level": "intermediate"
+}

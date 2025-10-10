@@ -1,0 +1,41 @@
+{
+  "id": "7",
+  "name": "Miraflores Tennis Club",
+  "location": "Miraflores, Lima",
+  "price": 85,
+  "rating": 4.8,
+  "reviews": 320,
+  "description": "Club histórico con canchas de polvo de ladrillo.",
+  "amenities": [
+    "Cafetería",
+    "Pro shop",
+    "Iluminación nocturna"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "time": "07:00",
+      "available": true,
+      "price": 70
+    },
+    {
+      "time": "12:00",
+      "available": true,
+      "price": 85
+    },
+    {
+      "time": "19:00",
+      "available": false,
+      "price": 110
+    }
+  ],
+  "sport": "tennis",
+  "surface": "Polvo de ladrillo",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 944 100 103",
+    "email": "contacto@miraflorestennis.pe"
+  }
+}

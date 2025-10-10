@@ -1,0 +1,35 @@
+{
+  "id": "9",
+  "name": "Tenis Alameda San Miguel",
+  "location": "San Miguel, Lima",
+  "price": 65,
+  "rating": 4.4,
+  "reviews": 115,
+  "description": "Canchas rápidas con buena iluminación.",
+  "amenities": [
+    "Vestuarios",
+    "Iluminación nocturna"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1542145030-6e1e86d0188e?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "time": "08:00",
+      "available": true,
+      "price": 55
+    },
+    {
+      "time": "17:00",
+      "available": true,
+      "price": 85
+    }
+  ],
+  "sport": "tennis",
+  "surface": "Dura",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 944 100 105",
+    "email": "alameda@tenis.pe"
+  }
+}

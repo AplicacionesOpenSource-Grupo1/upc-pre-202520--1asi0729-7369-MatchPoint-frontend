@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "name": "María López",
+  "email": "maria.lopez@example.com",
+  "password": "123456",
+  "phone": "+51 987 000 111",
+  "favoriteSpot": "padel",
+  "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop"
+}
