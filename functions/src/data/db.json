@@ -85,15 +85,6 @@
       "phone": "+51 987 000 119",
       "favoriteSpot": "padel",
       "avatar": "https://images.unsplash.com/photo-1542204637-e67bc7d41e28?q=80&w=400&auto=format&fit=crop"
-    },
-    {
-      "id": "1760118147104",
-      "name": "Juan Angulo",
-      "email": "Juan123@gmail.com",
-      "phone": "987987",
-      "favoriteSpot": "tennis",
-      "avatar": "https://ui-avatars.com/api/?name=JA&background=0d47a1&color=fff",
-      "password": "juan123"
     }
   ],
   "bookings": [
