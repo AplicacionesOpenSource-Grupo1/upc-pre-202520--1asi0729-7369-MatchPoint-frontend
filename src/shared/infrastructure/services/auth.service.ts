@@ -61,6 +61,11 @@ export class AuthService {
   constructor() {
     // Verificar si hay un usuario guardado en localStorage al inicializar
     this.checkStoredUser();
+    
+    // Auto-login en desarrollo si no hay usuario
+    if (!this.configService.isProductionMode() && !this.isAuthenticated) {
+      this.autoLoginForDevelopment();
+    }
   }
 
   /**
@@ -252,5 +257,23 @@ export class AuthService {
    */
   clearError(): void {
     this.authError.set(null);
+  }
+
+  /**
+   * Auto-login para desarrollo con usuario mock
+   */
+  private autoLoginForDevelopment(): void {
+    const mockUser: User = {
+      id: '1',
+      name: 'Juan Carlos',
+      email: 'juan@example.com',
+      phone: '+51 999 999 999',
+      avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKUsllfarh1Vz5TMSY9tQXvaO4PjgZQST2UfndXEB4asm1lrMgH1AOBj8iel5YRr8sjK-udLwcYVv87B65GOQBuCO06VCZgauA33eetg72EetdFnv3sJj_X3FrK4V-wNkU6_MjPGh-WdWq5ZaVRzZ9OkovDPzgEskotSpWMv8d6HkCUKvQCp7K',
+      favoriteSpot: 'tennis'
+    };
+    
+    const mockToken = 'dev-token-' + Date.now();
+    this.saveAuthData(mockUser, mockToken);
+    this.currentUserSubject.next(mockUser);
   }
 }

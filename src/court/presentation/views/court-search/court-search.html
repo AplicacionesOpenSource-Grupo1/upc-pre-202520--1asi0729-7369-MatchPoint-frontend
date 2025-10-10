@@ -1,0 +1,112 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <!-- Filters Sidebar -->
+    <app-search-filter-sidebar
+      [title]="'court-search.filters'"
+      [filterConfigs]="filterConfigs()"
+      [filters]="filters()"
+      [showApplyButton]="true"
+      [applyButtonText]="'court-search.apply-filters'"
+      (filterChange)="onFilterChange($event)"
+      (applyFilters)="onApplyFilters()">
+    </app-search-filter-sidebar>
+
+    <!-- Main Content -->
+    <div class="lg:col-span-3">
+      <!-- Search Bar -->
+      <div class="mb-6">
+        <div class="relative">
+          <input 
+            class="w-full bg-surface-light dark:bg-surface-dark border border-surface-dark/10 dark:border-surface-dark rounded-lg h-14 pl-12 pr-4 focus:ring-primary focus:border-primary"
+            type="search"
+            [value]="searchQuery()"
+            (input)="onSearchChange($any($event.target).value)"
+            [placeholder]="'court-search.search-placeholder' | translate"/>
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-subtle-light dark:text-subtle-dark">
+            search
+          </span>
+        </div>
+      </div>
+
+      <!-- Header with Sort Options -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <h2 class="text-2xl font-bold">{{ 'court-search.available-courts' | translate }}</h2>
+        <div class="flex items-center gap-2 text-sm">
+          <span class="text-subtle-light dark:text-subtle-dark">{{ 'court-search.sort-by' | translate }}</span>
+          <button 
+            class="px-3 py-1 rounded-full font-medium transition-colors"
+            [class]="sortBy() === 'relevance' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/20 hover:text-primary'"
+            (click)="onSortChange('relevance')">
+            {{ 'court-search.sort-relevance' | translate }}
+          </button>
+          <button 
+            class="px-3 py-1 rounded-full font-medium transition-colors"
+            [class]="sortBy() === 'price' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/20 hover:text-primary'"
+            (click)="onSortChange('price')">
+            {{ 'court-search.sort-price' | translate }}
+          </button>
+          <button 
+            class="px-3 py-1 rounded-full font-medium transition-colors"
+            [class]="sortBy() === 'rating' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/20 hover:text-primary'"
+            (click)="onSortChange('rating')">
+            {{ 'court-search.sort-rating' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Courts Grid -->
+      @if (isLoading()) {
+        <div class="col-span-full text-center py-12">
+          <div class="text-subtle-light dark:text-subtle-dark mb-4">
+            <span class="material-symbols-outlined text-6xl animate-spin">refresh</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">{{ 'court-search.loading' | translate }}</h3>
+        </div>
+      } @else {
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          @for (court of filteredCourts(); track court.id) {
+            <div 
+              class="bg-surface-light dark:bg-surface-dark rounded-lg overflow-hidden group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              (click)="onCourtClick(court)">
+              <div class="relative">
+                <img 
+                  [alt]="court.name"
+                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  [src]="court.images[0]"/>
+                <div class="absolute top-2 right-2 bg-primary/80 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
+                  ${{ court.price }}/hr
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-bold text-lg">{{ court.name }}</h3>
+                <p class="text-sm text-subtle-light dark:text-subtle-dark mb-2">{{ court.location }}</p>
+                <div class="flex items-center gap-1 text-yellow-500">
+                  @for (star of getStarArray(court.rating); track $index) {
+                    @if (star.filled) {
+                      <span class="material-symbols-outlined !text-base">star</span>
+                    } @else if (star.half) {
+                      <span class="material-symbols-outlined !text-base">star_half</span>
+                    } @else {
+                      <span class="material-symbols-outlined !text-base text-text-light/30 dark:text-text-dark/30">star</span>
+                    }
+                  }
+                  <span class="text-text-light dark:text-text-dark text-sm ml-1">{{ court.rating }}</span>
+                </div>
+              </div>
+            </div>
+          } @empty {
+            <div class="col-span-full text-center py-12">
+              <div class="text-subtle-light dark:text-subtle-dark mb-4">
+                <span class="material-symbols-outlined text-6xl">search_off</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">{{ 'court-search.no-results' | translate }}</h3>
+              <p class="text-subtle-light dark:text-subtle-dark">
+                {{ 'court-search.try-different-filters' | translate }}
+              </p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

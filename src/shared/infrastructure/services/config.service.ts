@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 export interface AppConfig {
   production: boolean;
   apiBaseUrl: string;
+  apiPort: number;
   apiTimeout: number;
   appName: string;
   appVersion: string;
@@ -24,6 +25,7 @@ export class ConfigService {
     return {
       production: this.isProduction(),
       apiBaseUrl: this.getApiBaseUrl(),
+      apiPort: this.resolveApiPort(),
       apiTimeout: this.getApiTimeout(),
       appName: 'PlayMatch',
       appVersion: '1.0.0'
@@ -37,13 +39,41 @@ export class ConfigService {
   }
 
   private getApiBaseUrl(): string {
+    // En desarrollo, siempre usar JSON Server con el puerto de las variables de entorno
+    if (typeof window !== 'undefined' && 
+        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+      const port = this.resolveApiPort();
+      return `http://localhost:${port}`;
+    }
+
+    // Intentar obtener de las variables de entorno
+    const envApiUrl = this.getEnvVar('API_BASE_URL');
+    if (envApiUrl) {
+      return envApiUrl;
+    }
+
     if (this.isProduction()) {
       // En producción, usar la URL de Firebase Functions
-      return this.getEnvVar('API_BASE_URL') || 'https://matchpoint-front.web.app/api';
+      return 'https://matchpoint-front.web.app/api';
     } else {
-      // En desarrollo, usar localhost
-      return this.getEnvVar('API_BASE_URL') || 'http://localhost:3001';
+      // Fallback para desarrollo con puerto por defecto
+      const port = this.resolveApiPort();
+      return `http://localhost:${port}`;
     }
+  }
+
+  private resolveApiPort(): number {
+    // Intentar obtener el puerto de las variables de entorno
+    const envPort = this.getEnvVar('API_PORT');
+    if (envPort) {
+      const port = parseInt(envPort, 10);
+      if (!isNaN(port) && port > 0) {
+        return port;
+      }
+    }
+
+    // Puerto por defecto según el entorno
+    return this.isProduction() ? 443 : 3000;
   }
 
   private getApiTimeout(): number {
@@ -69,5 +99,9 @@ export class ConfigService {
 
   isProductionMode(): boolean {
     return this.config.production;
+  }
+
+  getApiPort(): number {
+    return this.config.apiPort;
   }
 }

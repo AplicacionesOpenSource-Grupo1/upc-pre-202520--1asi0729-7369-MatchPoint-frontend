@@ -65,10 +65,12 @@
     "available-times": "Horarios Disponibles",
     "no-slots-available": "No hay horarios disponibles para esta fecha",
     "price-from": "Precio desde",
-    "final-price-note": "*El precio final puede variar según el horario seleccionado",
+    "final-price-note": "*El precio final puede variar según el horario y la duración",
     "not-found": "Cancha no encontrada",
     "booking-confirmed": "Reserva confirmada para las {{time}} el {{date}}",
-    "booking-error": "Error al procesar la reserva. Inténtalo de nuevo."
+    "booking-error": "Error al procesar la reserva. Inténtalo de nuevo.",
+    "available-coaches": "Entrenadores Disponibles",
+    "no-coaches-available": "No hay entrenadores disponibles para esta cancha"
   },
   "coach-details": {
     "back-to-search": "Volver a Búsqueda",
@@ -89,7 +91,9 @@
     "final-price-note": "*El precio final puede variar según el horario seleccionado",
     "not-found": "Entrenador no encontrado",
     "booking-confirmed": "Sesión reservada para las {{time}} el {{date}}",
-    "booking-error": "Error al procesar la reserva. Inténtalo de nuevo."
+    "booking-error": "Error al procesar la reserva. Inténtalo de nuevo.",
+    "available-courts": "Canchas Disponibles",
+    "no-courts-available": "No hay canchas disponibles para este entrenador"
   },
   "sport": {
     "tennis": "Tenis",
@@ -163,5 +167,14 @@
       },
       "success": "Cuenta creada exitosamente"
     }
+  },
+  "reviews": "reseñas",
+  "players": "jugadores",
+  "years": "años",
+  "level": {
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzado",
+    "professional": "Profesional"
   }
 }
