@@ -1,9 +1,10 @@
-import { Component, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService, LoginRequest } from '../../../infrastructure/services/auth.service';
+import { SeoService } from '../../../infrastructure/services/seo.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,11 @@ import { AuthService, LoginRequest } from '../../../infrastructure/services/auth
   styleUrl: './login.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Login {
+export class Login implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private fb = inject(FormBuilder);
+  private seoService = inject(SeoService);
 
   loginForm: FormGroup;
   
@@ -30,6 +32,10 @@ export class Login {
       password: ['', [Validators.required, Validators.minLength(6)]],
       remember: [false]
     });
+  }
+
+  ngOnInit(): void {
+    this.seoService.updateSeoTags(SeoService.SEO_CONFIG.login);
   }
 
   onSubmit(): void {

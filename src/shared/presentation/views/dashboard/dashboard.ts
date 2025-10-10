@@ -1,9 +1,10 @@
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, inject, signal, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../../../infrastructure/services/user.service';
 import { BookingService } from '../../../infrastructure/services/booking.service';
+import { SeoService } from '../../../infrastructure/services/seo.service';
 import { User, UserStats, Activity } from '../../../domain/models/user.model';
 import { Booking } from '../../../domain/models/booking.model';
 
@@ -38,13 +39,15 @@ export interface UserProfile {
   styleUrl: './dashboard.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
   /** Servicio de navegación de Angular */
   private readonly router = inject(Router);
   /** Servicio para operaciones relacionadas con usuarios */
   private readonly userService = inject(UserService);
   /** Servicio para operaciones relacionadas con reservas */
   private readonly bookingService = inject(BookingService);
+  /** Servicio para operaciones de SEO */
+  private readonly seoService = inject(SeoService);
 
   /** Signal para los datos completos del usuario */
   user = signal<User | null>(null);
@@ -69,6 +72,10 @@ export class Dashboard {
 
   constructor() {
     this.loadDashboardData();
+  }
+
+  ngOnInit(): void {
+    this.seoService.updateSeoTags(SeoService.SEO_CONFIG.dashboard);
   }
 
   private loadDashboardData(): void {

@@ -67,18 +67,43 @@ export class AuthService {
    * Verifica si hay un usuario guardado en localStorage
    */
   private checkStoredUser(): void {
-    const storedUser = localStorage.getItem('currentUser');
-    const storedToken = localStorage.getItem('authToken');
+    const storedUser = localStorage.getItem('playmatch_user');
+    const storedToken = localStorage.getItem('playmatch_token');
     
     if (storedUser && storedToken) {
       try {
         const user = JSON.parse(storedUser);
+        // Verificar que el token no haya expirado (opcional)
+        const tokenExpiry = localStorage.getItem('playmatch_token_expiry');
+        if (tokenExpiry && new Date().getTime() > parseInt(tokenExpiry)) {
+          this.logout();
+          return;
+        }
         this.currentUserSubject.next(user);
       } catch (error) {
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('authToken');
+        this.clearStoredAuth();
       }
     }
+  }
+
+  /**
+   * Limpia datos de autenticación del localStorage
+   */
+  private clearStoredAuth(): void {
+    localStorage.removeItem('playmatch_user');
+    localStorage.removeItem('playmatch_token');
+    localStorage.removeItem('playmatch_token_expiry');
+  }
+
+  /**
+   * Guarda datos de autenticación en localStorage
+   */
+  private saveAuthData(user: User, token: string): void {
+    localStorage.setItem('playmatch_user', JSON.stringify(user));
+    localStorage.setItem('playmatch_token', token);
+    // Token expira en 7 días
+    const expiry = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+    localStorage.setItem('playmatch_token_expiry', expiry.toString());
   }
 
   /**
@@ -119,9 +144,8 @@ export class AuthService {
         return { user, token };
       }),
       tap(response => {
-        // Guardar usuario en localStorage
-        localStorage.setItem('currentUser', JSON.stringify(response.user));
-        localStorage.setItem('authToken', response.token);
+        // Guardar usuario en localStorage usando el nuevo método
+        this.saveAuthData(response.user, response.token);
         
         // Actualizar el subject
         this.currentUserSubject.next(response.user);
@@ -169,9 +193,8 @@ export class AuthService {
         );
       }),
       tap(response => {
-        // Guardar usuario en localStorage
-        localStorage.setItem('currentUser', JSON.stringify(response.user));
-        localStorage.setItem('authToken', response.token);
+        // Guardar usuario en localStorage usando el nuevo método
+        this.saveAuthData(response.user, response.token);
         
         // Actualizar el subject
         this.currentUserSubject.next(response.user);
@@ -193,8 +216,7 @@ export class AuthService {
    * Cierra la sesión del usuario actual
    */
   logout(): void {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('authToken');
+    this.clearStoredAuth();
     this.currentUserSubject.next(null);
     this.authError.set(null);
     
