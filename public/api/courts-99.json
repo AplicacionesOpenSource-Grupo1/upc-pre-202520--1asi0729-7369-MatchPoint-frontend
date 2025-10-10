@@ -1,0 +1,36 @@
+{
+  "id": "99",
+  "name": "Nueva Cancha Test Dinámico",
+  "location": "Test Location, Lima",
+  "price": 150,
+  "rating": 5,
+  "reviews": 1,
+  "description": "Cancha de prueba para demostrar la escalabilidad dinámica del sistema API.",
+  "amenities": [
+    "Sistema dinámico",
+    "Auto-generación",
+    "Escalabilidad"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+  ],
+  "availability": [
+    {
+      "time": "10:00",
+      "available": true,
+      "price": 150
+    },
+    {
+      "time": "14:00",
+      "available": true,
+      "price": 150
+    }
+  ],
+  "sport": "tennis",
+  "surface": "Test Surface",
+  "capacity": 2,
+  "contact": {
+    "phone": "+51 999 999 999",
+    "email": "test@dynamic.com"
+  }
+}

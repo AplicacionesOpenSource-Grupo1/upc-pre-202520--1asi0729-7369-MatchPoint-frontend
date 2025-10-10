@@ -11,36 +11,280 @@
     ],
     "rewrites": [
       {
-        "source": "/api/users",
-        "destination": "/api/users.json"
+        "source": "/api/bookings",
+        "destination": "/api/bookings.json"
       },
       {
-        "source": "/api/users/*",
-        "destination": "/api/users-:splat.json"
+        "source": "/api/bookings/1",
+        "destination": "/api/bookings-1.json"
       },
       {
-        "source": "/api/courts",
-        "destination": "/api/courts.json"
+        "source": "/api/bookings/10",
+        "destination": "/api/bookings-10.json"
       },
       {
-        "source": "/api/courts/*",
-        "destination": "/api/courts-:splat.json"
+        "source": "/api/bookings/11",
+        "destination": "/api/bookings-11.json"
+      },
+      {
+        "source": "/api/bookings/12",
+        "destination": "/api/bookings-12.json"
+      },
+      {
+        "source": "/api/bookings/13",
+        "destination": "/api/bookings-13.json"
+      },
+      {
+        "source": "/api/bookings/14",
+        "destination": "/api/bookings-14.json"
+      },
+      {
+        "source": "/api/bookings/15",
+        "destination": "/api/bookings-15.json"
+      },
+      {
+        "source": "/api/bookings/16",
+        "destination": "/api/bookings-16.json"
+      },
+      {
+        "source": "/api/bookings/17",
+        "destination": "/api/bookings-17.json"
+      },
+      {
+        "source": "/api/bookings/18",
+        "destination": "/api/bookings-18.json"
+      },
+      {
+        "source": "/api/bookings/19",
+        "destination": "/api/bookings-19.json"
+      },
+      {
+        "source": "/api/bookings/2",
+        "destination": "/api/bookings-2.json"
+      },
+      {
+        "source": "/api/bookings/20",
+        "destination": "/api/bookings-20.json"
+      },
+      {
+        "source": "/api/bookings/21",
+        "destination": "/api/bookings-21.json"
+      },
+      {
+        "source": "/api/bookings/22",
+        "destination": "/api/bookings-22.json"
+      },
+      {
+        "source": "/api/bookings/23",
+        "destination": "/api/bookings-23.json"
+      },
+      {
+        "source": "/api/bookings/24",
+        "destination": "/api/bookings-24.json"
+      },
+      {
+        "source": "/api/bookings/25",
+        "destination": "/api/bookings-25.json"
+      },
+      {
+        "source": "/api/bookings/26",
+        "destination": "/api/bookings-26.json"
+      },
+      {
+        "source": "/api/bookings/27",
+        "destination": "/api/bookings-27.json"
+      },
+      {
+        "source": "/api/bookings/28",
+        "destination": "/api/bookings-28.json"
+      },
+      {
+        "source": "/api/bookings/29",
+        "destination": "/api/bookings-29.json"
+      },
+      {
+        "source": "/api/bookings/3",
+        "destination": "/api/bookings-3.json"
+      },
+      {
+        "source": "/api/bookings/30",
+        "destination": "/api/bookings-30.json"
+      },
+      {
+        "source": "/api/bookings/4",
+        "destination": "/api/bookings-4.json"
+      },
+      {
+        "source": "/api/bookings/5",
+        "destination": "/api/bookings-5.json"
+      },
+      {
+        "source": "/api/bookings/6",
+        "destination": "/api/bookings-6.json"
+      },
+      {
+        "source": "/api/bookings/7",
+        "destination": "/api/bookings-7.json"
+      },
+      {
+        "source": "/api/bookings/8",
+        "destination": "/api/bookings-8.json"
+      },
+      {
+        "source": "/api/bookings/9",
+        "destination": "/api/bookings-9.json"
       },
       {
         "source": "/api/coaches",
         "destination": "/api/coaches.json"
       },
       {
-        "source": "/api/coaches/*",
-        "destination": "/api/coaches-:splat.json"
+        "source": "/api/coaches/1",
+        "destination": "/api/coaches-1.json"
       },
       {
-        "source": "/api/bookings",
-        "destination": "/api/bookings.json"
+        "source": "/api/coaches/2",
+        "destination": "/api/coaches-2.json"
       },
       {
-        "source": "/api/bookings/*",
-        "destination": "/api/bookings-:splat.json"
+        "source": "/api/coaches/3",
+        "destination": "/api/coaches-3.json"
+      },
+      {
+        "source": "/api/coaches/4",
+        "destination": "/api/coaches-4.json"
+      },
+      {
+        "source": "/api/coaches/5",
+        "destination": "/api/coaches-5.json"
+      },
+      {
+        "source": "/api/coaches/6",
+        "destination": "/api/coaches-6.json"
+      },
+      {
+        "source": "/api/coaches/7",
+        "destination": "/api/coaches-7.json"
+      },
+      {
+        "source": "/api/coaches/8",
+        "destination": "/api/coaches-8.json"
+      },
+      {
+        "source": "/api/courts",
+        "destination": "/api/courts.json"
+      },
+      {
+        "source": "/api/courts/1",
+        "destination": "/api/courts-1.json"
+      },
+      {
+        "source": "/api/courts/10",
+        "destination": "/api/courts-10.json"
+      },
+      {
+        "source": "/api/courts/11",
+        "destination": "/api/courts-11.json"
+      },
+      {
+        "source": "/api/courts/12",
+        "destination": "/api/courts-12.json"
+      },
+      {
+        "source": "/api/courts/13",
+        "destination": "/api/courts-13.json"
+      },
+      {
+        "source": "/api/courts/14",
+        "destination": "/api/courts-14.json"
+      },
+      {
+        "source": "/api/courts/15",
+        "destination": "/api/courts-15.json"
+      },
+      {
+        "source": "/api/courts/2",
+        "destination": "/api/courts-2.json"
+      },
+      {
+        "source": "/api/courts/3",
+        "destination": "/api/courts-3.json"
+      },
+      {
+        "source": "/api/courts/4",
+        "destination": "/api/courts-4.json"
+      },
+      {
+        "source": "/api/courts/5",
+        "destination": "/api/courts-5.json"
+      },
+      {
+        "source": "/api/courts/6",
+        "destination": "/api/courts-6.json"
+      },
+      {
+        "source": "/api/courts/7",
+        "destination": "/api/courts-7.json"
+      },
+      {
+        "source": "/api/courts/8",
+        "destination": "/api/courts-8.json"
+      },
+      {
+        "source": "/api/courts/9",
+        "destination": "/api/courts-9.json"
+      },
+      {
+        "source": "/api/courts/99",
+        "destination": "/api/courts-99.json"
+      },
+      {
+        "source": "/api/users",
+        "destination": "/api/users.json"
+      },
+      {
+        "source": "/api/users/1",
+        "destination": "/api/users-1.json"
+      },
+      {
+        "source": "/api/users/10",
+        "destination": "/api/users-10.json"
+      },
+      {
+        "source": "/api/users/1760118147104",
+        "destination": "/api/users-1760118147104.json"
+      },
+      {
+        "source": "/api/users/2",
+        "destination": "/api/users-2.json"
+      },
+      {
+        "source": "/api/users/3",
+        "destination": "/api/users-3.json"
+      },
+      {
+        "source": "/api/users/4",
+        "destination": "/api/users-4.json"
+      },
+      {
+        "source": "/api/users/5",
+        "destination": "/api/users-5.json"
+      },
+      {
+        "source": "/api/users/6",
+        "destination": "/api/users-6.json"
+      },
+      {
+        "source": "/api/users/7",
+        "destination": "/api/users-7.json"
+      },
+      {
+        "source": "/api/users/8",
+        "destination": "/api/users-8.json"
+      },
+      {
+        "source": "/api/users/9",
+        "destination": "/api/users-9.json"
       },
       {
         "source": "**",
@@ -59,7 +303,22 @@
       }
     ]
   },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ],
   "emulators": {
+    "functions": {
+      "port": 5001
+    },
     "hosting": {
       "port": 5000
     },
