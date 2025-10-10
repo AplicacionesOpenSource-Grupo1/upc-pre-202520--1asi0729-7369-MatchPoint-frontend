@@ -2,7 +2,6 @@ import {Component, inject, model} from '@angular/core';
 import {MatCard} from '@angular/material/card';
 import {MatFormField} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
 import {MatDivider} from '@angular/material/divider';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -14,7 +13,6 @@ import {TranslatePipe} from '@ngx-translate/core';
     MatCard,
     MatFormField,
     MatInput,
-    MatButton,
     MatDivider,
     ReactiveFormsModule,
     TranslatePipe
