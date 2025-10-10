@@ -92,6 +92,10 @@ export class CoachDetailsComponent {
     this.router.navigate(['/search-coaches']);
   }
 
+   goPay():void{
+    this.router.navigate(['/payments']);
+  }
+  
   shareProfile(): void {
     if (navigator.share) {
       navigator.share({
