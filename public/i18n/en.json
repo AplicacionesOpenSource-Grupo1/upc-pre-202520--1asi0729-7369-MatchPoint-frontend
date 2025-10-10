@@ -163,5 +163,15 @@
       },
       "success": "Account created successfully"
     }
-  }
+  },
+  "payments": {
+  "input": "Input your credit card information",
+  "card": "Input your credit card number",
+  "date": "Expiration date",
+  "payment": "Finish the payment",
+  "succeed": "The payment was succesfull",
+  "home": "Return home",
+    "pay": "Pay"
+}
+  
 }
