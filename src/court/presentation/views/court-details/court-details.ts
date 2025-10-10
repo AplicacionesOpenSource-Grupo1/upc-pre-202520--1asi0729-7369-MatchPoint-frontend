@@ -90,6 +90,10 @@ export class CourtDetailsComponent {
     this.router.navigate(['/search-courts']);
   }
 
+    goPay():void{
+    this.router.navigate(['/payments']);
+  }
+
   shareLocation(): void {
     if (navigator.share) {
       navigator.share({
