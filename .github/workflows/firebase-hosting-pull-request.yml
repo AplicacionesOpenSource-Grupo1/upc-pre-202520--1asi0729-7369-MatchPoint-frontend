@@ -13,7 +13,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci && npm run build
+      
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      # Install frontend dependencies and build
+      - name: Install dependencies and build frontend
+        run: npm ci && npm run build
+      
+      # Install Firebase Functions dependencies and build
+      - name: Install Functions dependencies and build
+        run: |
+          cd functions
+          npm ci
+          npm run build
+          cd ..
+      
+      # Deploy preview (only hosting for PR previews)
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
