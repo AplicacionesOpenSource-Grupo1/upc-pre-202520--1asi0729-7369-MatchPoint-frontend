@@ -59,7 +59,6 @@ if (!fs.existsSync(assetsDir)) {
 fs.writeFileSync(outputPath, jsContent);
 console.log(`Environment configuration written to: ${outputPath}`);
 
-// También generar el script HTML para insertar en index.html
 const htmlScriptPath = path.resolve(__dirname, '..', 'env-script.html');
 fs.writeFileSync(htmlScriptPath, envScript);
 console.log(`HTML script written to: ${htmlScriptPath}`);
