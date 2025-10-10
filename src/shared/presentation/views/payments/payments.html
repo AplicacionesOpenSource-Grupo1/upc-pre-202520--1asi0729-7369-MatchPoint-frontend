@@ -1,6 +1,6 @@
 <mat-card>
   <div class="centered">
-    <p class="titulo">Ingrese su información de tarjeta</p>
+    <p class="titulo">{{'payments.input' | translate }}</p>
     <br>
     <mat-divider/>
     <div class="form-field">
@@ -12,11 +12,11 @@
     <mat-divider/>
     <br>
     <form [formGroup]="cForm" (ngSubmit)="onSubmit()">
-      <p class="pax">Ingrese su numero de tarjeta</p>
+      <p class="pax">{{ 'payments.card'| translate}}</p>
       <mat-form-field class="field" appearance="outline">
         <input matInput required formControlName="card"/>
       </mat-form-field>
-      <p class="pax">Fecha de expiración</p>
+      <p class="pax">{{ 'payments.date' | translate}}</p>
       <div class = "form-field">
         <mat-form-field appearance="outline">
           <input matInput placeholder="MM" formControlName="month"/>
@@ -33,8 +33,11 @@
     </form>
     <br>
     <div style="text-align: center">
-      <button matButton="filled" class="button" type="submit" [disabled]="cForm.invalid" (click)="onSubmit()">Realizar el pago</button>
+      <button
+        class="w-full bg-primary text-white font-bold h-12 rounded-lg hover:bg-primary/90 transition-colors"
+        [disabled]="cForm.invalid" (click)="onSubmit()">{{'payments.payment'|translate}}</button>
     </div>
   </div>
 </mat-card>
+
 

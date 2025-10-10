@@ -10,17 +10,8 @@ const dashboardModule = () => import('../shared/presentation/views/dashboard/das
 export const routes: Routes = [
   {
     path: '',
-    canActivate: [() => {
-      const authService = inject(AuthService);
-      const router = inject(Router);
-      
-      if (authService.isAuthenticated) {
-        router.navigate(['/dashboard']);
-      } else {
-        router.navigate(['/login']);
-      }
-      return false;
-    }]
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
   },
   {
     path: 'login',
@@ -35,23 +26,24 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     loadComponent: dashboardModule,
+    canActivate: [authGuard],
     pathMatch: 'full'
   },
   {
     path: 'search-courts',
-    loadComponent: () => import('../shared/presentation/views/court-search/court-search').then(m => m.CourtSearch)
+    loadComponent: () => import('../court/presentation/views/court-search/court-search').then(m => m.CourtSearch)
   },
   {
     path: 'search-coaches',
-    loadComponent: () => import('../shared/presentation/views/coach-search/coach-search').then(m => m.CoachSearch)
+    loadComponent: () => import('../coach/presentation/views/coach-search/coach-search').then(m => m.CoachSearch)
   },
   {
     path: 'court-details/:id',
-    loadComponent: () => import('../shared/presentation/views/court-details/court-details').then(m => m.CourtDetailsComponent)
+    loadComponent: () => import('../court/presentation/views/court-details/court-details').then(m => m.CourtDetailsComponent)
   },
   {
     path: 'coach-details/:id',
-    loadComponent: () => import('../shared/presentation/views/coach-details/coach-details').then(m => m.CoachDetailsComponent)
+    loadComponent: () => import('../coach/presentation/views/coach-details/coach-details').then(m => m.CoachDetailsComponent)
   },
   {
     path: 'settings',

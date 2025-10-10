@@ -4,10 +4,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { Language } from '../language/language';
 import { AuthService } from '../../../infrastructure/services/auth.service';
 import { CommonModule } from '@angular/common';
+import { UserImage } from '../user-image';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, TranslatePipe, Language, CommonModule],
+  imports: [RouterLink, RouterLinkActive, TranslatePipe, Language, CommonModule, UserImage],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })

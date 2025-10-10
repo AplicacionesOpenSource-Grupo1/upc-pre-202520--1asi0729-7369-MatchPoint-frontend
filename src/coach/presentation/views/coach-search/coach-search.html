@@ -1,0 +1,104 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <!-- Filters Sidebar -->
+    <app-search-filter-sidebar
+      [title]="'coach-search.filters'"
+      [filterConfigs]="filterConfigs()"
+      [filters]="filters()"
+      [showApplyButton]="false"
+      (filterChange)="onFilterChange($event)"
+      (applyFilters)="onApplyFilters()">
+    </app-search-filter-sidebar>
+
+    <!-- Main content -->
+    <div class="lg:col-span-3">
+      <!-- Search bar -->
+      <div class="mb-6 flex flex-col items-center gap-4 md:flex-row">
+        <div class="relative w-full flex-1">
+          <span class="material-symbols-outlined pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-subtle-light dark:text-subtle-dark">search</span>
+          <input 
+            class="w-full rounded border-border-light bg-surface-light py-3 pl-12 pr-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-surface-dark dark:text-text-dark dark:placeholder-subtle-dark" 
+            type="search"
+            [placeholder]="'coach-search.search-placeholder' | translate"
+            [(ngModel)]="searchQuery"/>
+        </div>
+        <button 
+          class="w-full rounded-full bg-primary px-8 py-3 font-bold text-white md:w-auto"
+          (click)="onSearch()">
+          {{ 'coach-search.search' | translate }}
+        </button>
+      </div>
+
+      <!-- Results header and sorting -->
+      <div class="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <h2 class="text-2xl font-bold">
+          {{ 'coach-search.coaches-count' | translate: {count: filteredCoaches().length} }}
+        </h2>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-sm text-subtle-light dark:text-subtle-dark">
+            {{ 'coach-search.sort-by' | translate }}
+          </span>
+          <button 
+            class="rounded-full px-4 py-1.5 text-sm font-medium"
+            [class]="sortBy() === 'rating' ? 'bg-primary/10 text-primary dark:bg-primary/20' : 'bg-transparent text-subtle-light hover:bg-primary/10 hover:text-primary dark:text-subtle-dark dark:hover:bg-primary/20'"
+            (click)="setSortBy('rating')">
+            {{ 'coach-search.sort-rating' | translate }}
+          </button>
+          <button 
+            class="rounded-full px-4 py-1.5 text-sm font-medium"
+            [class]="sortBy() === 'price' ? 'bg-primary/10 text-primary dark:bg-primary/20' : 'bg-transparent text-subtle-light hover:bg-primary/10 hover:text-primary dark:text-subtle-dark dark:hover:bg-primary/20'"
+            (click)="setSortBy('price')">
+            {{ 'coach-search.sort-price' | translate }}
+          </button>
+          <button 
+            class="rounded-full px-4 py-1.5 text-sm font-medium"
+            [class]="sortBy() === 'availability' ? 'bg-primary/10 text-primary dark:bg-primary/20' : 'bg-transparent text-subtle-light hover:bg-primary/10 hover:text-primary dark:text-subtle-dark dark:hover:bg-primary/20'"
+            (click)="setSortBy('availability')">
+            {{ 'coach-search.sort-availability' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Coaches grid -->
+      @if (isLoading()) {
+        <div class="col-span-full rounded-lg border border-border-light bg-surface-light p-8 text-center dark:border-border-dark dark:bg-surface-dark">
+          <p class="text-subtle-light dark:text-subtle-dark">
+            {{ 'coach-search.loading' | translate }}
+          </p>
+        </div>
+      } @else {
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          @for (coach of filteredCoaches(); track coach.id) {
+            <div 
+              class="rounded-lg border border-border-light bg-surface-light p-4 shadow-sm transition-shadow hover:shadow-md dark:border-border-dark dark:bg-surface-dark dark:hover:shadow-primary/10 cursor-pointer"
+              (click)="onCoachClick(coach)">
+              <div class="mb-4 aspect-square w-full rounded bg-cover bg-center" 
+                   [style.background-image]="'url(' + coach.images[0] + ')'">
+              </div>
+              <div>
+                <h3 class="font-bold">{{ coach.name }}</h3>
+                <p class="text-sm text-subtle-light dark:text-subtle-dark">
+                  {{ coach.sports.join(', ') }} {{ 'coach-search.coach' | translate }}
+                </p>
+                <div class="mt-2 flex items-center justify-between">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-yellow-500">star</span>
+                    <span class="text-sm font-bold">{{ coach.rating }}</span>
+                    <span class="text-xs text-subtle-light dark:text-subtle-dark">({{ coach.reviews }})</span>
+                  </div>
+                  <p class="text-sm font-bold text-primary">${{ coach.pricePerHour }}/hr</p>
+                </div>
+              </div>
+            </div>
+          } @empty {
+            <div class="col-span-full rounded-lg border border-border-light bg-surface-light p-8 text-center dark:border-border-dark dark:bg-surface-dark">
+              <p class="text-subtle-light dark:text-subtle-dark">
+                {{ 'coach-search.no-coaches-found' | translate }}
+              </p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

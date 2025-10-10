@@ -1,0 +1,120 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Juan Carlos",
+      "email": "juan@example.com",
+      "phone": "+51 999 999 999",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDKUsllfarh1Vz5TMSY9tQXvaO4PjgZQST2UfndXEB4asm1lrMgH1AOBj8iel5YRr8sjK-udLwcYVv87B65GOQBuCO06VCZgauA33eetg72EetdFnv3sJj_X3FrK4V-wNkU6_MjPGh-WdWq5ZaVRzZ9OkovDPzgEskotSpWMv8d6HkCUKvQCp7K",
+      "favoriteSpot": "tennis"
+    },
+    {
+      "id": "1760124738666",
+      "name": "421wer",
+      "email": "juancarlosanguloabud@gmail.com",
+      "phone": "987897654654",
+      "favoriteSpot": "tennis",
+      "avatar": "https://ui-avatars.com/api/?name=4&background=0d47a1&color=fff",
+      "password": "123456"
+    }
+  ],
+  "courts": [
+    {
+      "id": "1",
+      "name": "Tennis Club Lima",
+      "location": "San Isidro, Lima",
+      "price": 50,
+      "rating": 4.5,
+      "reviews": 125,
+      "description": "Moderna cancha de tennis con superficie de arcilla",
+      "amenities": [
+        "Estacionamiento",
+        "Vestuarios",
+        "Iluminación nocturna"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1544717297-fa95b6ee9643"
+      ],
+      "availability": [
+        {
+          "time": "08:00",
+          "available": true,
+          "price": 50
+        },
+        {
+          "time": "10:00",
+          "available": true,
+          "price": 50
+        },
+        {
+          "time": "14:00",
+          "available": false,
+          "price": 50
+        }
+      ],
+      "sport": "tennis",
+      "surface": "arcilla",
+      "capacity": 4,
+      "contact": {
+        "phone": "+51 999 999 999",
+        "email": "info@tennisclub.com"
+      }
+    }
+  ],
+  "coaches": [
+    {
+      "id": "1",
+      "name": "Carlos Rodriguez",
+      "location": "San Isidro, Lima",
+      "pricePerHour": 80,
+      "rating": 4.8,
+      "reviews": 95,
+      "description": "Entrenador profesional con 10 años de experiencia",
+      "specialties": [
+        "Técnica",
+        "Estrategia",
+        "Acondicionamiento"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1544717297-fa95b6ee9643"
+      ],
+      "availability": [
+        {
+          "time": "09:00",
+          "available": true,
+          "price": 80,
+          "date": "2025-10-11"
+        }
+      ],
+      "sports": [
+        "tennis"
+      ],
+      "experience": 10,
+      "certifications": [
+        "ITF Level 2",
+        "RPT Certified"
+      ],
+      "languages": [
+        "Español",
+        "Inglés"
+      ],
+      "contact": {
+        "phone": "+51 999 999 998",
+        "email": "carlos@coach.com"
+      },
+      "level": "professional"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "1",
+      "userId": "1",
+      "courtId": "1",
+      "date": "2025-10-11",
+      "time": "08:00",
+      "duration": 60,
+      "status": "confirmed",
+      "price": 50
+    }
+  ]
+}

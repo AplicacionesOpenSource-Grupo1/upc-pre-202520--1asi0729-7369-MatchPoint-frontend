@@ -101,9 +101,61 @@ src/
 
 3. **Configurar el entorno**
    ```bash
+   # Copiar la plantilla de variables de entorno
+   cp .env.example .env
+   
    # El proyecto incluye una API mock con JSON Server
    # No requiere configuración adicional para desarrollo
    ```
+
+### Variables de Entorno
+
+El proyecto utiliza variables de entorno para configurar diferentes aspectos de la aplicación. Las variables están definidas en archivos `.env`:
+
+#### Archivos de Configuración
+- **`.env`** - Configuración para desarrollo
+- **`.env.production`** - Configuración para producción  
+- **`.env.example`** - Plantilla con todas las variables disponibles
+
+#### Variables Principales
+
+| Variable | Descripción | Desarrollo | Producción |
+|----------|-------------|------------|------------|
+| `NODE_ENV` | Entorno de ejecución | `development` | `production` |
+| `API_PORT` | Puerto de la fake API | `3000` | `443` |
+| `API_BASE_URL` | URL base de la API | `http://localhost:3000` | `https://matchpoint-front.web.app/api` |
+| `API_TIMEOUT` | Timeout de requests (ms) | `10000` | `15000` |
+| `APP_NAME` | Nombre de la aplicación | `PlayMatch` | `PlayMatch` |
+| `APP_VERSION` | Versión de la aplicación | `1.0.0` | `1.0.0` |
+
+#### Configuración del Puerto de la API
+
+Para cambiar el puerto de la fake API, puedes usar cualquiera de estos métodos:
+
+**Método 1: Script automatizado**
+```bash
+# Cambiar el puerto a 3001
+npm run set-port 3001
+
+# Cambiar el puerto a 4000  
+npm run set-port 4000
+```
+
+**Método 2: Edición manual**
+```bash
+# Editar el archivo .env y cambiar:
+API_PORT=3000
+API_BASE_URL=http://localhost:3000
+```
+
+**Método 3: NPM Scripts personalizados**
+```bash
+# Ejecutar API en puerto específico
+npm run api:custom -- 3001
+
+# Ejecutar desarrollo completo con puerto personalizado
+npm run dev:custom --port=3001
+```
 
 ### Ejecución
 
@@ -364,5 +416,40 @@ npm run build
 | `npm run build` | Build de producción |
 | `npm test` | Ejecuta tests unitarios |
 | `npm run lint` | Ejecuta linting |
+| `npm run set-port [puerto]` | Configura el puerto de la API |
+| `npm run generate-favicons` | Genera favicons completos (requiere Sharp) |
+| `npm run generate-basic-favicon` | Genera favicon básico |
+
+## Favicon y Branding
+
+PlayMatch incluye un sistema completo de favicons personalizado basado en el logo de la aplicación.
+
+### Archivos de Favicon
+
+- ✅ **favicon.svg** - Favicon vectorial moderno
+- ✅ **favicon.ico** - Favicon clásico para compatibilidad
+- ✅ **manifest.json** - Configuración PWA
+- 📱 **apple-touch-icon.png** - Icono para iOS (opcional)
+- 📱 **android-chrome-*.png** - Iconos para Android (opcional)
+
+### Generar Favicons Completos
+
+Para generar todos los tamaños de favicon:
+
+```bash
+# Instalar dependencias opcionales
+npm install sharp sharp-ico
+
+# Generar favicons en múltiples formatos
+npm run generate-favicons
+```
+
+### Logo SVG
+
+El favicon está basado en el logo oficial de PlayMatch:
+- **Diseño**: Círculo con check mark (símbolo de confirmación/éxito)
+- **Color primario**: #10b981 (Verde esmeralda)
+- **Color secundario**: #059669 (Verde oscuro)
+- **Tema**: Deportivo, profesional, confiable
 
 

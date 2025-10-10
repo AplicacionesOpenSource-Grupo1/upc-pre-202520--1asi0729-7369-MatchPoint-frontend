@@ -40,6 +40,7 @@
     "beginner": "Beginner",
     "intermediate": "Intermediate", 
     "advanced": "Advanced",
+    "professional": "Professional",
     "rating": "Rating",
     "search-placeholder": "Search coaches by name or specialty",
     "search": "Search",
@@ -65,10 +66,12 @@
     "available-times": "Available Times",
     "no-slots-available": "No time slots available for this date",
     "price-from": "Price from",
-    "final-price-note": "*Final price may vary based on selected time slot",
+    "final-price-note": "*Final price may vary based on time slot and duration",
     "not-found": "Court not found",
     "booking-confirmed": "Booking confirmed for {{time}} on {{date}}",
-    "booking-error": "Error processing booking. Please try again."
+    "booking-error": "Error processing booking. Please try again.",
+    "available-coaches": "Available Coaches",
+    "no-coaches-available": "No coaches available for this court"
   },
   "coach-details": {
     "back-to-search": "Back to Search",
@@ -89,9 +92,12 @@
     "final-price-note": "*Final price may vary based on selected time slot",
     "not-found": "Coach not found",
     "booking-confirmed": "Session booked for {{time}} on {{date}}",
-    "booking-error": "Error processing booking. Please try again."
+    "booking-error": "Error processing booking. Please try again.",
+    "available-courts": "Available Courts",
+    "no-courts-available": "No courts available for this coach"
   },
   "sport": {
+    "all": "All Sports",
     "tennis": "Tennis",
     "padel": "Padel", 
     "basketball": "Basketball",
@@ -163,5 +169,24 @@
       },
       "success": "Account created successfully"
     }
-  }
+  },
+  "reviews": "reviews",
+  "players": "players", 
+  "years": "years",
+  "level": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "professional": "Professional"
+  },
+  "payments": {
+    "input": "Input your credit card information",
+    "card": "Input your credit card number",
+    "date": "Expiration date",
+    "payment": "Finish the payment",
+    "succeed": "The payment was successful",
+    "home": "Return home",
+    "pay": "Pay"
+}
+  
 }
