@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, catchError, tap, switchMap } from 'rxjs/operators';
 import { User } from '../../domain/models/user.model';
+import { ConfigService } from './config.service';
 
 export interface LoginRequest {
   email: string;
@@ -44,8 +45,8 @@ export class AuthService {
   private http = inject(HttpClient);
   /** Router para navegación */
   private router = inject(Router);
-  /** URL base de la API para operaciones de autenticación */
-  private readonly apiUrl = 'http://localhost:3001';
+  /** Servicio de configuración */
+  private configService = inject(ConfigService);
   
   /** Subject para el estado de autenticación */
   private currentUserSubject = new BehaviorSubject<User | null>(null);
@@ -101,7 +102,7 @@ export class AuthService {
     this.isLoading.set(true);
     this.authError.set(null);
 
-    return this.http.get<User[]>(`${this.apiUrl}/users`).pipe(
+    return this.http.get<User[]>(`${this.configService.getApiUrl('users')}`).pipe(
       map(users => {
         const user = users.find(u => 
           u.email === credentials.email && 
@@ -141,7 +142,7 @@ export class AuthService {
     this.isLoading.set(true);
     this.authError.set(null);
 
-    return this.http.get<User[]>(`${this.apiUrl}/users`).pipe(
+    return this.http.get<User[]>(`${this.configService.getApiUrl('users')}`).pipe(
       switchMap(users => {
         const existingUser = users.find(u => u.email === userData.email);
         if (existingUser) {
@@ -157,7 +158,7 @@ export class AuthService {
           avatar: this.generateDefaultAvatar(userData.name)
         };
 
-        return this.http.post<User>(`${this.apiUrl}/users`, {
+        return this.http.post<User>(`${this.configService.getApiUrl('users')}`, {
           ...newUser,
           password: userData.password
         }).pipe(

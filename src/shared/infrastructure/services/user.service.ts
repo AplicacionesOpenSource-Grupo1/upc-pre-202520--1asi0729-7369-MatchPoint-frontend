@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User, UserStats, Activity } from '../../domain/models/user.model';
+import { ConfigService } from './config.service';
 
 /**
  * Servicio para la gestión de usuarios y operaciones relacionadas
@@ -21,15 +22,15 @@ import { User, UserStats, Activity } from '../../domain/models/user.model';
 export class UserService {
   /** Cliente HTTP para realizar peticiones a la API */
   private http = inject(HttpClient);
-  /** URL base de la API para operaciones de usuarios */
-  private readonly apiUrl = 'http://localhost:3001';
+  /** Servicio de configuración */
+  private configService = inject(ConfigService);
 
   /**
    * Obtiene la información del usuario actual
    * @returns {Observable<User>} Observable con los datos del usuario
    */
   getCurrentUser(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/users/1`);
+    return this.http.get<User>(`${this.configService.getApiUrl('users')}/1`);
   }
 
   /**
@@ -39,7 +40,7 @@ export class UserService {
    * @returns {Observable<User>} Observable con los datos actualizados del usuario
    */
   updateUser(userId: string, userData: Partial<User>): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/users/${userId}`, userData);
+    return this.http.put<User>(`${this.configService.getApiUrl('users')}/${userId}`, userData);
   }
 
   /**

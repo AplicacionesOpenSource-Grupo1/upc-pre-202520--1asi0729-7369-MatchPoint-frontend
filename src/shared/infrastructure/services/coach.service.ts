@@ -2,20 +2,21 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Coach } from '../../domain/models/coach.model';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoachService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3001/coaches';
+  private configService = inject(ConfigService);
 
   getAllCoaches(): Observable<Coach[]> {
-    return this.http.get<Coach[]>(this.apiUrl);
+    return this.http.get<Coach[]>(this.configService.getApiUrl('coaches'));
   }
 
   getCoachById(id: string): Observable<Coach> {
-    return this.http.get<Coach>(`${this.apiUrl}/${id}`);
+    return this.http.get<Coach>(`${this.configService.getApiUrl('coaches')}/${id}`);
   }
 
   searchCoaches(filters?: {
@@ -45,7 +46,8 @@ export class CoachService {
       }
     }
 
-    const url = params.toString() ? `${this.apiUrl}?${params.toString()}` : this.apiUrl;
+    const baseUrl = this.configService.getApiUrl('coaches');
+    const url = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
     return this.http.get<Coach[]>(url);
   }
 }

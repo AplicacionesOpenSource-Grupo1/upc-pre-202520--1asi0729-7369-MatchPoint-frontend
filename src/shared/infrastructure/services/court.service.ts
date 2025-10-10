@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Court } from '../../domain/models/court.model';
+import { ConfigService } from './config.service';
 
 /**
  * Servicio para la gestión de canchas deportivas
@@ -21,15 +22,15 @@ import { Court } from '../../domain/models/court.model';
 export class CourtService {
   /** Cliente HTTP para realizar peticiones a la API */
   private http = inject(HttpClient);
-  /** URL base de la API para operaciones de canchas */
-  private apiUrl = 'http://localhost:3001/courts';
+  /** Servicio de configuración */
+  private configService = inject(ConfigService);
 
   /**
    * Obtiene todas las canchas disponibles
    * @returns {Observable<Court[]>} Observable con el array de todas las canchas
    */
   getAllCourts(): Observable<Court[]> {
-    return this.http.get<Court[]>(this.apiUrl);
+    return this.http.get<Court[]>(this.configService.getApiUrl('courts'));
   }
 
   /**
@@ -38,7 +39,7 @@ export class CourtService {
    * @returns {Observable<Court>} Observable con los datos de la cancha
    */
   getCourtById(id: string): Observable<Court> {
-    return this.http.get<Court>(`${this.apiUrl}/${id}`);
+    return this.http.get<Court>(`${this.configService.getApiUrl('courts')}/${id}`);
   }
 
   /**
@@ -66,7 +67,8 @@ export class CourtService {
       if (filters.maxPrice) params.append('price_lte', filters.maxPrice.toString());
     }
 
-    const url = params.toString() ? `${this.apiUrl}?${params.toString()}` : this.apiUrl;
+    const baseUrl = this.configService.getApiUrl('courts');
+    const url = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
     return this.http.get<Court[]>(url);
   }
 }
