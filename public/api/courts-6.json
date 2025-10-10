@@ -1,0 +1,41 @@
+{
+  "id": "6",
+  "name": "Club Tenis San Borja",
+  "location": "San Borja, Lima",
+  "price": 75,
+  "rating": 4.5,
+  "reviews": 142,
+  "description": "Canchas de tenis techadas con buena ventilación.",
+  "amenities": [
+    "Vestuarios",
+    "Estacionamiento",
+    "Snack bar"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1521417534959-78163a4f0645?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "time": "08:00",
+      "available": false,
+      "price": 65
+    },
+    {
+      "time": "10:00",
+      "available": true,
+      "price": 75
+    },
+    {
+      "time": "18:00",
+      "available": true,
+      "price": 95
+    }
+  ],
+  "sport": "tennis",
+  "surface": "Dura",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 944 100 102",
+    "email": "info@ctsanborja.pe"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "4",
+  "name": "Tenis Park Surco",
+  "location": "Santiago de Surco, Lima",
+  "price": 70,
+  "rating": 4.6,
+  "reviews": 210,
+  "description": "Complejo de tenis con superficies rápidas y ambiente familiar.",
+  "amenities": [
+    "Vestuarios",
+    "Cafetería",
+    "Iluminación nocturna"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "time": "08:00",
+      "available": true,
+      "price": 60
+    },
+    {
+      "time": "10:00",
+      "available": true,
+      "price": 70
+    },
+    {
+      "time": "12:00",
+      "available": false,
+      "price": 70
+    },
+    {
+      "time": "16:00",
+      "available": true,
+      "price": 80
+    },
+    {
+      "time": "18:00",
+      "available": true,
+      "price": 90
+    }
+  ],
+  "sport": "tennis",
+  "surface": "Dura",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 944 100 100",
+    "email": "contacto@tenisparksurco.pe"
+  }
+}

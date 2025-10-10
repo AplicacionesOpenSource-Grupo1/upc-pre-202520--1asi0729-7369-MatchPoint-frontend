@@ -1,0 +1,46 @@
+{
+  "id": "5",
+  "name": "Pádel Coast Barranco",
+  "location": "Barranco, Lima",
+  "price": 95,
+  "rating": 4.7,
+  "reviews": 165,
+  "description": "Club de pádel moderno con cristales panorámicos.",
+  "amenities": [
+    "Pro shop",
+    "Alquiler de palas",
+    "Iluminación LED"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1603297638328-7f3f9d3b0a8a?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "time": "09:00",
+      "available": true,
+      "price": 85
+    },
+    {
+      "time": "11:00",
+      "available": false,
+      "price": 90
+    },
+    {
+      "time": "17:00",
+      "available": true,
+      "price": 110
+    },
+    {
+      "time": "19:00",
+      "available": true,
+      "price": 115
+    }
+  ],
+  "sport": "padel",
+  "surface": "Césped artificial",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 944 100 101",
+    "email": "reservas@padelcoast.pe"
+  }
+}

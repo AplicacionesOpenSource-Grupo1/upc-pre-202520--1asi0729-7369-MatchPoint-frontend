@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Juan 56226",
+    "email": "juan@example.com",
+    "password": "123456",
+    "phone": "+51 987 654 321",
+    "favoriteSpot": "tennis",
+    "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDKUsllfarh1Vz5TMSY9tQXvaO4PjgZQST2UfndXEB4asm1lrMgH1AOBj8iel5YRr8sjK-udLwcYVv87B65GOQBuCO06VCZgauA33eetg72EetdFnv3sJj_X3FrK4V-wNkU6_MjPGh-WdWq5ZaVRzZ9OOkovDPzgEskotSpWMv8d6HkCUKvQCp7KZIk0GBZX9K0MMPYQFc2gTn7PliIMn81mDqhCRQQMfz_CFQMg4EwC8uHLLs2VpSujlf3WDFRcia_s--Q6s1fm8cc",
+    "id": "1"
+  },
+  {
+    "id": "2",
+    "name": "María López",
+    "email": "maria.lopez@example.com",
+    "password": "123456",
+    "phone": "+51 987 000 111",
+    "favoriteSpot": "padel",
+    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "3",
+    "name": "Carlos Ramírez",
+    "email": "carlos.ramirez@example.com",
+    "password": "123456",
+    "phone": "+51 987 000 112",
+    "favoriteSpot": "tennis",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "4",
+    "name": "Lucía Fernández",
+    "email": "lucia.fernandez@example.com",
+    "password": "123456",
+    "phone": "+51 987 000 113",
+    "favoriteSpot": "padel",
+    "avatar": "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "5",
+    "name": "Diego Torres",
+    "email": "diego.torres@example.com",
+    "password": "123456",
+    "phone": "+51 987 000 114",
+    "favoriteSpot": "tennis",
+    "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "6",
+    "name": "Pamela Ríos",
+    "email": "pamela.rios@example.com",
+    "password": "123456",
+    "phone": "+51 987 000 115",
+    "favoriteSpot": "padel",
+    "avatar": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "7",
+    "name": "Valentina Herrera",
+    "email": "valentina.herrera@example.com",
+    "phone": "+51 987 000 116",
+    "favoriteSpot": "tennis",
+    "avatar": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "8",
+    "name": "Andrés Salazar",
+    "email": "andres.salazar@example.com",
+    "phone": "+51 987 000 117",
+    "favoriteSpot": "padel",
+    "avatar": "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "9",
+    "name": "Camila Castro",
+    "email": "camila.castro@example.com",
+    "phone": "+51 987 000 118",
+    "favoriteSpot": "tennis",
+    "avatar": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "10",
+    "name": "Jorge Medina",
+    "email": "jorge.medina@example.com",
+    "phone": "+51 987 000 119",
+    "favoriteSpot": "padel",
+    "avatar": "https://images.unsplash.com/photo-1542204637-e67bc7d41e28?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": "1760118147104",
+    "name": "Juan Angulo",
+    "email": "Juan123@gmail.com",
+    "phone": "987987",
+    "favoriteSpot": "tennis",
+    "avatar": "https://ui-avatars.com/api/?name=JA&background=0d47a1&color=fff",
+    "password": "juan123"
+  }
+]

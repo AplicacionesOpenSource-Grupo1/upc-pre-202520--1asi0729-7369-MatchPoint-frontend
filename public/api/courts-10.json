@@ -1,0 +1,41 @@
+{
+  "id": "10",
+  "name": "Pádel Plaza La Molina",
+  "location": "La Molina, Lima",
+  "price": 110,
+  "rating": 4.9,
+  "reviews": 260,
+  "description": "Centro de pádel de alto rendimiento con coaching in situ.",
+  "amenities": [
+    "Cafetería",
+    "Iluminación LED",
+    "Pro shop"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1594737625785-c6683fc596f6?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "time": "10:00",
+      "available": true,
+      "price": 100
+    },
+    {
+      "time": "16:00",
+      "available": false,
+      "price": 120
+    },
+    {
+      "time": "20:00",
+      "available": true,
+      "price": 130
+    }
+  ],
+  "sport": "padel",
+  "surface": "Césped artificial",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 944 100 106",
+    "email": "plaza@padel.pe"
+  }
+}

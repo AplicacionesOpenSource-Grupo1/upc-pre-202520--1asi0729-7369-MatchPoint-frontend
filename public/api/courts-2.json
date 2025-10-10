@@ -1,0 +1,93 @@
+{
+  "id": "2",
+  "name": "Club Deportivo Los Olivos",
+  "location": "Los Olivos, Lima",
+  "price": 60,
+  "rating": 4.5,
+  "reviews": 189,
+  "description": "Cancha de tenis con césped sintético de alta calidad. Perfecta para jugadores de todos los niveles con excelentes instalaciones y ambiente familiar.",
+  "amenities": [
+    "Vestuarios",
+    "Estacionamiento",
+    "Cafetería",
+    "Iluminación nocturna"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+  ],
+  "availability": [
+    {
+      "time": "08:00",
+      "available": true,
+      "price": 50
+    },
+    {
+      "time": "09:00",
+      "available": true,
+      "price": 50
+    },
+    {
+      "time": "10:00",
+      "available": false,
+      "price": 60
+    },
+    {
+      "time": "11:00",
+      "available": true,
+      "price": 60
+    },
+    {
+      "time": "12:00",
+      "available": true,
+      "price": 70
+    },
+    {
+      "time": "13:00",
+      "available": false,
+      "price": 70
+    },
+    {
+      "time": "14:00",
+      "available": true,
+      "price": 70
+    },
+    {
+      "time": "15:00",
+      "available": true,
+      "price": 70
+    },
+    {
+      "time": "16:00",
+      "available": false,
+      "price": 80
+    },
+    {
+      "time": "17:00",
+      "available": true,
+      "price": 80
+    },
+    {
+      "time": "18:00",
+      "available": true,
+      "price": 90
+    },
+    {
+      "time": "19:00",
+      "available": true,
+      "price": 90
+    },
+    {
+      "time": "20:00",
+      "available": false,
+      "price": 70
+    }
+  ],
+  "sport": "tennis",
+  "surface": "Césped sintético",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 976 543 210",
+    "email": "info@losolivos.com"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "3",
+  "name": "Carlos Ramírez",
+  "location": "San Borja, Lima",
+  "pricePerHour": 130,
+  "rating": 4.7,
+  "reviews": 110,
+  "description": "Con más de una década entrenando a jugadores de todos los niveles, Carlos se especializa en desarrollar habilidades técnicas y mentales para la competencia.",
+  "specialties": [
+    "Técnica",
+    "Estrategia",
+    "Psicología deportiva"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?q=80&w=400&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "date": "2025-10-18",
+      "time": "10:00",
+      "available": true,
+      "price": 130
+    },
+    {
+      "date": "2025-10-19",
+      "time": "14:00",
+      "available": true,
+      "price": 130
+    },
+    {
+      "date": "2025-10-20",
+      "time": "16:00",
+      "available": false,
+      "price": 130
+    },
+    {
+      "date": "2025-10-21",
+      "time": "09:00",
+      "available": true,
+      "price": 130
+    }
+  ],
+  "sports": [
+    "tennis"
+  ],
+  "experience": 12,
+  "certifications": [
+    "ITF Level 4",
+    "USPTA Professional"
+  ],
+  "languages": [
+    "Español",
+    "Inglés",
+    "Portugués"
+  ],
+  "contact": {
+    "phone": "+51 934 567 890",
+    "email": "carlos@tenis.pe"
+  },
+  "level": "professional"
+}

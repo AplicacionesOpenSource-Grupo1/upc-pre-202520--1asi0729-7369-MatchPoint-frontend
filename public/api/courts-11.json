@@ -1,0 +1,35 @@
+{
+  "id": "11",
+  "name": "San Isidro Tennis Hub",
+  "location": "San Isidro, Lima",
+  "price": 90,
+  "rating": 4.7,
+  "reviews": 205,
+  "description": "Centro con canchas mixtas y servicio de encordado.",
+  "amenities": [
+    "Taller de encordado",
+    "Cafetería"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1520975960322-5ce62fdb7000?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "availability": [
+    {
+      "time": "07:00",
+      "available": true,
+      "price": 75
+    },
+    {
+      "time": "18:00",
+      "available": true,
+      "price": 110
+    }
+  ],
+  "sport": "tennis",
+  "surface": "Dura",
+  "capacity": 4,
+  "contact": {
+    "phone": "+51 944 100 107",
+    "email": "hub@tenis.pe"
+  }
+}
