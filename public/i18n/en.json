@@ -178,5 +178,15 @@
     "intermediate": "Intermediate",
     "advanced": "Advanced",
     "professional": "Professional"
-  }
+  },
+  "payments": {
+    "input": "Input your credit card information",
+    "card": "Input your credit card number",
+    "date": "Expiration date",
+    "payment": "Finish the payment",
+    "succeed": "The payment was successful",
+    "home": "Return home",
+    "pay": "Pay"
+}
+  
 }
