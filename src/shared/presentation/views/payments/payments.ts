@@ -6,6 +6,7 @@ import {MatButton} from '@angular/material/button';
 import {MatDivider} from '@angular/material/divider';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-payments',
@@ -15,7 +16,8 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
     MatInput,
     MatButton,
     MatDivider,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslatePipe
   ],
   templateUrl: './payments.html',
   styleUrl: './payments.css',
@@ -64,3 +66,4 @@ export class Payments {
   }
 
 }
+
