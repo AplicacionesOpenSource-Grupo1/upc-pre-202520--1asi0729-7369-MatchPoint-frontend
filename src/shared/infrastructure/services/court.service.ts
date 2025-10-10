@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Court } from '../../domain/models/court.model';
 import { ConfigService } from './config.service';
 
@@ -39,7 +39,22 @@ export class CourtService {
    * @returns {Observable<Court>} Observable con los datos de la cancha
    */
   getCourtById(id: string): Observable<Court> {
-    return this.http.get<Court>(`${this.configService.getApiUrl('courts')}/${id}`);
+    // Primero intentar obtener desde el archivo individual
+    return this.http.get<Court>(`${this.configService.getApiUrl('courts')}-${id}.json`).pipe(
+      catchError(() => {
+        // Si falla, obtener desde la lista completa
+        console.log(`Individual court file not found for ID ${id}, fetching from complete list`);
+        return this.getAllCourts().pipe(
+          map((courts: Court[]) => {
+            const court = courts.find((c: Court) => c.id === id);
+            if (!court) {
+              throw new Error(`Court with ID ${id} not found`);
+            }
+            return court;
+          })
+        );
+      })
+    );
   }
 
   /**

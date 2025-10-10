@@ -34,4 +34,4 @@ data.bookings.forEach(booking => {
   fs.writeFileSync(path.join(apiDir, `bookings-${booking.id}.json`), JSON.stringify(booking, null, 2));
 });
 
-console.log('✅ Static API files generated in public/api/');
+console.log('Static API files generated in public/api/');

@@ -64,5 +64,9 @@ export const routes: Routes = [
   {
     path: 'payments/confirmation',
     loadComponent: () =>import('../shared/presentation/views/payment-confirmation/payment-confirmation').then(m=>m.PaymentConfirmation)
+  },
+  {
+    path: '**',
+    redirectTo: '/dashboard'
   }
 ];

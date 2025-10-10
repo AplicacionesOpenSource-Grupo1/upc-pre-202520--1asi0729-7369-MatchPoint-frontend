@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Coach } from '../../domain/models/coach.model';
 import { ConfigService } from './config.service';
 
@@ -16,7 +16,22 @@ export class CoachService {
   }
 
   getCoachById(id: string): Observable<Coach> {
-    return this.http.get<Coach>(`${this.configService.getApiUrl('coaches')}/${id}`);
+    // Primero intentar obtener desde el archivo individual
+    return this.http.get<Coach>(`${this.configService.getApiUrl('coaches')}-${id}.json`).pipe(
+      catchError(() => {
+        // Si falla, obtener desde la lista completa
+        console.log(`Individual coach file not found for ID ${id}, fetching from complete list`);
+        return this.getAllCoaches().pipe(
+          map((coaches: Coach[]) => {
+            const coach = coaches.find((c: Coach) => c.id === id);
+            if (!coach) {
+              throw new Error(`Coach with ID ${id} not found`);
+            }
+            return coach;
+          })
+        );
+      })
+    );
   }
 
   searchCoaches(filters?: {
