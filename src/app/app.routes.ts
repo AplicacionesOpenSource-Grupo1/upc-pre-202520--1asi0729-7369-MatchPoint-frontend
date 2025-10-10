@@ -1,10 +1,39 @@
 import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { authGuard } from '../shared/infrastructure/guards/auth.guard';
+import { guestGuard } from '../shared/infrastructure/guards/guest.guard';
+import { AuthService } from '../shared/infrastructure/services/auth.service';
 
 const dashboardModule = () => import('../shared/presentation/views/dashboard/dashboard').then(m => m.Dashboard);
 
 export const routes: Routes = [
   {
     path: '',
+    canActivate: [() => {
+      const authService = inject(AuthService);
+      const router = inject(Router);
+      
+      if (authService.isAuthenticated) {
+        router.navigate(['/dashboard']);
+      } else {
+        router.navigate(['/login']);
+      }
+      return false;
+    }]
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('../shared/presentation/views/login/login').then(m => m.Login),
+    canActivate: [guestGuard]
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('../shared/presentation/views/register/register').then(m => m.Register),
+    canActivate: [guestGuard]
+  },
+  {
+    path: 'dashboard',
     loadComponent: dashboardModule,
     pathMatch: 'full'
   },
