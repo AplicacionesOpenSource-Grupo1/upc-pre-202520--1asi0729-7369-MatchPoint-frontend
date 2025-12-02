@@ -62,10 +62,7 @@ export class AuthService {
     // Verificar si hay un usuario guardado en localStorage al inicializar
     this.checkStoredUser();
     
-    // Auto-login en desarrollo si no hay usuario
-    if (!this.configService.isProductionMode() && !this.isAuthenticated) {
-      this.autoLoginForDevelopment();
-    }
+    // No auto-login by default; rely on real auth API
   }
 
   /**
@@ -131,28 +128,31 @@ export class AuthService {
   login(credentials: LoginRequest): Observable<AuthResponse> {
     this.isLoading.set(true);
     this.authError.set(null);
+    // Call real authentication endpoint
+    const payload: any = {
+      // backend may accept username or email; try both (frontend uses email field)
+      username: credentials.email,
+      password: credentials.password
+    };
 
-    return this.http.get<User[]>(`${this.configService.getApiUrl('users')}`).pipe(
-      map(users => {
-        const user = users.find(u => 
-          u.email === credentials.email && 
-          (u as any).password === credentials.password
-        );
-        
-        if (!user) {
-          throw new Error('Invalid credentials');
-        }
+    return this.http.post<any>(`${this.configService.getApiUrl('authentication/sign-in')}`, payload, { withCredentials: true }).pipe(
+      map(resp => {
+        const token = resp.token || resp.accessToken || '';
+        if (!token) throw new Error('No token returned from authentication endpoint');
 
-        // Simular token JWT
-        const token = this.generateFakeToken(user);
-        
-        return { user, token };
+        const user: User = {
+          id: resp.id ? String(resp.id) : (resp.user?.id ? String(resp.user.id) : ''),
+          name: resp.username || resp.user?.name || credentials.email,
+          email: resp.email || credentials.email,
+          phone: resp.phone || '',
+          avatar: resp.avatar || this.generateDefaultAvatar(resp.username || credentials.email),
+          favoriteSpot: resp.favoriteSpot || ''
+        };
+
+        return { user, token } as AuthResponse;
       }),
       tap(response => {
-        // Guardar usuario en localStorage usando el nuevo método
         this.saveAuthData(response.user, response.token);
-        
-        // Actualizar el subject
         this.currentUserSubject.next(response.user);
         this.isLoading.set(false);
       }),
@@ -170,48 +170,34 @@ export class AuthService {
   register(userData: RegisterRequest): Observable<AuthResponse> {
     this.isLoading.set(true);
     this.authError.set(null);
+    // Use backend sign-up endpoint
+    const payload: any = {
+      username: userData.name || userData.email,
+      password: userData.password,
+      email: userData.email
+    };
 
-    return this.http.get<User[]>(`${this.configService.getApiUrl('users')}`).pipe(
-      switchMap(users => {
-        const existingUser = users.find(u => u.email === userData.email);
-        if (existingUser) {
-          throw new Error('Email already exists');
-        }
-        
-        const newUser: User = {
-          id: Date.now().toString(),
-          name: userData.name,
-          email: userData.email,
-          phone: userData.phone,
-          favoriteSpot: userData.favoriteSpot,
-          avatar: this.generateDefaultAvatar(userData.name)
+    return this.http.post<any>(`${this.configService.getApiUrl('authentication/sign-up')}`, payload, { withCredentials: true }).pipe(
+      map(resp => {
+        const token = resp.token || resp.accessToken || '';
+        const user: User = {
+          id: resp.id ? String(resp.id) : (resp.user?.id ? String(resp.user.id) : ''),
+          name: resp.username || resp.user?.name || payload.username,
+          email: resp.email || payload.email,
+          phone: resp.phone || '',
+          avatar: resp.avatar || this.generateDefaultAvatar(payload.username),
+          favoriteSpot: ''
         };
-
-        return this.http.post<User>(`${this.configService.getApiUrl('users')}`, {
-          ...newUser,
-          password: userData.password
-        }).pipe(
-          map(createdUser => {
-            const token = this.generateFakeToken(createdUser);
-            return { user: createdUser, token };
-          })
-        );
+        return { user, token };
       }),
       tap(response => {
-        // Guardar usuario en localStorage usando el nuevo método
         this.saveAuthData(response.user, response.token);
-        
-        // Actualizar el subject
         this.currentUserSubject.next(response.user);
         this.isLoading.set(false);
       }),
       catchError(error => {
         this.isLoading.set(false);
-        if (error.message === 'Email already exists') {
-          this.authError.set('El email ya está registrado');
-        } else {
-          this.authError.set('Error al registrar usuario');
-        }
+        this.authError.set('Error al registrar usuario');
         return throwError(() => error);
       })
     );
@@ -233,15 +219,8 @@ export class AuthService {
    * Genera un token falso para simular JWT
    */
   private generateFakeToken(user: User): string {
-    const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
-    const payload = btoa(JSON.stringify({ 
-      sub: user.id, 
-      email: user.email, 
-      exp: Date.now() + 86400000 
-    }));
-    const signature = btoa('fake-signature');
-    
-    return `${header}.${payload}.${signature}`;
+    // Deprecated: tokens now come from backend
+    return '';
   }
 
   /**
@@ -263,17 +242,6 @@ export class AuthService {
    * Auto-login para desarrollo con usuario mock
    */
   private autoLoginForDevelopment(): void {
-    const mockUser: User = {
-      id: '1',
-      name: 'Juan Carlos',
-      email: 'juan@example.com',
-      phone: '+51 999 999 999',
-      avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKUsllfarh1Vz5TMSY9tQXvaO4PjgZQST2UfndXEB4asm1lrMgH1AOBj8iel5YRr8sjK-udLwcYVv87B65GOQBuCO06VCZgauA33eetg72EetdFnv3sJj_X3FrK4V-wNkU6_MjPGh-WdWq5ZaVRzZ9OkovDPzgEskotSpWMv8d6HkCUKvQCp7K',
-      favoriteSpot: 'tennis'
-    };
-    
-    const mockToken = 'dev-token-' + Date.now();
-    this.saveAuthData(mockUser, mockToken);
-    this.currentUserSubject.next(mockUser);
+    // removed auto-login for development; rely on real authentication
   }
 }

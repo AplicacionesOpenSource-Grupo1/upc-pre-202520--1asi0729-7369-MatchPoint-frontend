@@ -15,7 +15,6 @@ console.log(`Loading environment variables from: ${envFile}`);
 const envConfig = {};
 if (fs.existsSync(envPath)) {
   const envContent = fs.readFileSync(envPath, 'utf8');
-  
   envContent.split('\n').forEach(line => {
     const trimmedLine = line.trim();
     if (trimmedLine && !trimmedLine.startsWith('#')) {
@@ -26,8 +25,25 @@ if (fs.existsSync(envPath)) {
     }
   });
 } else {
-  console.warn(`Environment file ${envFile} not found!`);
+  console.warn(`Environment file ${envFile} not found! Using process.env only.`);
 }
+
+// Merge process.env: permitir que variables de entorno del entorno de CI/CD (ej. Vercel)
+// sobrescriban las del archivo .env. Solo tomar claves relevantes para evitar
+// volcar todo el environment sin intención.
+const allowedKeys = [
+  'NODE_ENV',
+  'API_BASE_URL',
+  'API_PORT',
+  'API_TIMEOUT',
+  'APP_NAME',
+  'APP_VERSION'
+];
+allowedKeys.forEach(k => {
+  if (process.env[k]) {
+    envConfig[k] = process.env[k];
+  }
+});
 
 // Generar el contenido del script que se insertará en index.html
 const envScript = `
