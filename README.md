@@ -1,455 +1,134 @@
-# PlayMatch - Frontend
+# PlayMatch - Sports Court & Coach Booking Platform
 
-> **Autor:** Juan Carlos Angulo  
-> **Fecha:** Octubre 2025  
-> **Versión:** 1.0.0
+PlayMatch is a modern web application designed to facilitate the booking of sports courts and professional coaches. Built with Angular and TailwindCSS, it provides a seamless user experience for sports enthusiasts to find, book, and manage their sports activities.
 
-## Descripción
+## Table of Contents
 
-PlayMatch es una aplicación web moderna desarrollada en Angular 20 para la gestión y reserva de canchas deportivas y coaches. La aplicación permite a los usuarios buscar, filtrar y reservar canchas de tenis y pádel, así como contratar servicios de entrenadores especializados.
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Development](#development)
+- [Building](#building)
+- [Testing](#testing)
+- [Project Architecture](#project-architecture)
+- [Internationalization](#internationalization)
 
-## Características Principales
+## Features
 
-- **Búsqueda avanzada de canchas** con filtros por deporte, ubicación, precio y rating
-- **Búsqueda de coaches** especializados en diferentes deportes
-- **Sistema de reservas** con gestión de horarios y precios
-- **Panel de usuario** con historial de reservas y estadísticas
-- **Configuración de perfil** con actualización en tiempo real
-- **Interfaz responsive** optimizada para móviles y desktop
-- **Soporte multiidioma** (Español/Inglés)
-- **Tema oscuro/claro** automático
+- **User Dashboard**: Personalized dashboard showing upcoming bookings, statistics, and recent activity.
+- **Court Search**: Advanced search functionality to find sports courts by location, sport type, and availability.
+- **Coach Finder**: Directory of professional coaches with filtering options for sport, level, and rating.
+- **Booking System**: Streamlined process for reserving courts and scheduling coaching sessions.
+- **Internationalization**: Full support for English and Spanish languages.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Authentication**: Secure login and registration flows.
 
-## Tecnologías Utilizadas
+## Technology Stack
 
-### Frontend
-- **Angular 20** - Framework principal
-- **TypeScript** - Lenguaje de programación
-- **Tailwind CSS** - Framework de estilos
-- **Angular Signals** - Gestión de estado reactiva
-- **RxJS** - Programación reactiva
-- **NGX-Translate** - Internacionalización
+- **Frontend Framework**: Angular
+- **Styling**: TailwindCSS
+- **State Management**: Angular Signals
+- **Internationalization**: @ngx-translate/core
+- **E2E Testing**: Playwright
+- **Unit Testing**: Jasmine & Karma
+- **Mock Backend**: JSON Server
 
-### Backend (Desarrollo)
-- **JSON Server** - API REST mock para desarrollo
-- **Concurrently** - Ejecución paralela de servicios
+## Prerequisites
 
-### Herramientas de Desarrollo
-- **Angular CLI** - Tooling de desarrollo
-- **ESLint** - Linting de código
-- **Prettier** - Formateo de código
+Before you begin, ensure you have the following installed:
 
-## Estructura del Proyecto
+- Node.js (v18 or higher recommended)
+- npm (Node Package Manager)
 
-```
-src/
-├── app/                          # Configuración principal de la aplicación
-│   ├── app.config.ts            # Configuración de providers
-│   ├── app.routes.ts            # Definición de rutas
-│   └── app.ts                   # Componente raíz
-├── shared/                       # Módulos compartidos
-│   ├── domain/                  # Modelos de dominio
-│   │   └── models/              # Interfaces TypeScript
-│   │       ├── user.model.ts    # Usuario y estadísticas
-│   │       ├── court.model.ts   # Canchas y disponibilidad
-│   │       ├── coach.model.ts   # Coaches y especialidades
-│   │       └── booking.model.ts # Reservas y estado
-│   ├── infrastructure/          # Servicios e infraestructura
-│   │   └── services/            # Servicios HTTP
-│   │       ├── user.service.ts     # API de usuarios
-│   │       ├── court.service.ts    # API de canchas
-│   │       ├── coach.service.ts    # API de coaches
-│   │       └── booking.service.ts  # API de reservas
-│   └── presentation/            # Componentes de UI
-│       ├── components/          # Componentes reutilizables
-│       │   ├── header/          # Cabecera de navegación
-│       │   ├── footer/          # Pie de página
-│       │   ├── layout/          # Layout principal
-│       │   └── language/        # Selector de idioma
-│       └── views/               # Páginas principales
-│           ├── dashboard/       # Panel principal
-│           ├── court-search/    # Búsqueda de canchas
-│           ├── court-details/   # Detalles de cancha
-│           ├── coach-search/    # Búsqueda de coaches
-│           ├── coach-details/   # Detalles de coach
-│           └── settings/        # Configuración de usuario
-├── assets/                      # Recursos estáticos
-│   └── i18n/                   # Archivos de traducción
-│       ├── en.json             # Traducciones en inglés
-│       └── es.json             # Traducciones en español
-└── styles.css                  # Estilos globales
-```
+## Installation
 
-## 🔧 Instalación y Configuración
-
-### Prerrequisitos
-- **Node.js** 18+ 
-- **npm** 8+
-- **Angular CLI** 20+
-
-### Instalación
-
-1. **Clonar el repositorio**
+1. Clone the repository:
    ```bash
-   git clone <url-del-repositorio>
-   cd playmatch-frontend
+   git clone <repository-url>
+   cd playmatch
    ```
 
-2. **Instalar dependencias**
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. **Configurar el entorno**
-   ```bash
-   # Copiar la plantilla de variables de entorno
-   cp .env.example .env
-   
-   # El proyecto incluye una API mock con JSON Server
-   # No requiere configuración adicional para desarrollo
-   ```
+3. Configure environment variables:
+   Ensure the necessary environment files are set up in the `src/environments` directory or via the `.env` file if applicable.
 
-### Variables de Entorno
+## Development
 
-El proyecto utiliza variables de entorno para configurar diferentes aspectos de la aplicación. Las variables están definidas en archivos `.env`:
+To start the development server with the mock backend concurrently:
 
-#### Archivos de Configuración
-- **`.env`** - Configuración para desarrollo
-- **`.env.production`** - Configuración para producción  
-- **`.env.example`** - Plantilla con todas las variables disponibles
-
-#### Variables Principales
-
-| Variable | Descripción | Desarrollo | Producción |
-|----------|-------------|------------|------------|
-| `NODE_ENV` | Entorno de ejecución | `development` | `production` |
-| `API_PORT` | Puerto de la fake API | `3000` | `443` |
-| `API_BASE_URL` | URL base de la API | `http://localhost:3000` | `https://matchpoint-front.web.app/api` |
-| `API_TIMEOUT` | Timeout de requests (ms) | `10000` | `15000` |
-| `APP_NAME` | Nombre de la aplicación | `PlayMatch` | `PlayMatch` |
-| `APP_VERSION` | Versión de la aplicación | `1.0.0` | `1.0.0` |
-
-#### Configuración del Puerto de la API
-
-Para cambiar el puerto de la fake API, puedes usar cualquiera de estos métodos:
-
-**Método 1: Script automatizado**
 ```bash
-# Cambiar el puerto a 3001
-npm run set-port 3001
-
-# Cambiar el puerto a 4000  
-npm run set-port 4000
-```
-
-**Método 2: Edición manual**
-```bash
-# Editar el archivo .env y cambiar:
-API_PORT=3000
-API_BASE_URL=http://localhost:3000
-```
-
-**Método 3: NPM Scripts personalizados**
-```bash
-# Ejecutar API en puerto específico
-npm run api:custom -- 3001
-
-# Ejecutar desarrollo completo con puerto personalizado
-npm run dev:custom --port=3001
-```
-
-### Ejecución
-
-#### Desarrollo
-```bash
-# Iniciar API mock y aplicación Angular simultáneamente
 npm run dev
-
-# O ejecutar por separado:
-npm run api    # JSON Server en puerto 3001
-npm start      # Angular en puerto 4200
 ```
 
-#### Producción
+This command will:
+1. Start the JSON Server on port 3000 (mock API).
+2. Start the Angular application on port 4200.
+
+Navigate to `http://localhost:4200/` in your browser. The application will automatically reload if you change any of the source files.
+
+### Other Commands
+
+- **Start App Only**: `npm start`
+- **Start Mock API Only**: `npm run api`
+
+## Building
+
+To build the project for production:
+
 ```bash
-npm run build
+npm run build:prod
 ```
 
-#### Testing
+The build artifacts will be stored in the `dist/` directory. This command optimizes the application for performance and production deployment.
+
+## Testing
+
+### Unit Tests
+
+Run unit tests via Karma:
+
 ```bash
 npm test
 ```
 
-## API y Servicios
+### End-to-End (E2E) Tests
 
-### Endpoints Principales
-
-La aplicación consume una API REST que proporciona los siguientes endpoints:
-
-| Endpoint | Método | Descripción |
-|----------|--------|-------------|
-| `/users` | GET | Obtener lista de usuarios |
-| `/users/:id` | GET | Obtener usuario específico |
-| `/users/:id` | PUT | Actualizar datos de usuario |
-| `/courts` | GET | Obtener lista de canchas |
-| `/courts/:id` | GET | Obtener cancha específica |
-| `/coaches` | GET | Obtener lista de coaches |
-| `/coaches/:id` | GET | Obtener coach específico |
-| `/bookings` | GET | Obtener lista de reservas |
-| `/bookings` | POST | Crear nueva reserva |
-| `/bookings/:id` | PUT | Actualizar reserva |
-
-### Servicios Angular
-
-#### UserService
-Gestiona las operaciones relacionadas con usuarios:
-```typescript
-// Obtener usuario actual
-getCurrentUser(): Observable<User>
-
-// Actualizar datos de usuario
-updateUser(userId: string, userData: Partial<User>): Observable<User>
-
-// Obtener estadísticas del usuario
-getUserStats(userId: string): Observable<UserStats>
-```
-
-#### CourtService
-Maneja la búsqueda y gestión de canchas:
-```typescript
-// Obtener todas las canchas
-getAllCourts(): Observable<Court[]>
-
-// Obtener cancha por ID
-getCourtById(id: string): Observable<Court>
-
-// Buscar canchas con filtros
-searchCourts(filters?: SearchFilters): Observable<Court[]>
-```
-
-#### CoachService
-Gestiona los entrenadores disponibles:
-```typescript
-// Obtener todos los coaches
-getAllCoaches(): Observable<Coach[]>
-
-// Obtener coach por ID
-getCoachById(id: string): Observable<Coach>
-
-// Buscar coaches con filtros
-searchCoaches(filters?: CoachFilters): Observable<Coach[]>
-```
-
-#### BookingService
-Maneja las reservas de los usuarios:
-```typescript
-// Obtener todas las reservas
-getAllBookings(): Observable<Booking[]>
-
-// Crear nueva reserva
-createBooking(booking: Omit<Booking, 'id'>): Observable<Booking>
-
-// Actualizar reserva existente
-updateBooking(id: string, booking: Partial<Booking>): Observable<Booking>
-```
-
-## Componentes Principales
-
-### Dashboard
-Panel principal que muestra:
-- Resumen de reservas próximas
-- Estadísticas del usuario
-- Acciones rápidas
-- Actividad reciente
-
-### Court Search
-Búsqueda avanzada de canchas con:
-- Filtros por deporte, ubicación, precio y rating
-- Ordenamiento por relevancia, precio y valoración
-- Vista de tarjetas con información detallada
-- Navegación a detalles de cancha
-
-### Coach Search
-Búsqueda de entrenadores con:
-- Filtros por deporte, nivel y ubicación
-- Información de especialidades y certificaciones
-- Disponibilidad y precios
-- Navegación a perfil detallado
-
-### Settings
-Configuración de usuario que permite:
-- Actualización de datos personales
-- Gestión de preferencias
-- Historial de reservas
-- Configuración de notificaciones
-
-## Gestión de Estado
-
-El proyecto utiliza **Angular Signals** para la gestión de estado reactiva:
-
-### Signals Principales
-- `signal()` - Estado básico
-- `computed()` - Estado derivado
-- `effect()` - Efectos secundarios
-
-### Ejemplo de Implementación
-```typescript
-export class CourtSearch {
-  // Estado base
-  courts = signal<Court[]>([]);
-  filters = signal<SearchFilters>({
-    sport: '',
-    location: '',
-    priceRange: 200,
-    minRating: 0
-  });
-
-  // Estado computado
-  filteredCourts = computed(() => {
-    const courts = this.courts();
-    const currentFilters = this.filters();
-    
-    return courts.filter(court => 
-      this.matchesFilters(court, currentFilters)
-    );
-  });
-}
-```
-
-## Internacionalización
-
-### Configuración
-El proyecto soporta múltiples idiomas usando NGX-Translate:
-
-```typescript
-// app.config.ts
-TranslateModule.forRoot({
-  fallbackLang: 'en'
-})
-```
-
-### Uso en Componentes
-```html
-<!-- En templates -->
-{{ 'court-search.title' | translate }}
-
-<!-- Con parámetros -->
-{{ 'court-search.results' | translate: {count: courtCount} }}
-```
-
-### Archivos de Traducción
-- `src/assets/i18n/en.json` - Inglés
-- `src/assets/i18n/es.json` - Español
-
-## Mejores Prácticas Implementadas
-
-### Angular
-- **Standalone Components** - Sin uso de NgModules
-- **OnPush Change Detection** - Optimización de rendimiento
-- **Signals** - Gestión de estado moderna
-- **Lazy Loading** - Carga diferida de módulos
-- **Reactive Forms** - Formularios reactivos
-
-### TypeScript
-- **Strict Mode** - Tipado estricto
-- **Interfaces** - Definición clara de contratos
-- **Type Guards** - Validación de tipos en runtime
-
-### Estilos
-- **Tailwind CSS** - Utility-first CSS
-- **CSS Custom Properties** - Variables CSS nativas
-- **Responsive Design** - Adaptable a todos los dispositivos
-
-## 🧪 Testing
-
-### Configuración
-```bash
-# Ejecutar tests unitarios
-npm test
-
-# Tests con coverage
-npm run test:coverage
-
-# Tests en modo watch
-npm run test:watch
-```
-
-### Estructura de Tests
-- Tests unitarios para servicios
-- Tests de componentes con Angular Testing Library
-- Mocks para servicios HTTP
-
-## Responsive Design
-
-La aplicación está optimizada para:
-- **Mobile** (320px - 768px)
-- **Tablet** (768px - 1024px)
-- **Desktop** (1024px+)
-
-### Breakpoints Tailwind
-```css
-sm: 640px   /* Mobile landscape */
-md: 768px   /* Tablet */
-lg: 1024px  /* Desktop */
-xl: 1280px  /* Large desktop */
-```
-
-## Despliegue
-
-### Build de Producción
-```bash
-npm run build
-```
-
-### Optimizaciones Incluidas
-- **Tree Shaking** - Eliminación de código no utilizado
-- **Minificación** - Compresión de archivos
-- **Lazy Loading** - Carga diferida
-- **Service Worker** - Cache estratégico
-
-## Scripts Disponibles
-
-| Script | Descripción |
-|--------|-------------|
-| `npm start` | Inicia el servidor de desarrollo |
-| `npm run api` | Inicia solo el JSON Server |
-| `npm run dev` | Inicia API y Angular simultáneamente |
-| `npm run build` | Build de producción |
-| `npm test` | Ejecuta tests unitarios |
-| `npm run lint` | Ejecuta linting |
-| `npm run set-port [puerto]` | Configura el puerto de la API |
-| `npm run generate-favicons` | Genera favicons completos (requiere Sharp) |
-| `npm run generate-basic-favicon` | Genera favicon básico |
-
-## Favicon y Branding
-
-PlayMatch incluye un sistema completo de favicons personalizado basado en el logo de la aplicación.
-
-### Archivos de Favicon
-
-- ✅ **favicon.svg** - Favicon vectorial moderno
-- ✅ **favicon.ico** - Favicon clásico para compatibilidad
-- ✅ **manifest.json** - Configuración PWA
-- 📱 **apple-touch-icon.png** - Icono para iOS (opcional)
-- 📱 **android-chrome-*.png** - Iconos para Android (opcional)
-
-### Generar Favicons Completos
-
-Para generar todos los tamaños de favicon:
+Run E2E tests using Playwright:
 
 ```bash
-# Instalar dependencias opcionales
-npm install sharp sharp-ico
-
-# Generar favicons en múltiples formatos
-npm run generate-favicons
+npx playwright test
 ```
 
-### Logo SVG
+To run tests in UI mode:
 
-El favicon está basado en el logo oficial de PlayMatch:
-- **Diseño**: Círculo con check mark (símbolo de confirmación/éxito)
-- **Color primario**: #10b981 (Verde esmeralda)
-- **Color secundario**: #059669 (Verde oscuro)
-- **Tema**: Deportivo, profesional, confiable
+```bash
+npx playwright test --ui
+```
 
+## Project Architecture
 
+The project follows a Domain-Driven Design (DDD) inspired architecture, organized by feature modules:
+
+- **src/shared**: Common components, services, models, and utilities used across the application.
+- **src/court**: Components and logic specific to court management and searching.
+- **src/coach**: Components and logic specific to coach profiles and booking.
+- **src/auth**: Authentication related views and services.
+
+Each module is further divided into:
+- **domain**: Models and interfaces.
+- **infrastructure**: Services and API communication.
+- **presentation**: Components, views, and UI logic.
+
+## Internationalization
+
+The application uses `@ngx-translate` for handling multiple languages. Translation files are located in `public/i18n/`.
+
+- **English**: `public/i18n/en.json`
+- **Spanish**: `public/i18n/es.json`
+
+To add new translations, ensure keys are added to both files to maintain consistency.

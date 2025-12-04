@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, switchMap, of, forkJoin } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Coach } from '../../domain/models/coach.model';
+import { Page } from '../../../shared/domain/models/page.model';
 import { ConfigService } from '../../../shared/infrastructure/services/config.service';
 
 @Injectable({
@@ -12,26 +13,13 @@ export class CoachService {
   private configService = inject(ConfigService);
 
   getAllCoaches(): Observable<Coach[]> {
-    return this.http.get<Coach[]>(this.configService.getApiUrl('coaches'));
+    return this.http.get<Page<Coach>>(`${this.configService.getApiUrl('coaches')}?size=100`).pipe(
+      map(page => page.content)
+    );
   }
 
   getCoachById(id: string): Observable<Coach> {
-    // Primero intentar obtener desde el archivo individual
-    return this.http.get<Coach>(`${this.configService.getApiUrl('coaches')}-${id}.json`).pipe(
-      catchError(() => {
-        // Si falla, obtener desde la lista completa
-        console.log(`Individual coach file not found for ID ${id}, fetching from complete list`);
-        return this.getAllCoaches().pipe(
-          map((coaches: Coach[]) => {
-            const coach = coaches.find((c: Coach) => c.id === id);
-            if (!coach) {
-              throw new Error(`Coach with ID ${id} not found`);
-            }
-            return coach;
-          })
-        );
-      })
-    );
+    return this.http.get<Coach>(`${this.configService.getApiUrl('coaches')}/${id}`);
   }
 
   searchCoaches(filters?: {
@@ -42,7 +30,8 @@ export class CoachService {
     maxPrice?: number;
   }): Observable<Coach[]> {
     let params = new URLSearchParams();
-    
+    params.append('size', '100'); // Fetch enough items
+
     if (filters) {
       if (filters.sport && filters.sport !== 'all') {
         params.append('sports_like', filters.sport);
@@ -62,29 +51,13 @@ export class CoachService {
     }
 
     const baseUrl = this.configService.getApiUrl('coaches');
-    const url = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
-    return this.http.get<Coach[]>(url);
+    const url = `${baseUrl}?${params.toString()}`;
+    return this.http.get<Page<Coach>>(url).pipe(
+      map(page => page.content)
+    );
   }
 
   getAvailableCourtsForCoach(coachId: string): Observable<any[]> {
-    return this.getCoachById(coachId).pipe(
-      map(coach => coach.availableCourts || []),
-      switchMap(courtIds => {
-        if (courtIds.length === 0) {
-          return of([]);
-        }
-        
-        // Obtener las canchas por sus IDs
-        const courtRequests = courtIds.map(id => 
-          this.http.get<any>(`${this.configService.getApiUrl('courts')}/${id}`).pipe(
-            catchError(() => of(null))
-          )
-        );
-        
-        return forkJoin(courtRequests).pipe(
-          map(courts => courts.filter(court => court !== null))
-        );
-      })
-    );
+    return this.http.get<any[]>(`${this.configService.getApiUrl('coaches')}/${coachId}/courts`);
   }
 }

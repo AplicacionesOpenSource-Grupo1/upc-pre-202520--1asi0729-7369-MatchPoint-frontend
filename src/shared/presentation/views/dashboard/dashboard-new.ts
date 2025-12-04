@@ -38,10 +38,7 @@ export class Dashboard {
     return bookings.length > 0 ? bookings[0] : null;
   });
 
-  welcomeMessage = computed(() => {
-    const profile = this.userProfile();
-    return profile ? `Welcome back, ${profile.name}!` : 'Welcome back!';
-  });
+  welcomeMessageParams = computed(() => ({ name: this.userProfile()?.name || '' }));
 
   constructor() {
     this.loadDashboardData();
@@ -49,7 +46,7 @@ export class Dashboard {
 
   private loadDashboardData(): void {
     this.isLoading.set(true);
-    
+
     // Load user data
     this.userService.getCurrentUser().subscribe({
       next: (user) => {
@@ -70,7 +67,7 @@ export class Dashboard {
     // Load bookings
     this.bookingService.getAllBookings().subscribe({
       next: (bookings) => {
-        this.upcomingBookings.set(bookings.filter(booking => 
+        this.upcomingBookings.set(bookings.filter(booking =>
           booking.status === 'confirmed' && new Date(booking.date) >= new Date()
         ));
         this.isLoading.set(false);

@@ -3,21 +3,6 @@
     "upcoming-bookings": "Upcoming Bookings",
     "no-bookings": "No upcoming bookings",
     "quick-actions": "Quick Actions",
-    "find-court": "Find a Court",
-    "find-coach": "Find a Coach",
-    "dashboard": "Dashboard",
-    "total-bookings": "Total Bookings",
-    "hours-played": "Hours Played",
-    "favorite-sport": "Favorite Sport",
-    "recent-activity": "Recent Activity",
-    "no-activities": "No recent activities"
-  },
-  "court-search": {
-    "filters": "Filters",
-    "sport": "Sport",
-    "location": "Location",
-    "location-placeholder": "Enter a city or zip code",
-    "price-range": "Price Range",
     "min-rating": "Minimum Rating",
     "apply-filters": "Apply Filters",
     "search-placeholder": "Search for courts by name...",
@@ -27,7 +12,18 @@
     "sort-price": "Price",
     "sort-rating": "Rating",
     "no-results": "No courts found",
-    "try-different-filters": "Try adjusting your search criteria or filters"
+    "try-different-filters": "Try adjusting your search criteria or filters",
+    "booking-confirmed": "Booking Confirmed",
+    "court-booking": "Court Booking",
+    "welcome": "Welcome back, {{name}}!",
+    "find-court": "Find a Court",
+    "find-coach": "Find a Coach",
+    "dashboard": "Dashboard",
+    "total-bookings": "Total Bookings",
+    "hours-played": "Hours Played",
+    "favorite-sport": "Favorite Sport",
+    "recent-activity": "Recent Activity",
+    "no-activities": "No recent activities"
   },
   "coach-search": {
     "filters": "Filters",
@@ -38,7 +34,7 @@
     "level": "Level",
     "all-levels": "All Levels",
     "beginner": "Beginner",
-    "intermediate": "Intermediate", 
+    "intermediate": "Intermediate",
     "advanced": "Advanced",
     "professional": "Professional",
     "rating": "Rating",
@@ -48,33 +44,6 @@
     "sort-by": "Sort by:",
     "sort-rating": "Rating",
     "sort-price": "Price",
-    "sort-availability": "Availability",
-    "coach": "Coach",
-    "no-coaches-found": "No coaches found matching your criteria"
-  },
-  "court-details": {
-    "back-to-search": "Back to Search",
-    "reviews": "reviews",
-    "sport": "Sport",
-    "surface": "Surface",
-    "capacity": "Players",
-    "from-price": "From",
-    "amenities": "Amenities",
-    "contact": "Contact Information",
-    "book-now": "Book Now",
-    "select-date": "Select Date",
-    "available-times": "Available Times",
-    "no-slots-available": "No time slots available for this date",
-    "price-from": "Price from",
-    "final-price-note": "*Final price may vary based on time slot and duration",
-    "not-found": "Court not found",
-    "booking-confirmed": "Booking confirmed for {{time}} on {{date}}",
-    "booking-error": "Error processing booking. Please try again.",
-    "available-coaches": "Available Coaches",
-    "no-coaches-available": "No coaches available for this court"
-  },
-  "coach-details": {
-    "back-to-search": "Back to Search",
     "reviews": "reviews",
     "years-experience": "Years Experience",
     "level": "Level",
@@ -99,7 +68,7 @@
   "sport": {
     "all": "All Sports",
     "tennis": "Tennis",
-    "padel": "Padel", 
+    "padel": "Padel",
     "basketball": "Basketball",
     "pickleball": "Pickleball"
   },
@@ -171,7 +140,7 @@
     }
   },
   "reviews": "reviews",
-  "players": "players", 
+  "players": "players",
   "years": "years",
   "level": {
     "beginner": "Beginner",
@@ -187,6 +156,17 @@
     "succeed": "The payment was successful",
     "home": "Return home",
     "pay": "Pay"
-}
-  
+  },
+  "my_bookings": "My Bookings",
+  "back": "Back",
+  "no_bookings_desc": "You haven't made any bookings yet. Find a court or coach to get started!",
+  "cancel": "Cancel",
+  "view_all": "View All",
+  "activity": {
+    "booking_created": "Booking Created",
+    "booking_desc_tennis": "Tennis court booking confirmed",
+    "match_played": "Match Played",
+    "match_desc_padel": "Padel match at Padel Center",
+    "booking_desc_coach": "Coaching session confirmed"
+  }
 }

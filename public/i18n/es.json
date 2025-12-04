@@ -3,38 +3,8 @@
     "upcoming-bookings": "Próximas Reservas",
     "no-bookings": "No hay próximas reservas",
     "quick-actions": "Acciones Rápidas",
-    "find-court": "Buscar Cancha",
-    "find-coach": "Buscar Entrenador",
-    "dashboard": "Panel de Control",
-    "total-bookings": "Total de Reservas",
-    "hours-played": "Horas Jugadas",
-    "favorite-sport": "Deporte Favorito",
-    "recent-activity": "Actividad Reciente",
-    "no-activities": "No hay actividades recientes"
-  },
-  "court-search": {
-    "filters": "Filtros",
-    "sport": "Deporte",
-    "location": "Ubicación",
-    "location-placeholder": "Ingresa una ciudad o código postal",
-    "price-range": "Rango de Precio",
     "min-rating": "Calificación Mínima",
     "apply-filters": "Aplicar Filtros",
-    "search-placeholder": "Buscar canchas por nombre...",
-    "available-courts": "Canchas Disponibles",
-    "sort-by": "Ordenar por:",
-    "sort-relevance": "Relevancia",
-    "sort-price": "Precio",
-    "sort-rating": "Calificación",
-    "no-results": "No se encontraron canchas",
-    "try-different-filters": "Intenta ajustar tus criterios de búsqueda o filtros"
-  },
-  "coach-search": {
-    "filters": "Filtros",
-    "sport": "Deporte",
-    "all-sports": "Todos los Deportes",
-    "location": "Ubicación",
-    "any-location": "Cualquier Ubicación",
     "level": "Nivel",
     "all-levels": "Todos los Niveles",
     "beginner": "Principiante",
@@ -185,5 +155,17 @@
     "succeed": "Se realizo exitosamente su pago",
     "home": "Regresar al inicio",
     "pay": "Pagar"
+  },
+  "my_bookings": "Mis Reservas",
+  "back": "Volver",
+  "no_bookings_desc": "Aún no has realizado ninguna reserva. ¡Busca una cancha o entrenador para empezar!",
+  "cancel": "Cancelar",
+  "view_all": "Ver Todo",
+  "activity": {
+    "booking_created": "Reserva Creada",
+    "booking_desc_tennis": "Reserva de cancha de tenis confirmada",
+    "match_played": "Partido Jugado",
+    "match_desc_padel": "Partido de pádel en Padel Center",
+    "booking_desc_coach": "Sesión de entrenamiento confirmada"
   }
 }

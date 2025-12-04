@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../../../infrastructure/services/user.service';
 import { BookingService } from '../../../infrastructure/services/booking.service';
@@ -34,7 +34,7 @@ export interface UserProfile {
  */
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, TranslatePipe],
+  imports: [CommonModule, TranslatePipe, RouterModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -65,10 +65,7 @@ export class Dashboard implements OnInit {
     return bookings.length > 0 ? bookings[0] : null;
   });
 
-  welcomeMessage = computed(() => {
-    const profile = this.userProfile();
-    return profile ? `Welcome back, ${profile.name}!` : 'Welcome back!';
-  });
+  welcomeMessageParams = computed(() => ({ name: this.userProfile()?.name || '' }));
 
   constructor() {
     this.loadDashboardData();
@@ -80,7 +77,7 @@ export class Dashboard implements OnInit {
 
   private loadDashboardData(): void {
     this.isLoading.set(true);
-    
+
     // Load user data
     this.userService.getCurrentUser().subscribe({
       next: (user) => {
@@ -99,16 +96,21 @@ export class Dashboard implements OnInit {
     });
 
     // Load bookings
-    this.bookingService.getAllBookings().subscribe({
-      next: (bookings) => {
-        this.upcomingBookings.set(bookings.filter(booking => 
-          booking.status === 'confirmed' && new Date(booking.date) >= new Date()
-        ));
-        this.isLoading.set(false);
-      },
-      error: (error) => {
-        console.error('Error loading bookings:', error);
-        this.isLoading.set(false);
+    // Load bookings
+    this.userService.getCurrentUser().subscribe({
+      next: (user) => {
+        this.bookingService.getUserBookings(user.id).subscribe({
+          next: (bookings) => {
+            this.upcomingBookings.set(bookings.filter(booking =>
+              booking.status === 'confirmed' && new Date(booking.date) >= new Date()
+            ).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()));
+            this.isLoading.set(false);
+          },
+          error: (error) => {
+            console.error('Error loading bookings:', error);
+            this.isLoading.set(false);
+          }
+        });
       }
     });
   }

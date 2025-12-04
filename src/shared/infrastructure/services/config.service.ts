@@ -33,32 +33,31 @@ export class ConfigService {
   }
 
   private isProduction(): boolean {
-    return typeof window !== 'undefined' && 
-           window.location.hostname !== 'localhost' &&
-           window.location.hostname !== '127.0.0.1';
+    return typeof window !== 'undefined' &&
+      window.location.hostname !== 'localhost' &&
+      window.location.hostname !== '127.0.0.1';
   }
 
   private getApiBaseUrl(): string {
-    // En desarrollo, siempre usar JSON Server con el puerto de las variables de entorno
-    if (typeof window !== 'undefined' && 
-        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-      const port = this.resolveApiPort();
-      return `http://localhost:${port}`;
-    }
-
-    // Intentar obtener de las variables de entorno
+    // 1. Prioridad: Variable de entorno explícita (para Docker, Prod, o Dev custom)
     const envApiUrl = this.getEnvVar('API_BASE_URL');
     if (envApiUrl) {
-      return envApiUrl;
+      return envApiUrl.endsWith('/api/v1') ? envApiUrl : `${envApiUrl}/api/v1`;
     }
 
-    if (this.isProduction()) {
-      // En producción, usar la URL de Firebase Functions
-      return 'https://matchpoint-front.web.app/api';
-    } else {
-      // Fallback para desarrollo con puerto por defecto
+    // 2. Fallback: Localhost con puerto dinámico (solo si no hay env var)
+    if (typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
       const port = this.resolveApiPort();
-      return `http://localhost:${port}`;
+      return `http://localhost:${port}/api/v1`;
+    }
+
+    // 3. Producción default (si no hay env var y no es localhost)
+    if (this.isProduction()) {
+      return 'https://matchpoint-front.web.app/api/v1';
+    } else {
+      const port = this.resolveApiPort();
+      return `http://localhost:${port}/api/v1`;
     }
   }
 
