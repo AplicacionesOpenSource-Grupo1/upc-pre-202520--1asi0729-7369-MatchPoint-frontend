@@ -29,6 +29,16 @@ if (fs.existsSync(envPath)) {
   console.warn(`Environment file ${envFile} not found!`);
 }
 
+// Si estamos en production y no se especificó API_BASE_URL, usar la ruta relativa
+// para que Firebase Hosting pueda manejar los rewrites hacia /api/* (fake API)
+if (isProduction) {
+  const apiBase = envConfig['API_BASE_URL'];
+  if (typeof apiBase === 'undefined' || apiBase === null || String(apiBase).trim() === '') {
+    envConfig['API_BASE_URL'] = '/api';
+    console.log('No API_BASE_URL found for production, defaulting to /api for Firebase rewrites');
+  }
+}
+
 // Generar el contenido del script que se insertará en index.html
 const envScript = `
   <script>
@@ -62,3 +72,12 @@ console.log(`Environment configuration written to: ${outputPath}`);
 const htmlScriptPath = path.resolve(__dirname, '..', 'env-script.html');
 fs.writeFileSync(htmlScriptPath, envScript);
 console.log(`HTML script written to: ${htmlScriptPath}`);
+
+// Also write to public/assets so the dev server (which serves `public`) exposes the file
+const publicAssetsDir = path.resolve(__dirname, '..', 'public', 'assets');
+if (!fs.existsSync(publicAssetsDir)) {
+  fs.mkdirSync(publicAssetsDir, { recursive: true });
+}
+const publicOutputPath = path.resolve(publicAssetsDir, 'env-config.js');
+fs.writeFileSync(publicOutputPath, jsContent);
+console.log(`Environment configuration also written to: ${publicOutputPath}`);

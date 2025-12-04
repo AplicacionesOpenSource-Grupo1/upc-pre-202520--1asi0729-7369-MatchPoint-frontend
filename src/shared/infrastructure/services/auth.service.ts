@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, catchError, tap, switchMap } from 'rxjs/operators';
 import { User } from '../../domain/models/user.model';
 import { ConfigService } from './config.service';
+import { UserService } from './user.service';
 
 export interface LoginRequest {
   email: string;
@@ -20,8 +21,11 @@ export interface RegisterRequest {
 }
 
 export interface AuthResponse {
-  user: User;
   token: string;
+  type: string;
+  userId: string;
+  email: string;
+  name: string;
 }
 
 /**
@@ -47,12 +51,14 @@ export class AuthService {
   private router = inject(Router);
   /** Servicio de configuración */
   private configService = inject(ConfigService);
-  
+  /** Servicio de usuarios para obtener detalles completos */
+  private userService = inject(UserService);
+
   /** Subject para el estado de autenticación */
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   /** Observable público del usuario actual */
   public currentUser$ = this.currentUserSubject.asObservable();
-  
+
   /** Signal para el estado de carga */
   isLoading = signal<boolean>(false);
   /** Signal para errores de autenticación */
@@ -61,11 +67,6 @@ export class AuthService {
   constructor() {
     // Verificar si hay un usuario guardado en localStorage al inicializar
     this.checkStoredUser();
-    
-    // Auto-login en desarrollo si no hay usuario
-    if (!this.configService.isProductionMode() && !this.isAuthenticated) {
-      this.autoLoginForDevelopment();
-    }
   }
 
   /**
@@ -74,8 +75,14 @@ export class AuthService {
   private checkStoredUser(): void {
     const storedUser = localStorage.getItem('playmatch_user');
     const storedToken = localStorage.getItem('playmatch_token');
-    
+
     if (storedUser && storedToken) {
+      // Limpiar tokens de desarrollo antiguos
+      if (storedToken.startsWith('dev-token-')) {
+        this.clearStoredAuth();
+        return;
+      }
+
       try {
         const user = JSON.parse(storedUser);
         // Verificar que el token no haya expirado (opcional)
@@ -132,33 +139,28 @@ export class AuthService {
     this.isLoading.set(true);
     this.authError.set(null);
 
-    return this.http.get<User[]>(`${this.configService.getApiUrl('users')}`).pipe(
-      map(users => {
-        const user = users.find(u => 
-          u.email === credentials.email && 
-          (u as any).password === credentials.password
-        );
-        
-        if (!user) {
-          throw new Error('Invalid credentials');
-        }
-
-        // Simular token JWT
-        const token = this.generateFakeToken(user);
-        
-        return { user, token };
-      }),
+    return this.http.post<AuthResponse>(`${this.configService.getApiUrl('auth')}/login`, credentials).pipe(
       tap(response => {
-        // Guardar usuario en localStorage usando el nuevo método
-        this.saveAuthData(response.user, response.token);
-        
-        // Actualizar el subject
-        this.currentUserSubject.next(response.user);
+        // Guardar token temporalmente para permitir la llamada a getUserById
+        localStorage.setItem('playmatch_token', response.token);
+      }),
+      switchMap(response => {
+        // Obtener perfil completo del usuario
+        return this.userService.getUserById(response.userId).pipe(
+          map(user => ({ authResponse: response, user }))
+        );
+      }),
+      tap(({ authResponse, user }) => {
+        this.saveAuthData(user, authResponse.token);
+        this.currentUserSubject.next(user);
         this.isLoading.set(false);
       }),
+      map(({ authResponse }) => authResponse),
       catchError(error => {
         this.isLoading.set(false);
         this.authError.set('Credenciales inválidas');
+        // Limpiar token si falló la obtención del usuario
+        localStorage.removeItem('playmatch_token');
         return throwError(() => error);
       })
     );
@@ -171,43 +173,25 @@ export class AuthService {
     this.isLoading.set(true);
     this.authError.set(null);
 
-    return this.http.get<User[]>(`${this.configService.getApiUrl('users')}`).pipe(
-      switchMap(users => {
-        const existingUser = users.find(u => u.email === userData.email);
-        if (existingUser) {
-          throw new Error('Email already exists');
-        }
-        
-        const newUser: User = {
-          id: Date.now().toString(),
-          name: userData.name,
-          email: userData.email,
-          phone: userData.phone,
-          favoriteSpot: userData.favoriteSpot,
-          avatar: this.generateDefaultAvatar(userData.name)
-        };
-
-        return this.http.post<User>(`${this.configService.getApiUrl('users')}`, {
-          ...newUser,
-          password: userData.password
-        }).pipe(
-          map(createdUser => {
-            const token = this.generateFakeToken(createdUser);
-            return { user: createdUser, token };
-          })
+    return this.http.post<AuthResponse>(`${this.configService.getApiUrl('auth')}/register`, userData).pipe(
+      tap(response => {
+        localStorage.setItem('playmatch_token', response.token);
+      }),
+      switchMap(response => {
+        return this.userService.getUserById(response.userId).pipe(
+          map(user => ({ authResponse: response, user }))
         );
       }),
-      tap(response => {
-        // Guardar usuario en localStorage usando el nuevo método
-        this.saveAuthData(response.user, response.token);
-        
-        // Actualizar el subject
-        this.currentUserSubject.next(response.user);
+      tap(({ authResponse, user }) => {
+        this.saveAuthData(user, authResponse.token);
+        this.currentUserSubject.next(user);
         this.isLoading.set(false);
       }),
+      map(({ authResponse }) => authResponse),
       catchError(error => {
         this.isLoading.set(false);
-        if (error.message === 'Email already exists') {
+        localStorage.removeItem('playmatch_token');
+        if (error.status === 409) {
           this.authError.set('El email ya está registrado');
         } else {
           this.authError.set('Error al registrar usuario');
@@ -224,32 +208,9 @@ export class AuthService {
     this.clearStoredAuth();
     this.currentUserSubject.next(null);
     this.authError.set(null);
-    
+
     // Redirigir al login después del logout
     this.router.navigate(['/login']);
-  }
-
-  /**
-   * Genera un token falso para simular JWT
-   */
-  private generateFakeToken(user: User): string {
-    const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
-    const payload = btoa(JSON.stringify({ 
-      sub: user.id, 
-      email: user.email, 
-      exp: Date.now() + 86400000 
-    }));
-    const signature = btoa('fake-signature');
-    
-    return `${header}.${payload}.${signature}`;
-  }
-
-  /**
-   * Genera un avatar por defecto basado en el nombre
-   */
-  private generateDefaultAvatar(name: string): string {
-    const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
-    return `https://ui-avatars.com/api/?name=${initials}&background=0d47a1&color=fff`;
   }
 
   /**
@@ -257,23 +218,5 @@ export class AuthService {
    */
   clearError(): void {
     this.authError.set(null);
-  }
-
-  /**
-   * Auto-login para desarrollo con usuario mock
-   */
-  private autoLoginForDevelopment(): void {
-    const mockUser: User = {
-      id: '1',
-      name: 'Juan Carlos',
-      email: 'juan@example.com',
-      phone: '+51 999 999 999',
-      avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKUsllfarh1Vz5TMSY9tQXvaO4PjgZQST2UfndXEB4asm1lrMgH1AOBj8iel5YRr8sjK-udLwcYVv87B65GOQBuCO06VCZgauA33eetg72EetdFnv3sJj_X3FrK4V-wNkU6_MjPGh-WdWq5ZaVRzZ9OkovDPzgEskotSpWMv8d6HkCUKvQCp7K',
-      favoriteSpot: 'tennis'
-    };
-    
-    const mockToken = 'dev-token-' + Date.now();
-    this.saveAuthData(mockUser, mockToken);
-    this.currentUserSubject.next(mockUser);
   }
 }

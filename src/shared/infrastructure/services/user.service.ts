@@ -30,7 +30,25 @@ export class UserService {
    * @returns {Observable<User>} Observable con los datos del usuario
    */
   getCurrentUser(): Observable<User> {
-    return this.http.get<User>(`${this.configService.getApiUrl('users')}/1`);
+    const storedUser = localStorage.getItem('playmatch_user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      return this.http.get<User>(`${this.configService.getApiUrl('users')}/${user.id}`);
+    }
+    // Fallback or error if no user is logged in (though AuthGuard should prevent this)
+    return new Observable(observer => {
+      observer.error('No user logged in');
+      observer.complete();
+    });
+  }
+
+  /**
+   * Obtiene la información de un usuario por su ID
+   * @param {string} userId - ID del usuario
+   * @returns {Observable<User>} Observable con los datos del usuario
+   */
+  getUserById(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.configService.getApiUrl('users')}/${userId}`);
   }
 
   /**
@@ -50,15 +68,7 @@ export class UserService {
    * @todo Implementar endpoint real en la API
    */
   getUserStats(userId: string): Observable<UserStats> {
-    // For now, return mock stats since we don't have a dedicated endpoint
-    return new Observable(observer => {
-      observer.next({
-        totalBookings: 25,
-        hoursPlayed: 32,
-        favoriteSport: 'Tennis'
-      });
-      observer.complete();
-    });
+    return this.http.get<UserStats>(`${this.configService.getApiUrl('users')}/${userId}/stats`);
   }
 
   /**
@@ -68,27 +78,38 @@ export class UserService {
    * @todo Implementar endpoint real en la API
    */
   getUserActivities(userId: string): Observable<Activity[]> {
-    // For now, return mock activities since we don't have a dedicated endpoint
+    // Mock activities since backend endpoint might not be ready
+    const mockActivities: Activity[] = [
+      {
+        id: '1',
+        type: 'booking',
+        title: 'activity.booking_created',
+        description: 'activity.booking_desc_tennis',
+        date: new Date(),
+        icon: 'calendar'
+      },
+      {
+        id: '2',
+        type: 'match',
+        title: 'activity.match_played',
+        description: 'activity.match_desc_padel',
+        date: new Date(Date.now() - 86400000),
+        icon: 'trophy'
+      },
+      {
+        id: '3',
+        type: 'booking',
+        title: 'activity.booking_created',
+        description: 'activity.booking_desc_coach',
+        date: new Date(Date.now() - 172800000),
+        icon: 'user'
+      }
+    ];
+
     return new Observable(observer => {
-      observer.next([
-        {
-          id: '1',
-          type: 'booking',
-          title: 'Booking Confirmation',
-          description: 'Booked a tennis court at Central Park Courts',
-          date: new Date(),
-          icon: 'check'
-        },
-        {
-          id: '2',
-          type: 'match',
-          title: 'Match Completed',
-          description: 'Played a tennis match at Central Park Courts',
-          date: new Date(Date.now() - 24 * 60 * 60 * 1000),
-          icon: 'play'
-        }
-      ]);
+      observer.next(mockActivities);
       observer.complete();
     });
+    // return this.http.get<Activity[]>(`${this.configService.getApiUrl('users')}/${userId}/activities`);
   }
 }

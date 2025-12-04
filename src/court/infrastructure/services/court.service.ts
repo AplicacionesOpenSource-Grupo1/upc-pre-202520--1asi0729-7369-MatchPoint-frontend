@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, switchMap, of, forkJoin } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Court } from '../../domain/models/court.model';
+import { Page } from '../../../shared/domain/models/page.model';
 import { ConfigService } from '../../../shared/infrastructure/services/config.service';
 
 /**
@@ -30,7 +31,9 @@ export class CourtService {
    * @returns {Observable<Court[]>} Observable con el array de todas las canchas
    */
   getAllCourts(): Observable<Court[]> {
-    return this.http.get<Court[]>(this.configService.getApiUrl('courts'));
+    return this.http.get<Page<Court>>(`${this.configService.getApiUrl('courts')}?size=100`).pipe(
+      map(page => page.content)
+    );
   }
 
   /**
@@ -39,22 +42,7 @@ export class CourtService {
    * @returns {Observable<Court>} Observable con los datos de la cancha
    */
   getCourtById(id: string): Observable<Court> {
-    // Primero intentar obtener desde el archivo individual
-    return this.http.get<Court>(`${this.configService.getApiUrl('courts')}-${id}.json`).pipe(
-      catchError(() => {
-        // Si falla, obtener desde la lista completa
-        console.log(`Individual court file not found for ID ${id}, fetching from complete list`);
-        return this.getAllCourts().pipe(
-          map((courts: Court[]) => {
-            const court = courts.find((c: Court) => c.id === id);
-            if (!court) {
-              throw new Error(`Court with ID ${id} not found`);
-            }
-            return court;
-          })
-        );
-      })
-    );
+    return this.http.get<Court>(`${this.configService.getApiUrl('courts')}/${id}`);
   }
 
   /**
@@ -74,7 +62,8 @@ export class CourtService {
     maxPrice?: number;
   }): Observable<Court[]> {
     let params = new URLSearchParams();
-    
+    params.append('size', '100'); // Fetch enough items for client-side display for now
+
     if (filters) {
       if (filters.sport) params.append('sport', filters.sport);
       if (filters.location) params.append('location_like', filters.location);
@@ -83,8 +72,10 @@ export class CourtService {
     }
 
     const baseUrl = this.configService.getApiUrl('courts');
-    const url = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
-    return this.http.get<Court[]>(url);
+    const url = `${baseUrl}?${params.toString()}`;
+    return this.http.get<Page<Court>>(url).pipe(
+      map(page => page.content)
+    );
   }
 
   /**
@@ -93,24 +84,6 @@ export class CourtService {
    * @returns {Observable<any[]>} Observable con el array de entrenadores disponibles
    */
   getAvailableCoachesForCourt(courtId: string): Observable<any[]> {
-    return this.getCourtById(courtId).pipe(
-      map(court => court.availableCoaches || []),
-      switchMap(coachIds => {
-        if (coachIds.length === 0) {
-          return of([]);
-        }
-        
-        // Obtener los entrenadores por sus IDs
-        const coachRequests = coachIds.map(id => 
-          this.http.get<any>(`${this.configService.getApiUrl('coaches')}/${id}`).pipe(
-            catchError(() => of(null))
-          )
-        );
-        
-        return forkJoin(coachRequests).pipe(
-          map(coaches => coaches.filter(coach => coach !== null))
-        );
-      })
-    );
+    return this.http.get<any[]>(`${this.configService.getApiUrl('courts')}/${courtId}/coaches`);
   }
 }

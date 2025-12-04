@@ -55,7 +55,16 @@ export const routes: Routes = [
   },
   {
     path: 'payments/confirmation',
-    loadComponent: () =>import('../shared/presentation/views/payment-confirmation/payment-confirmation').then(m=>m.PaymentConfirmation)
+    loadComponent: () => import('../shared/presentation/views/payment-confirmation/payment-confirmation').then(m => m.PaymentConfirmation)
+  },
+  {
+    path: 'my-bookings',
+    loadComponent: () => import('../shared/presentation/views/my-bookings/my-bookings').then(m => m.MyBookingsComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'seed',
+    loadComponent: () => import('../shared/presentation/views/seed/seed.component').then(m => m.SeedComponent)
   },
   {
     path: '**',
