@@ -2,7 +2,7 @@
 (function (window) {
   window.env = window.env || {};
   window.env['NODE_ENV'] = 'development';
-  window.env['API_BASE_URL'] = 'http://localhost:8080/api/v1';
+  window.env['API_BASE_URL'] = 'https://matchpoint-backend-production.up.railway.app/api/v1';
   window.env['API_PORT'] = '3000';
   window.env['API_TIMEOUT'] = '10000';
   window.env['APP_NAME'] = 'PlayMatch';
